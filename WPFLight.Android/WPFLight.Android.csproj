@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8FF3D45F-8E62-4080-960D-79EA00BC4FFF}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WPFLight.Android</RootNamespace>
+    <AssemblyName>WPFLight.Android</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ANDROID</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ANDROID</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\WPFLight\Animations\FloatAnimation.cs">
+      <Link>Animations\FloatAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Animations\FloatAnimationBase.cs">
+      <Link>Animations\FloatAnimationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Animations\FloatKeyFrame.cs">
+      <Link>Animations\FloatKeyFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Animations\FloatKeyFrameAnimation.cs">
+      <Link>Animations\FloatKeyFrameAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Animations\IAnimationBase.cs">
+      <Link>Animations\IAnimationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Animations\Storyboard.cs">
+      <Link>Animations\Storyboard.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Button.cs">
+      <Link>Components\Button.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\CheckButton.cs">
+      <Link>Components\CheckButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\ColumnDefinition.cs">
+      <Link>Components\ColumnDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\ColumnHeader.cs">
+      <Link>Components\ColumnHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Component.cs">
+      <Link>Components\Component.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Control.cs">
+      <Link>Components\Control.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\DataGrid.cs">
+      <Link>Components\DataGrid.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\DataGridItem.cs">
+      <Link>Components\DataGridItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\DataGridItemColleciton.cs">
+      <Link>Components\DataGridItemColleciton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\FocusableControl.cs">
+      <Link>Components\FocusableControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Grid.cs">
+      <Link>Components\Grid.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\GridLength.cs">
+      <Link>Components\GridLength.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\IDrawable.cs">
+      <Link>Components\IDrawable.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\IDrawable2D.cs">
+      <Link>Components\IDrawable2D.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\IDrawable3D.cs">
+      <Link>Components\IDrawable3D.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\IFocusable.cs">
+      <Link>Components\IFocusable.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Image.cs">
+      <Link>Components\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Label.cs">
+      <Link>Components\Label.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\ListBox.cs">
+      <Link>Components\ListBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\ListBoxCollection.cs">
+      <Link>Components\ListBoxCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\ListBoxItem.cs">
+      <Link>Components\ListBoxItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Plane.cs">
+      <Link>Components\Plane.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\PropertyChangedEventArgs.cs">
+      <Link>Components\PropertyChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\RadioButton.cs">
+      <Link>Components\RadioButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Rectangle.cs">
+      <Link>Components\Rectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\RowDefinition.cs">
+      <Link>Components\RowDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\ScreenBase.cs">
+      <Link>Components\ScreenBase.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\StackPanel.cs">
+      <Link>Components\StackPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\TextBox.cs">
+      <Link>Components\TextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\Thickness.cs">
+      <Link>Components\Thickness.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Components\TrackBar.cs">
+      <Link>Components\TrackBar.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Content\Textures.cs">
+      <Link>Content\Textures.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Helpers\ScreenHelper.cs">
+      <Link>Helpers\ScreenHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Styles\Setter.cs">
+      <Link>Styles\Setter.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Styles\Style.cs">
+      <Link>Styles\Style.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Styles\Trigger.cs">
+      <Link>Styles\Trigger.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Media\Brush.cs">
+      <Link>Media\Brush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Media\Brushes.cs">
+      <Link>Media\Brushes.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Media\GradientBrush.cs">
+      <Link>Media\GradientBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Media\GradientStop.cs">
+      <Link>Media\GradientStop.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Media\GradientStopCollection.cs">
+      <Link>Media\GradientStopCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Media\LinearGradientBrush.cs">
+      <Link>Media\LinearGradientBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Media\RadialGradientBrush.cs">
+      <Link>Media\RadialGradientBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Media\SolidColorBrush.cs">
+      <Link>Media\SolidColorBrush.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Styles\" />
+    <Folder Include="Animations\" />
+    <Folder Include="Content\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Components\" />
+    <Folder Include="Media\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\MonoGame-develop\MonoGame.Framework\MonoGame.Framework.Android.csproj">
+      <Project>{BA9476CF-99BA-4D03-92F2-73D2C5E58883}</Project>
+      <Name>MonoGame.Framework.Android</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3B6824B9-BEE1-4B27-801E-E2437185E280}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WPFLight.Win8</RootNamespace>
+    <AssemblyName>WPFLight.Win8</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE; WIN8</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\XAMLLight.iOS\Animations\Easing.cs">
+      <Link>Animations\Easing.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Animations\FloatAnimation.cs">
+      <Link>Animations\FloatAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Animations\FloatAnimationBase.cs">
+      <Link>Animations\FloatAnimationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Animations\FloatKeyFrame.cs">
+      <Link>Animations\FloatKeyFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Animations\FloatKeyFrameAnimation.cs">
+      <Link>Animations\FloatKeyFrameAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Button.cs">
+      <Link>Components\Button.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\CheckButton.cs">
+      <Link>Components\CheckButton.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\ColumnDefinition.cs">
+      <Link>Components\ColumnDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\ColumnHeader.cs">
+      <Link>Components\ColumnHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Component.cs">
+      <Link>Components\Component.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Control.cs">
+      <Link>Components\Control.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\DataGrid.cs">
+      <Link>Components\DataGrid.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\DataGridItem.cs">
+      <Link>Components\DataGridItem.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\DataGridItemColleciton.cs">
+      <Link>Components\DataGridItemColleciton.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\FocusableControl.cs">
+      <Link>Components\FocusableControl.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Grid.cs">
+      <Link>Components\Grid.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\GridLength.cs">
+      <Link>Components\GridLength.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\IDrawable.cs">
+      <Link>Components\IDrawable.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\IDrawable2D.cs">
+      <Link>Components\IDrawable2D.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\IDrawable3D.cs">
+      <Link>Components\IDrawable3D.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\IFocusable.cs">
+      <Link>Components\IFocusable.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Image.cs">
+      <Link>Components\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Label.cs">
+      <Link>Components\Label.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\ListBox.cs">
+      <Link>Components\ListBox.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\ListBoxCollection.cs">
+      <Link>Components\ListBoxCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\ListBoxItem.cs">
+      <Link>Components\ListBoxItem.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Plane.cs">
+      <Link>Components\Plane.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\PropertyChangedEventArgs.cs">
+      <Link>Components\PropertyChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\RadioButton.cs">
+      <Link>Components\RadioButton.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Rectangle.cs">
+      <Link>Components\Rectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\RowDefinition.cs">
+      <Link>Components\RowDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\ScreenBase.cs">
+      <Link>Components\ScreenBase.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\StackPanel.cs">
+      <Link>Components\StackPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\TextBox.cs">
+      <Link>Components\TextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\Thickness.cs">
+      <Link>Components\Thickness.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Components\TrackBar.cs">
+      <Link>Components\TrackBar.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Content\Textures.cs">
+      <Link>Content\Textures.cs</Link>
+    </Compile>
+    <Compile Include="..\XAMLLight.iOS\Helpers\ScreenHelper.cs">
+      <Link>Helpers\ScreenHelper.cs</Link>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
