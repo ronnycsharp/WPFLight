@@ -1,0 +1,275 @@
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+   <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
+    	<Style.Setters>
+    		<Setter Property="Alpha" Value="0.9"/>
+        	<Setter Property="Background">
+        		<Setter.Value>
+	                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+	                    <LinearGradientBrush.GradientStops>
+	                        <GradientStop Color="#FFD6D6D6" Offset="0.0" />
+	                        <GradientStop Color="#FFB6B6B6" Offset="0.42" />
+	                        <GradientStop Color="#FFA4A4A4" Offset="0.43" />
+	                        <GradientStop Color="#FFCFCFCF" Offset="1.0" />
+	                    </LinearGradientBrush.GradientStops>
+	                </LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Foreground" Value="Black" />
+        	<Setter Property="FontSize" Value="0.32" />
+        	<Setter Property="BorderBrush" Value="{x:Null}" />
+        	<Setter Property="BorderThickness" Value="0"/>
+        	<Setter Property="Margin" Value="3" />
+        </Style.Setters>
+        <Style.Triggers>
+        	<Trigger Property="IsTouchDown" Value="True">
+        		<Trigger.Setters>
+        			<Setter Property="Alpha" Value="1"/>
+        		</Trigger.Setters>
+        	</Trigger>
+        </Style.Triggers>
+    </Style>
+   
+    <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
+    	<Style.Setters>
+    		<Setter Property="Alpha" Value="0.9"/>
+        	<Setter Property="Background">
+        		<Setter.Value>
+        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+                 		<LinearGradientBrush.GradientStops>
+				          <GradientStop Color="#FF505050" Offset="0.0" />
+				          <GradientStop Color="#FF707070" Offset="0.42" />
+				          <GradientStop Color="#FF606060" Offset="0.43" />
+				          <GradientStop Color="#FF444444" Offset="1.0" />
+                 		</LinearGradientBrush.GradientStops>
+				    </LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Foreground" Value="White" />
+        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="BorderBrush" Value="#88AAAAAA" />
+        	<Setter Property="BorderThickness" Value="0"/>
+        	<Setter Property="Margin" Value="3" />
+        	<Setter Property="CornerRadiusX" Value="9" />
+        	<Setter Property="CornerRadiusY" Value="9" />
+        </Style.Setters>
+        <Style.Triggers>
+        	<Trigger Property="IsTouchDown" Value="True">
+        		<Trigger.Setters>
+        			<Setter Property="Alpha" Value="1.0"/>
+        		</Trigger.Setters>
+        	</Trigger>
+        </Style.Triggers>
+    </Style>
+
+  <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+    <Style.Setters>
+      <Setter Property="Alpha" Value="0.9"/>
+      <Setter Property="Background" Value="#17FFFFFF" />
+      <Setter Property="Foreground" Value="White" />
+      <Setter Property="FontSize" Value="0.39" />
+      <Setter Property="BorderBrush" Value="#88AAAAAA" />
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Margin" Value="3,3,3,0" />
+      <Setter Property="CornerRadiusX" Value="0" />
+      <Setter Property="CornerRadiusY" Value="0" />
+    </Style.Setters>
+    <Style.Triggers>
+      <Trigger Property="IsTouchDown" Value="True">
+        <Trigger.Setters>
+          <Setter Property="Alpha" Value="1.0"/>
+        </Trigger.Setters>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="True">
+        <Trigger.Setters>
+      		<Setter Property="Background" Value="#44FFFFFF" />
+        </Trigger.Setters>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
+  <Style x:Key="{x:Type CheckButton}" TargetType="{x:Type CheckButton}">
+    	<Style.Setters>
+    		<Setter Property="Alpha" Value="0.9"/>
+        	<Setter Property="Background">
+        		<Setter.Value>
+        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+                 		<LinearGradientBrush.GradientStops>
+				          <GradientStop Color="#FF505050" Offset="0.0" />
+				          <GradientStop Color="#FF707070" Offset="0.42" />
+				          <GradientStop Color="#FF606060" Offset="0.43" />
+				          <GradientStop Color="#FF444444" Offset="1.0" />
+                 		</LinearGradientBrush.GradientStops>
+				    </LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Foreground" Value="White" />
+        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="BorderBrush" Value="#88AAAAAA" />
+        	<Setter Property="BorderThickness" Value="0"/>
+        	<Setter Property="Margin" Value="3" />
+        	<Setter Property="CornerRadiusX" Value="9" />
+        	<Setter Property="CornerRadiusY" Value="9" />
+        </Style.Setters>
+        <Style.Triggers>
+        	<Trigger Property="IsTouchDown" Value="True">
+        		<Trigger.Setters>
+        			<Setter Property="Alpha" Value="1"/>
+        		</Trigger.Setters>
+        	</Trigger>
+        	<Trigger Property="IsChecked" Value="True">
+        		<Trigger.Setters>
+		        	<Setter Property="Background">
+		        		<Setter.Value>
+		        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+		                 		<LinearGradientBrush.GradientStops>
+						          <GradientStop Color="#FF606060" Offset="0.0" />
+						          <GradientStop Color="#FF808080" Offset="0.42" />
+						          <GradientStop Color="#FF707070" Offset="0.43" />
+						          <GradientStop Color="#FF555555" Offset="1.0" />
+		                 		</LinearGradientBrush.GradientStops>
+						    </LinearGradientBrush>
+		        		</Setter.Value>
+		        	</Setter>
+        		</Trigger.Setters>
+        	</Trigger>
+        </Style.Triggers>
+    </Style>
+        
+    <Style x:Key="{x:Type RadioButton}" TargetType="{x:Type RadioButton}">
+    	<Style.Setters>
+    		<Setter Property="Alpha" Value="0.9"/>
+        	<Setter Property="Background">
+        		<Setter.Value>
+        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+                 		<LinearGradientBrush.GradientStops>
+				          <GradientStop Color="#FF505050" Offset="0.0" />
+				          <GradientStop Color="#FF707070" Offset="0.42" />
+				          <GradientStop Color="#FF606060" Offset="0.43" />
+				          <GradientStop Color="#FF444444" Offset="1.0" />
+                 		</LinearGradientBrush.GradientStops>
+				    </LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Foreground" Value="White" />
+        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="BorderBrush" Value="#88AAAAAA" />
+        	<Setter Property="BorderThickness" Value="0"/>
+        	<Setter Property="Margin" Value="3" />
+        	<Setter Property="CornerRadiusX" Value="9" />
+        	<Setter Property="CornerRadiusY" Value="9" />
+        </Style.Setters>
+        <Style.Triggers>
+        	<Trigger Property="IsTouchDown" Value="True">
+        		<Trigger.Setters>
+        			<Setter Property="Alpha" Value="1"/>
+        		</Trigger.Setters>
+        	</Trigger>
+        	<Trigger Property="IsChecked" Value="True">
+        		<Trigger.Setters>
+ 		        	<Setter Property="Background">
+		        		<Setter.Value>
+			                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+			                    <LinearGradientBrush.GradientStops>
+			                        <GradientStop Color="#FF68CB43" Offset="0.0" />
+			                        <GradientStop Color="#FF339E2E" Offset="0.42" />
+			                        <GradientStop Color="#FF2E8D2E" Offset="0.438" />
+			                        <GradientStop Color="#FF5EE441" Offset="1.0" />
+			                    </LinearGradientBrush.GradientStops>
+			                </LinearGradientBrush>
+		        		</Setter.Value>
+		        	</Setter>
+        		</Trigger.Setters>
+        	</Trigger>
+        	<Trigger Property="IsEnabled" Value="False">
+        		<Trigger.Setters>
+        			<Setter Property="Foreground" Value="#FFAAAAAA"/>
+ 		        	<Setter Property="Background">
+		        		<Setter.Value>
+			                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+			                    <LinearGradientBrush.GradientStops>
+						          <GradientStop Color="#FF505050" Offset="0.0" />
+						          <GradientStop Color="#FF707070" Offset="0.42" />
+						          <GradientStop Color="#FF606060" Offset="0.43" />
+						          <GradientStop Color="#FF444444" Offset="1.0" />
+			                    </LinearGradientBrush.GradientStops>
+			                </LinearGradientBrush>
+		        		</Setter.Value>
+		        	</Setter>
+        		</Trigger.Setters>
+        	</Trigger>
+        </Style.Triggers>
+    </Style>
+        
+    <Style x:Key="{x:Type MenuButton}" TargetType="{x:Type MenuButton}">
+    	<Style.Setters>
+    		<Setter Property="Alpha" Value="0.9"/>
+        	<Setter Property="Background">
+        		<Setter.Value>
+    	    	<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#FF3C8AFB" Offset="0.0" />
+                        <GradientStop Color="#FF3564A8" Offset="0.42" />
+                        <GradientStop Color="#FF305495" Offset="0.43" />
+                        <GradientStop Color="#FF4486D4" Offset="1.0" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        	<Setter Property="Foreground" Value="White" />
+        	<Setter Property="FontSize" Value="0.37" />
+			<Setter Property="BorderBrush" Value="#88AAAAFF"/>
+        	<Setter Property="BorderThickness" Value="0"/>
+        	<Setter Property="Margin" Value="3" />
+        	<Setter Property="CornerRadiusX" Value="9" />
+        	<Setter Property="CornerRadiusY" Value="9" />
+        </Style.Setters>
+        <Style.Triggers>
+        	<Trigger Property="IsTouchDown" Value="True">
+        		<Trigger.Setters>
+        			<Setter Property="Alpha" Value="1"/>
+        		</Trigger.Setters>
+        	</Trigger>
+        	<Trigger Property="IsChecked" Value="True">
+        		<Trigger.Setters>
+		        	<Setter Property="Background">
+		        		<Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+                    <LinearGradientBrush.GradientStops>
+                        <GradientStop Color="#FF69A5FB" Offset="0.0" />
+                        <GradientStop Color="#FF4275BD" Offset="0.42" />
+                        <GradientStop Color="#FF3E66AE" Offset="0.422" />
+                        <GradientStop Color="#FF63A4F1" Offset="1.0" />
+                    </LinearGradientBrush.GradientStops>
+                </LinearGradientBrush>
+		        		</Setter.Value>
+		        	</Setter>
+        		</Trigger.Setters>
+        	</Trigger>
+        </Style.Triggers>
+    </Style>
+        
+    <Style x:Key="{x:Type RepeatButton}" TargetType="{x:Type RepeatButton}">
+    	<Style.Setters>
+    		<Setter Property="Alpha" Value="0.9"/>
+        	<Setter Property="Background" Value="#FF555555" />
+        	<Setter Property="Foreground" Value="White" />
+        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="BorderBrush" Value="#88AAAAAA" />
+        	<Setter Property="BorderThickness" Value="0"/>
+        	<Setter Property="Margin" Value="3" />
+        	<Setter Property="CornerRadiusX" Value="9" />
+        	<Setter Property="CornerRadiusY" Value="9" />
+        </Style.Setters>
+        <Style.Triggers>
+        	<Trigger Property="IsTouchDown" Value="True">
+        		<Trigger.Setters>
+        			<Setter Property="Alpha" Value="1.0"/>
+        		</Trigger.Setters>
+        	</Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>
