@@ -8,15 +8,12 @@ using System.Windows.Media;
 
 namespace System.Windows.Controls {
 	public class MenuButton : RadioButton {
-        public MenuButton (SpriteFont font)
-            : base(font) {
-            this.Visible = true;
+        public MenuButton (SpriteFont font) : base ( font ) {
             items = new List<Button>();
 
 			this.HorizontalContentAlignment = HorizontalAlignment.Left;
 			this.GroupName = "MenuButton";
 			this.Padding = new Thickness ();
-			this.Uncheckable = true;
 
 			this.ItemsPanel = new StackPanel();
 			this.ItemsPanel.VerticalAlignment = VerticalAlignment.Stretch;

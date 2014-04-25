@@ -27,31 +27,32 @@ namespace System.Windows.Controls {
 			this.Font = font;
 		}
 
-		#region Ereignisse
+		#region Events
 
 		public event EventHandler TouchDown;
 		public event EventHandler TouchUp;
 
 		#endregion
 
-		#region Eigenschaften
+		#region Properties
 
 		public static DependencyProperty FontProperty =
 			DependencyProperty.Register (
 				"Font", typeof(SpriteFont), typeof(Control));
 
+        [Obsolete("Use FontFamily like WPF")]
 		public SpriteFont Font {
 			get{ return (SpriteFont)GetValue (FontProperty); }
 			set{ SetValue (FontProperty, value); }
 		}
 
-		public static DependencyProperty FontNameProperty =
+		public static DependencyProperty FontFamilyProperty =
 			DependencyProperty.Register (
-				"FontName", typeof(String), typeof(Control));
+				"FontFamily", typeof(FontFamily), typeof(Control));
 
-		public string FontName {
-			get{ return (string)GetValue (FontNameProperty); }
-			set{ SetValue (FontNameProperty, value); }
+		public FontFamily FontFamily {
+			get{ return (FontFamily)GetValue (FontFamilyProperty); }
+			set{ SetValue (FontFamilyProperty, value); }
 		}
 
 		public static DependencyProperty FontSizeProperty =
@@ -138,7 +139,7 @@ namespace System.Windows.Controls {
 			set;
 		}
 
-		// TODO
+		// TODO REMOVE, use only FontSize
 		public float FontScale {
 			get {
 				return this.FontSize;

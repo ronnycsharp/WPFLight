@@ -1,14 +1,6 @@
-using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace System.Windows.Controls
-{
-    public class ListBoxItem : RadioButton
-    {
-        public ListBoxItem ( SpriteFont font ) : base ( font ) {
-			this.ScissorTest = false;
-        }
+namespace System.Windows.Controls {
+    public class ListBoxItem : RadioButton {
+        public ListBoxItem ( ) { }
 
         public override void Initialize () {
             base.Initialize();

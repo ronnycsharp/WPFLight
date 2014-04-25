@@ -309,6 +309,15 @@
       <Link>System\Windows\Media\DrawingContext.cs</Link>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\FontContainer.cs">
+      <Link>System\Windows\Media\FontContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\FontFamily.cs">
+      <Link>System\Windows\Media\FontFamily.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\FontFamilyConverter.cs">
+      <Link>System\Windows\Media\FontFamilyConverter.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\System\Windows\Media\GradientBrush.cs">
       <Link>System\Windows\Media\GradientBrush.cs</Link>
       <SubType>Code</SubType>
@@ -336,6 +345,9 @@
     <Compile Include="..\WPFLight\System\Windows\Media\SolidColorBrush.cs">
       <Link>System\Windows\Media\SolidColorBrush.cs</Link>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\VisualTreeHelper.cs">
+      <Link>System\Windows\Media\VisualTreeHelper.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Point.cs">
       <Link>System\Windows\Point.cs</Link>

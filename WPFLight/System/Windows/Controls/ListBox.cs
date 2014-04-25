@@ -1,19 +1,17 @@
-using System.Linq;
-using System.Windows.Controls;
+using System.Collections.Generic;
 using System.Windows.Controls.Primitives;
-using System.Windows.Media;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
-using System.Collections.Generic;
 
 namespace System.Windows.Controls {
 	public class ListBox : Selector {
 		public ListBox ( ) {
-            this.ScissorTest = true;
-
-			contentPanel = new StackPanel { Orientation = Orientation.Vertical, Padding =  new Thickness ( ) };
+			contentPanel = new StackPanel { 
+                Orientation = Orientation.Vertical, 
+                Padding =  new Thickness ( ) 
+            };
 
 			scrollViewer = new ScrollViewer();
 			scrollViewer.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
@@ -46,7 +44,8 @@ namespace System.Windows.Controls {
 					list.Add (item);
 					if (!(item is ListBoxItem)) {
 						var lbItem =
-							new ListBoxItem (this.Font) {
+							new ListBoxItem {
+                                Font = this.Font,
 								Parent = contentPanel,
 								Content = item,
 								Height = 60,
