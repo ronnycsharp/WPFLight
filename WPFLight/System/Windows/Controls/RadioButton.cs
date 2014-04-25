@@ -41,7 +41,6 @@ namespace System.Windows.Controls {
 		}
 
         protected override void OnClick () {
-            base.OnClick();
             if (this.Parent is Panel) {
                 foreach (var c in ((Panel)this.Parent).Children.OfType<RadioButton>()) {
                     if (c != this && c.IsChecked && c.GroupName == this.GroupName) {
@@ -49,6 +48,8 @@ namespace System.Windows.Controls {
                     }
                 }
             }
+            if (!this.IsChecked)
+                this.IsChecked = true;
         }
 	}
 }
