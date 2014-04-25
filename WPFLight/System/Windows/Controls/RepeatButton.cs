@@ -4,15 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace System.Windows.Controls {
 	public class RepeatButton : Button {
-		public RepeatButton () {
-			
-		}
+		public RepeatButton () { }
 
-		public RepeatButton ( SpriteFont font ) {
-			this.Font = font;
-		}
-
-		#region Eigenschaften
+		#region Properties
 
 		public static readonly DependencyProperty IntervalProperty =
 			DependencyProperty.Register ( 
@@ -53,15 +47,6 @@ namespace System.Windows.Controls {
 				}
 			}
 		}
-		/*
-		public override void OnTouchUp (TouchLocation state) {
-			if (mouseDown) {
-				OnClick ();
-				mouseDown = false;
-			}
-			base.OnTouchUp (state);
-		}
-		*/
 
 		private bool 		mouseDown;
 		private DateTime 	lastClick;

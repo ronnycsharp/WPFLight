@@ -3,8 +3,8 @@ namespace System.Windows.Media {
 	[TypeConverter (typeof(FontFamilyConverter))]
 	public class FontFamily {
 		public FontFamily ( string fontName ) {
-			if (!String.IsNullOrEmpty (fontName))
-				throw new ArgumentNullException ();
+			if (String.IsNullOrEmpty (fontName))
+				throw new ArgumentException ();
 
 			this.Source = fontName;
 		}

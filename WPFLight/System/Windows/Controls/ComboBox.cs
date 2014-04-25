@@ -80,7 +80,6 @@ namespace System.Windows.Controls {
         #endregion
 
         public override void Initialize () {
-			cmdItem.Font = this.Font;
             cmdItem.FontSize = .35f;
 			cmdItem.Content = this.SelectedItem;
 			cmdItem.Initialize ();
@@ -97,7 +96,7 @@ namespace System.Windows.Controls {
 				Button.BackgroundProperty, backgroundBinding);
 			*/
 
-			window.Font = this.Font;
+            window.FontFamily = this.FontFamily;
 			window.IsToolTip = false;
 			//window.IsToolTip = true;
 			window.Left = (int)this.GetAbsoluteLeft();
@@ -198,7 +197,7 @@ namespace System.Windows.Controls {
 						foreach ( var item in e.NewItems ) {
 							var cmd = 
 								new Button ( ) {
-									Font = this.Font,
+									FontFamily = this.FontFamily,
 									Content = item,
 									CornerRadiusX = 5,
 									CornerRadiusY = 5,

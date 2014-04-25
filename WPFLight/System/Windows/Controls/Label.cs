@@ -9,20 +9,16 @@ using System.Windows.Media;
 
 namespace System.Windows.Controls {
     public class Label : Control {
-        public Label ( SpriteFont spriteFont ) : base ( spriteFont ) {
+        public Label ( ) {
 			this.TextAlignment = TextAlignment.Left;
 			this.Foreground = Brushes.White;
-            this.Alpha = 1.0f;
 			this.FontScale = .35f;
-            this.TextShadow = false;
         }
 
         #region Eigenschaften
 
 		public TextAlignment TextAlignment { get; set; }
         public string Text { get; set; }
-        //public float FontScale { get; set; }
-        public bool TextShadow { get; set; }
 
         #endregion
 
@@ -39,8 +35,8 @@ namespace System.Windows.Controls {
 				return measureWidth.Value;
 
 			var result = 0f;
-			if (!String.IsNullOrEmpty (this.Text) && this.Font != null && this.FontScale > 0)
-				result = this.Font.MeasureString (this.Text).X * this.FontScale;
+			if (!String.IsNullOrEmpty (this.Text) && this.GetFont() != null && this.FontScale > 0)
+				result = this.GetFont().MeasureString (this.Text).X * this.FontScale;
 
 
 			measureWidth = result;
@@ -53,8 +49,8 @@ namespace System.Windows.Controls {
 				return measureHeight.Value;
 
 			var result = 0f;
-			if (!String.IsNullOrEmpty (this.Text) && this.Font != null && this.FontScale > 0)
-				result = this.Font.MeasureString (this.Text).Y * this.FontScale;
+			if (!String.IsNullOrEmpty (this.Text) && this.GetFont() != null && this.FontScale > 0)
+				result = this.GetFont().MeasureString (this.Text).Y * this.FontScale;
 
 
 			measureHeight = result;
@@ -147,21 +143,8 @@ namespace System.Windows.Controls {
 						Color.Red );
 						*/
 
-                    if ( this.TextShadow ) {
-                        batch.DrawString (
-                            this.Font,
-                            this.Text,
-                            new Vector2 ( left + 1f, top + 1f ),
-                            Microsoft.Xna.Framework.Color.Black * .6f * x,
-                            0.0f,
-                            Vector2.Zero,
-                            this.FontScale,
-                            SpriteEffects.None,
-                            1.0f );
-                    }
-
                     batch.DrawString (
-                        this.Font,
+                        GetFont(),
                         this.Text,
                         new Vector2 ( left, top ),
 						this.Forecolor * x,

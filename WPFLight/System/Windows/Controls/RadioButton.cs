@@ -9,9 +9,6 @@ namespace System.Windows.Controls {
 	public class RadioButton : CheckButton {
         public RadioButton () { }
 
-        [Obsolete]
-        public RadioButton (SpriteFont font) : base ( font ) { }
-
 		#region Properties
         
         public static readonly DependencyProperty GroupNameProperty =

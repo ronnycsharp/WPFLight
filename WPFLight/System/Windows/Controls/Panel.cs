@@ -12,10 +12,6 @@ namespace System.Windows.Controls {
             this.Children = new UIElementCollection(this);
 		}
 
-		public Panel ( SpriteFont font) : base (font) {
-            this.Children = new UIElementCollection(this);
-		}
-
 		#region Eigenschaften
 
 		public UIElementCollection Children { get; protected set; }

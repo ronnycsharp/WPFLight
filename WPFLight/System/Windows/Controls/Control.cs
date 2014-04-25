@@ -1,30 +1,17 @@
-﻿using System;
-using System.Windows;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Windows.Media;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
-using WPFLight.Resources;
 using WPFLight.Helpers;
-using System.Windows.Media;
 
 namespace System.Windows.Controls {
 	public abstract class Control : FrameworkElement {
 		public Control () {
-			this.ScissorTest = false;
 			this.HitTestEnabled = true;
 			this.HorizontalAlignment = HorizontalAlignment.Stretch;
 			this.VerticalAlignment = VerticalAlignment.Stretch;
-
 			this.Forecolor = Microsoft.Xna.Framework.Color.White;
-		}
-
-		public Control (SpriteFont font)
-            : this () {
-			this.Font = font;
 		}
 
 		#region Events
@@ -36,23 +23,23 @@ namespace System.Windows.Controls {
 
 		#region Properties
 
-		public static DependencyProperty FontProperty =
-			DependencyProperty.Register (
-				"Font", typeof(SpriteFont), typeof(Control));
-
-        [Obsolete("Use FontFamily like WPF")]
-		public SpriteFont Font {
-			get{ return (SpriteFont)GetValue (FontProperty); }
-			set{ SetValue (FontProperty, value); }
-		}
-
 		public static DependencyProperty FontFamilyProperty =
 			DependencyProperty.Register (
 				"FontFamily", typeof(FontFamily), typeof(Control));
 
 		public FontFamily FontFamily {
-			get{ return (FontFamily)GetValue (FontFamilyProperty); }
-			set{ SetValue (FontFamilyProperty, value); }
+			get {
+                // if property is null, the property is inherited from its parent-control
+                var fontFamily = (FontFamily)GetValue (FontFamilyProperty);
+                if (fontFamily == null && this.Parent is Control)
+                    fontFamily = ((Control)this.Parent).FontFamily;
+
+                if (fontFamily == null)
+                    fontFamily = DEFAULT_FONTFAMILY;
+
+                return fontFamily;
+            }
+			set { SetValue (FontFamilyProperty, value); }
 		}
 
 		public static DependencyProperty FontSizeProperty =
@@ -151,11 +138,9 @@ namespace System.Windows.Controls {
 
 		#endregion
 
-		static RasterizerState scissorEnabled =
-			new RasterizerState {
-				CullMode = CullMode.None,
-				ScissorTestEnable = true
-			};
+        internal SpriteFont GetFont () {
+            return FontContainer.Resolve(this.FontFamily);
+        }
 
 		protected void RaiseTouchDown () {
 			if (TouchDown != null)
@@ -168,7 +153,6 @@ namespace System.Windows.Controls {
 		}
 
 		protected virtual void DrawBackground (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
-
 			if (this.Background != null)
 				this.Background.Draw (
 					batch, 
@@ -179,93 +163,6 @@ namespace System.Windows.Controls {
 						(int)this.ActualHeight), 
 					transform, 
 					alpha);
-
-
-			/*
-			batch.Begin (
-				SpriteSortMode.Deferred,
-				BlendState.AlphaBlend,
-				null,
-				DepthStencilState.None,
-				this.ScissorTest ? scissorEnabled : RasterizerState.CullNone,
-				null,
-				transform);
-
-			var left = this.GetAbsoluteLeft ();
-			var top = this.GetAbsoluteTop ();
-			*/
-
-			/*
-            // Hintergrund
-            batch.Draw(
-                Textures.Background,
-                new Microsoft.Xna.Framework.Rectangle(
-                (int)(left + this.BorderThickness.Left),
-                (int)(top + this.BorderThickness.Top),
-                (int)(this.ActualWidth - this.BorderThickness.Left - this.BorderThickness.Right),
-                (int)(this.ActualHeight - this.BorderThickness.Top - this.BorderThickness.Bottom)),
-                this.Background
-                * ((float)this.Background.A / 256f)
-				* this.Alpha * alpha);*/
-			/*
-			if (BorderThickness.Top > 0) {
-				// Rahmen TOP
-				batch.Draw (
-					Textures.Background,
-					new Microsoft.Xna.Framework.Rectangle (
-						(int)(left + BorderThickness.Left),
-						(int)top,
-						(int)(this.ActualWidth - BorderThickness.Left - BorderThickness.Right),
-						(int)this.BorderThickness.Top),
-					this.BorderColor
-					* ((float)this.BorderColor.A / 256f)
-					* alpha);
-			}
-
-			if (BorderThickness.Bottom > 0) {
-				// Rahmen BOTTOM
-				batch.Draw (
-					Textures.Background,
-					new Microsoft.Xna.Framework.Rectangle (
-						(int)(left + BorderThickness.Left),
-						(int)(top + this.ActualHeight - BorderThickness.Bottom),
-						(int)(this.ActualWidth - BorderThickness.Left - BorderThickness.Right),
-						(int)this.BorderThickness.Bottom),
-					this.BorderColor
-					* ((float)this.BorderColor.A / 256f)
-					* alpha);
-			}
-
-			if (BorderThickness.Left > 0) {
-				// Rahmen LEFT
-				batch.Draw (
-					Textures.Background,
-					new Microsoft.Xna.Framework.Rectangle (
-						(int)(left),
-						(int)(top),
-						(int)(BorderThickness.Left),
-						(int)(this.ActualHeight)),
-					this.BorderColor
-					* ((float)this.BorderColor.A / 256f)
-					* alpha);
-			}
-
-			if (BorderThickness.Right > 0) {
-				// Rahmen RIGHT
-				batch.Draw (
-					Textures.Background,
-					new Microsoft.Xna.Framework.Rectangle (
-						(int)(left + this.ActualWidth - BorderThickness.Right),
-						(int)(top),
-						(int)(BorderThickness.Right),
-						(int)(this.ActualHeight)),
-					this.BorderColor
-					* ((float)this.BorderColor.A / 256f)
-					* alpha);
-			}
-
-			batch.End ();
-			*/
 		}
 
 		public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
@@ -403,7 +300,7 @@ namespace System.Windows.Controls {
 
 		internal float GetConvertedFontScale () {
 			return ConvertFontSizeToScale (
-				this.Font, this.FontSize);
+				this.GetFont ( ), this.FontSize);
 		}
 
 		protected virtual void OnForegroundChanged (Brush color) { }
@@ -412,6 +309,14 @@ namespace System.Windows.Controls {
 
 			
 		static Dictionary<SpriteFont, float> fontScales;
+
+        static RasterizerState scissorEnabled =
+            new RasterizerState {
+                CullMode = CullMode.None,
+                ScissorTestEnable = true
+            };
+
+        static readonly FontFamily DEFAULT_FONTFAMILY = new FontFamily("Large");
 	}
 
 	public enum VerticalAlignment {

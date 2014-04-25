@@ -6,12 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace System.Windows.Controls {
 	public class CheckButton : Button {
-		public CheckButton () : base () {
-		}
-
-		public CheckButton (SpriteFont font) : base (font) {
-
-		}
+		public CheckButton ()  { }
 
 		#region Ereignisse
 

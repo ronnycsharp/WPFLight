@@ -17,10 +17,7 @@ namespace System.Windows.Controls
 {
 	public class DataGrid : Panel
 	{
-		public DataGrid (SpriteFont font) : base ( font ) {
-            if ( font == null )
-                throw new ArgumentNullException ( "font" );
-
+		public DataGrid () {
             this.Items = new DataGridItemColleciton ( );
             this.Columns = new List<ColumnHeader> ( );
             this.FontScale = 1;
@@ -154,7 +151,7 @@ namespace System.Windows.Controls
                             transform );
 
                         batch.DrawString (
-                            this.Font,
+                            GetFont(),
                             c.Text,
                             new Vector2 ( left + 10, top + 4 ),
                             Microsoft.Xna.Framework.Color.White  * .8f,
@@ -296,7 +293,7 @@ namespace System.Windows.Controls
 
 	                        if ( !String.IsNullOrWhiteSpace ( c.Text ) ) {
 								var itemLeft = left + 10;
-								var itemWidth = cellValue != null ? (this.Font.MeasureString (cellValue).X * FontScale * .9f) : 0;
+								var itemWidth = cellValue != null ? (GetFont().MeasureString (cellValue).X * FontScale * .9f) : 0;
 
 								if (c.TextAlignment == TextAlignment.Right)
 									itemLeft = left + columnWidth - itemWidth - 15;// + ( columnWidth - itemWidth - 10 );
@@ -311,7 +308,7 @@ namespace System.Windows.Controls
 	                                transform );
 
 	         	                   batch.DrawString (
-	         	                       this.Font,
+	         	                       GetFont(),
 	         	                       cellValue,
 	         	                       new Vector2 ( itemLeft, top ),
 	         	                       c.TextColor,

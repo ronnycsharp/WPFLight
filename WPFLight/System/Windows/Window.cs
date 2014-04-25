@@ -13,17 +13,12 @@ namespace System.Windows {
 			ActiveWindows = new List<Window> ();
 		}
 
-		public Window () : base () {
+		public Window () {
 			this.WindowStartUpLocation = WindowStartUpLocation.CenterScreen;
 			//fadeAnimation = new SingleAnimation (0, 1, TimeSpan.FromSeconds (.2f), false);
 		}
 
-		public Window (SpriteFont font)
-			: this () {
-			this.Font = font;
-		}
-
-		public Window (FrameworkElement owner) {
+		public Window (FrameworkElement owner) : this ( ) {
 			this.Owner = owner;
 		}
 

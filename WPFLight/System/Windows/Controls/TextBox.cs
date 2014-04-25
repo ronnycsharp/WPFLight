@@ -10,8 +10,8 @@ using System.Windows.Media;
 
 namespace System.Windows.Controls {
 	public class TextBox : Panel {
-		public TextBox (SpriteFont font) : base () {
-			lblText = new Label (font) { ScissorTest = true };
+		public TextBox () {
+			lblText = new Label () { ScissorTest = true };
 			rcCursor = new System.Windows.Shapes.Rectangle ();
 			rcBackground = new System.Windows.Shapes.Rectangle ();
 
@@ -32,7 +32,6 @@ namespace System.Windows.Controls {
 			this.FontScale = .35f;
 			this.Focusable = true;
 			this.Text = String.Empty;
-			this.Font = font;
 
 			this.rcBackground.Alpha = .3f;
 			this.rcCursor.Visible = false;
@@ -55,12 +54,12 @@ namespace System.Windows.Controls {
 			get { return cursor; } 
 			set {
 				if (cursor != value) {
-					if ((int)this.Font.MeasureString (text.Substring (0, value)).X * FontScale > this.ActualWidth) {
-						lblText.Left = -1 - (int)(this.Font.MeasureString (text.Substring (0, value)).X * FontScale - this.ActualWidth);
+					if ((int)this.GetFont().MeasureString (text.Substring (0, value)).X * FontScale > this.ActualWidth) {
+						lblText.Left = -1 - (int)(this.GetFont().MeasureString (text.Substring (0, value)).X * FontScale - this.ActualWidth);
 					} else
 						lblText.Left = 1;
 
-					rcCursor.Left = 1 + Math.Min (this.ActualWidth - 2, (int)this.Font.MeasureString (text.Substring (0, value)).X * FontScale);
+					rcCursor.Left = 1 + Math.Min (this.ActualWidth - 2, (int)this.GetFont().MeasureString (text.Substring (0, value)).X * FontScale);
 					rcCursor.Visible = true;
 					cursor = value;
 				} 
@@ -86,7 +85,7 @@ namespace System.Windows.Controls {
 			rcCursor.Left = 1;
 
 			lblText.Left = 0;
-			lblText.Top = (float)(this.ActualHeight / 2.0 - (this.Font.MeasureString ("A").Y * this.FontScale) / 2.0);
+			lblText.Top = (float)(this.ActualHeight / 2.0 - (this.GetFont().MeasureString ("A").Y * this.FontScale) / 2.0);
 			lblText.Width = this.ActualWidth;
 			lblText.FontScale = this.FontScale;
 			lblText.HorizontalAlignment = HorizontalAlignment.Left;
@@ -125,7 +124,7 @@ namespace System.Windows.Controls {
 		public void SetCursorIndexByPosition (Vector2 position) {
 			var left = 0f + GetAbsoluteLeft ();
 			for (ushort i = 0; i < this.Text.Length; i++) {
-				left += this.Font.MeasureString (this.Text [i].ToString ()).X * this.FontScale;
+				left += this.GetFont().MeasureString (this.Text [i].ToString ()).X * this.FontScale;
 
 				if (position.X < left) {
 					this.CursorIndex = i;

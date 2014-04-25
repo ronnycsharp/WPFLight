@@ -17,12 +17,6 @@ namespace System.Windows.Controls {
 			this.VerticalContentAlignment = VerticalAlignment.Center;
 		}
 
-		public ContentControl (SpriteFont font) : base ( ) {
-			this.HorizontalContentAlignment = HorizontalAlignment.Center;
-			this.VerticalContentAlignment = VerticalAlignment.Center;
-            this.Font = font;
-		}
-
 		#region Eigenschaften
 
 		public static readonly DependencyProperty ContentProperty =
@@ -138,7 +132,7 @@ namespace System.Windows.Controls {
 						var width = this.ActualWidth;
 
 						if (textSize == null)
-							textSize = this.Font.MeasureString (text) * this.FontSize; //* this.GetConvertedFontScale ( );
+							textSize = GetFont().MeasureString (text) * this.FontSize; //* this.GetConvertedFontScale ( );
 							
 						var newLeft = 0f;
 						var newTop = 0f;
@@ -186,23 +180,9 @@ namespace System.Windows.Controls {
 							null,
 							transform);
 
-						/*
-						// Shadow
-						batch.DrawString (
-							this.Font,
-							text,
-							new Vector2 (newLeft-2, newTop-1),
-							Color.Lerp ( this.Forecolor, Color.Black, .2f )	* alpha * this.Alpha * .2f,
-							0.0f,
-							Vector2.Zero,
-							GetConvertedFontScale ( ) * 1.05f,
-							SpriteEffects.None,
-							1.0f);
-						*/
-							
 						// Text
 						batch.DrawString (
-							this.Font,
+							GetFont(),
 							text,
 							new Vector2 (newLeft, newTop),
 							this.Forecolor	* alpha * this.Alpha,

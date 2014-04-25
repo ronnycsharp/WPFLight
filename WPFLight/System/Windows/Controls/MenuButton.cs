@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace System.Windows.Controls {
 	public class MenuButton : RadioButton {
-        public MenuButton (SpriteFont font) : base ( font ) {
+        public MenuButton () {
             items = new List<Button>();
 
 			this.HorizontalContentAlignment = HorizontalAlignment.Left;
@@ -36,7 +36,7 @@ namespace System.Windows.Controls {
         public override void Initialize () {
 			window = new Window(this);
 			window.IsToolTip = true;
-			window.Font = this.Font;
+			window.FontFamily = this.FontFamily;
 			//window.Padding = new Thickness (5);
 			window.Left = (int)this.GetAbsoluteLeft() + this.ActualWidth + 2;
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;
@@ -115,7 +115,7 @@ namespace System.Windows.Controls {
         }
 
         public void AddItem (string text) {
-			var cmd = new Button (this.Font);
+			var cmd = new Button ();
 			cmd.Parent = this.ItemsPanel;
 			cmd.Content = text;
 			cmd.Visible = true;
@@ -123,9 +123,6 @@ namespace System.Windows.Controls {
 			cmd.Width = 80;
 			cmd.Style = Style.GetStyleResource ("ButtonNumberStyle");
 			cmd.Margin = new Thickness(2);
-			//cmd.FontSize = .35f;//this.FontSize;
-			//cmd.Background = Brushes.White;
-			//cmd.Foreground = new SolidColorBrush ( new System.Windows.Media.Color ( .2f, .2f, .2f ) );
 			cmd.HorizontalAlignment = HorizontalAlignment.Left;
 			cmd.BorderBrush = new SolidColorBrush ( Colors.Black * .17f );
 			cmd.BorderThickness = new Thickness (1f);
@@ -172,7 +169,7 @@ namespace System.Windows.Controls {
 		}
 
 		public void AddItem (Image img, object tag) {
-			var cmd = new Button ( this.Font);
+			var cmd = new Button ();
 			cmd.Content = img;
 			cmd.Parent = this.ItemsPanel;
 			//cmd.Background = new SolidColorBrush ( .2f, .2f, .2f );
@@ -207,7 +204,7 @@ namespace System.Windows.Controls {
 		}
 
 		public void AddItem ( Texture2D image, Thickness margin, object tag ) {
-			var cmd = new Button (this.Font);
+			var cmd = new Button ();
 			cmd.Content = new Image ( image) { Margin = margin };
 			cmd.Parent = this.ItemsPanel;
 			//cmd.Background = new SolidColorBrush ( .2f, .2f, .2f );

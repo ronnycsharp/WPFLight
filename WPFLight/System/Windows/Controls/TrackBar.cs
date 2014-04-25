@@ -14,11 +14,6 @@ namespace System.Windows.Controls {
             this.Value = 0;
         }
 
-		public TrackBar (SpriteFont font)
-			: this (){
-			this.Font = font;
-		}
-
 		#region Ereignisse
 
 		public event EventHandler ValueChanged;
@@ -77,7 +72,8 @@ namespace System.Windows.Controls {
 			rcBackground.RadiusY = 5;
 			this.Children.Add (rcBackground);
 
-			cmdTrack = new Button ( this.Font);
+			cmdTrack = new Button ( );
+            cmdTrack.FontFamily = this.FontFamily;
 			cmdTrack.Background = new SolidColorBrush (this.GraphicsDevice, System.Windows.Media.Colors.White);
 			//cmdTrack.BorderColor = new Color (1, 1, 1, .1f);
 			cmdTrack.BorderThickness = new Thickness (0);

@@ -11,10 +11,6 @@ namespace System.Windows.Controls {
 	public class Button : ContentControl {
         public Button () { }
 
-		public Button (SpriteFont font)	: this ( ) {
-            this.Font = font;
-		}
-
 		#region Ereignisse
 
 		public event EventHandler Click;

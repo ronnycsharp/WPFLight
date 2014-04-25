@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace System.Windows.Controls {
 	public abstract class DialogBox : Window {
-		public DialogBox (SpriteFont font) : base (font) {
+		public DialogBox ( ) {
 			this.Width = 200;
 			this.Height = 200;
 
@@ -32,14 +32,14 @@ namespace System.Windows.Controls {
 
 			gridRoot.Children.Add (rcTitle);
 
-			lblTitle = new Label (this.Font);
+			lblTitle = new Label ();
 			lblTitle.Text = this.Title;
 			lblTitle.FontScale = .4f;
 			lblTitle.Margin = new Thickness (8, 4, 0, 0);
 
 			gridRoot.Children.Add (lblTitle);
 
-			cmdCancel = new Button (this.Font);
+			cmdCancel = new Button ();
 			cmdCancel.Content = "CANCEL";
 			//cmdCancel.FontScale = .35f;
 			cmdCancel.Margin = new Thickness (15, 5, 15, 10);
@@ -54,7 +54,7 @@ namespace System.Windows.Controls {
 			gridRoot.Children.Add (cmdCancel);
 			Grid.SetRow (gridRoot, cmdCancel, 2);
 
-			cmdOkay = new Button (this.Font);
+			cmdOkay = new Button ();
 			cmdOkay.Content = "OK";
 			//cmdOkay.FontScale = .35f;
 			cmdOkay.Margin = new Thickness (15, 5, 145, 10);

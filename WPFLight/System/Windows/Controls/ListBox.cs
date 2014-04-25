@@ -21,11 +21,6 @@ namespace System.Windows.Controls {
             scrollViewer.ScissorTest = true;
         }
 
-        public ListBox (SpriteFont font)
-            : this() {
-            this.Font = font;
-        }
-
         #region Eigenschaften
 
         #endregion
@@ -45,7 +40,7 @@ namespace System.Windows.Controls {
 					if (!(item is ListBoxItem)) {
 						var lbItem =
 							new ListBoxItem {
-                                Font = this.Font,
+                                FontFamily = this.FontFamily,
 								Parent = contentPanel,
 								Content = item,
 								Height = 60,

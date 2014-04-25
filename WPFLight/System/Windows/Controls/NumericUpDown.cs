@@ -13,10 +13,6 @@ namespace System.Windows.Controls {
             this.MaxValue = 100;
 			this.Background = new SolidColorBrush (this.GraphicsDevice, System.Windows.Media.Colors.White * .28f);
         }
-        public NumericUpDown ( SpriteFont font)
-            : this ( ) {
-            this.Font = font;
-        }
 
 		#region Ereignisse
 
@@ -75,7 +71,7 @@ namespace System.Windows.Controls {
             
             this.Children.Add(this.gridRoot);
 
-            cmdDown = new Button( this.Font);
+            cmdDown = new Button();
 			cmdDown.Content = new Image (Textures.ArrowDown){ Margin = new Thickness ( 10,15,10,15 ), Alpha = .6f };
 			//cmdDown.FontScale = .3f;
 			//cmdDown.Foreground = System.Windows.Media.Color.White;
@@ -92,7 +88,7 @@ namespace System.Windows.Controls {
 
             Grid.SetColumn(gridRoot, cmdDown, 1);
 
-            cmdUp = new Button( this.Font);
+            cmdUp = new Button();
 			cmdUp.Content = new Image (Textures.ArrowUp){ Margin = new Thickness ( 10,15,10,15 ), Alpha = .6f };
 			//cmdUp.Background = new SolidColorBrush (this.GraphicsDevice, Color.Black * .45f);
 			cmdUp.BorderThickness = new Thickness (1);
@@ -107,7 +103,7 @@ namespace System.Windows.Controls {
 
             Grid.SetColumn(gridRoot, cmdUp, 2);
 
-			lblValue = new Label(this.Font);
+			lblValue = new Label();
 			lblValue.VerticalAlignment = VerticalAlignment.Center;
 			lblValue.FontScale = .46f;
 			lblValue.Margin = new Thickness (15,3,3,3);
