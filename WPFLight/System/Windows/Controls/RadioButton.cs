@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+﻿using System.Linq;
 using System.Windows.Media;
 
 namespace System.Windows.Controls {
@@ -26,7 +22,7 @@ namespace System.Windows.Controls {
 			if (chk) {
                 // uncheck all RadioButtons with same group-name 
 				var root = VisualTreeHelper.GetRoot (this);
-				var controls = VisualTreeHelper.GetAllChildren<RadioButton> (root);
+				var controls = VisualTreeHelper.GetChildren<RadioButton> (root);
 				foreach (var c in controls) {
                     if (c != this
                             && c.IsChecked

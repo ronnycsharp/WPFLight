@@ -78,17 +78,8 @@ namespace System.Windows.Controls {
 		}
 
         protected override void DrawBackground (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
-
-
 			if ( rcBackground != null )
 				rcBackground.Draw(gameTime, batch, alpha, transform);
-
-
-			/*
-			else
-			*/
-
-			//base.DrawBackground(gameTime, batch, alpha, transform);	// Für Rechtecke mit eckigem Border, von UIElement geerbt
         }
 						
 		protected virtual void OnClick () {
@@ -110,6 +101,6 @@ namespace System.Windows.Controls {
 		}
 
 		private bool mouseDown;
-        private System.Windows.Shapes.Rectangle rcBackground;
+        private Shapes.Rectangle rcBackground;
 	}
 }

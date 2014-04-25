@@ -30,19 +30,8 @@ namespace System.Windows.Controls {
 			cmdItem.Parent = this;
 			cmdItem.Style = ( Style ) this.FindResource ("ButtonNumberStyle");
 
-			var rcBackground = new System.Windows.Shapes.Rectangle ();
-			rcBackground.Fill = new SolidColorBrush (Colors.White * .8f);
-			rcBackground.Stroke = Brushes.Gray;
-			rcBackground.StrokeThickness = 1;
-			rcBackground.HorizontalAlignment = HorizontalAlignment.Stretch;
-			rcBackground.VerticalAlignment = VerticalAlignment.Stretch;
-			rcBackground.RadiusX = 4;
-			rcBackground.RadiusY = 4;
-
-			window.Children.Add (rcBackground);
-
 			this.ItemsPanel.Parent = window;
-			window.Children.Add(this.ItemsPanel);
+            window.Content = this.ItemsPanel;
         }
 
         #region Ereignisse
@@ -84,26 +73,16 @@ namespace System.Windows.Controls {
 			cmdItem.Content = this.SelectedItem;
 			cmdItem.Initialize ();
 
-			/*
-			// first binding test
-
-			var backgroundBinding = new Binding ( "Background" );
-			backgroundBinding.Mode = BindingMode.OneWay;
-			backgroundBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-			backgroundBinding.Source = this;
-
-			cmdItem.SetBinding (
-				Button.BackgroundProperty, backgroundBinding);
-			*/
-
             window.FontFamily = this.FontFamily;
 			window.IsToolTip = false;
-			//window.IsToolTip = true;
 			window.Left = (int)this.GetAbsoluteLeft();
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
 			window.Width = this.ActualWidth;
 			window.Height = 208;//this.ItemsPanel.ActualHeight;
-			window.LostFocus += delegate {
+            window.Background = new SolidColorBrush(Colors.White * .7f);
+            window.BorderBrush = new SolidColorBrush(Colors.Gray * .9f);
+            window.BorderThickness = new Thickness(1);
+            window.LostFocus += delegate {
 
 				ignoreTouchDown = window.DialogResult == null;
 				/*

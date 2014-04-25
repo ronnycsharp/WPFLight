@@ -8,30 +8,28 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace System.Windows {
-	public class Window : Panel {
+	public class Window : ContentControl {
 		static Window () {
 			ActiveWindows = new List<Window> ();
 		}
 
 		public Window () {
+            rcBackground = new Shapes.Rectangle { Parent = this };
 			this.WindowStartUpLocation = WindowStartUpLocation.CenterScreen;
-			//fadeAnimation = new SingleAnimation (0, 1, TimeSpan.FromSeconds (.2f), false);
 		}
 
 		public Window (FrameworkElement owner) : this ( ) {
 			this.Owner = owner;
 		}
 
-		#region Ereignisse
+		#region Events
 
 		public event EventHandler Activated;
 		public event EventHandler Closed;
-		//public event EventHandler	GotFocus;
-		//public event EventHandler	LostFocus;
 
 		#endregion
 
-		#region Eigenschaften
+		#region Properties
 
 		public bool?					DialogResult			{ get; set; }
 
@@ -61,6 +59,24 @@ namespace System.Windows {
 			}
 		}
 
+        public static readonly DependencyProperty LeftProperty =
+            DependencyProperty.Register(
+                "Left", typeof(float), typeof(Window));
+
+        public new float Left {
+            get { return (float)GetValue(LeftProperty); }
+            set { SetValue(LeftProperty, value); }
+        }
+
+        public static readonly DependencyProperty TopProperty =
+            DependencyProperty.Register(
+                "Top", typeof(float), typeof(Window));
+
+        public new float Top {
+            get { return (float)GetValue(TopProperty); }
+            set { SetValue(TopProperty, value); }
+        }
+
 		internal static List<Window> 	ActiveWindows 			{ get; private set; }
 
 		public static Window 			ActiveModal 			{ get; private set; }
@@ -74,6 +90,32 @@ namespace System.Windows {
 		public bool IsToolTip { get; set; }
 
 		#endregion
+
+        public override void Update (GameTime gameTime) {
+            base.Update(gameTime);
+            rcBackground.Update(gameTime);
+        }
+
+        public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
+            rcBackground.Draw(gameTime, batch, this.Alpha * alpha, transform);
+            base.Draw(gameTime, batch, alpha, transform);
+        }
+
+        public override void Invalidate () {
+            base.Invalidate();
+
+            rcBackground.Fill = this.Background;
+            rcBackground.Stroke = this.BorderBrush;
+            rcBackground.StrokeThickness = this.BorderThickness.Left;
+        }
+
+        public override float GetAbsoluteLeft () {
+            return this.Left;
+        }
+
+        public override float GetAbsoluteTop () {
+            return this.Top;
+        }
 
 		public static void Focus (Window window) {
 			if (FocusedWindow != window) {
@@ -121,12 +163,6 @@ namespace System.Windows {
 				}
 			}
 			return null;
-		}
-
-		public override void Update (GameTime gameTime) {
-			//fadeAnimation.Update (gameTime);
-			//this.Alpha = fadeAnimation.GetCurrentValue ();
-			base.Update (gameTime);
 		}
 
 		public virtual void Show (bool modal) {
@@ -179,6 +215,7 @@ namespace System.Windows {
 		}
 
 		private bool focused;
+        private System.Windows.Shapes.Rectangle rcBackground;
 	}
 
 	public enum WindowStartUpLocation {

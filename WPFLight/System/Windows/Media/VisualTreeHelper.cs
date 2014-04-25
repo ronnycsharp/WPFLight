@@ -4,22 +4,30 @@ using System.Linq;
 
 namespace System.Windows.Media {
     public static class VisualTreeHelper {
-        public static List<T> GetAllChildren<T> (UIElement parent) where T : UIElement {
+        public static List<T> GetChildren<T> (UIElement root) where T : UIElement {
             var children = new List<T>();
-            if (parent is Panel) {
-                foreach (var c in ((Panel)parent).Children) {
+            if (root is Panel) {
+                foreach (var c in ((Panel)root).Children) {
                     if (c is T)
                         children.Add((T)c);
 
-                    children.AddRange(GetAllChildren<T>(c));
+                    children.AddRange(GetChildren<T>(c));
                 }
-            }
-            if (parent is ItemsControl) {
-                foreach (var c in ((ItemsControl)parent).Items.OfType<UIElement> ( )) {
+            } else if (root is ItemsControl) {
+                foreach (var c in ((ItemsControl)root).Items.OfType<UIElement> ( )) {
                     if (c is T)
                         children.Add((T)c);
 
-                    children.AddRange(GetAllChildren<T>(c));
+                    children.AddRange(GetChildren<T>(c));
+                }
+            } else if (root is ContentControl) {
+                var element = ((ContentControl)root).Content as UIElement;
+                if (element != null) {
+                    if (element is T)
+                        children.Add((T)element);
+
+                    children.AddRange(
+                        GetChildren<T>(element));
                 }
             }
             return children;

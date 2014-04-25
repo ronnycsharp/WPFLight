@@ -26,13 +26,17 @@ namespace System.Windows.Controls {
 				typeof ( ContentControl ), 
 				new PropertyMetadata ( 
 					(s,e)=> {
-						var ctrl = e.NewValue as Control;
-						if ( ctrl != null ) {
-							ctrl.Parent = ( ContentControl ) s;
-							((ContentControl)s).contentControl = ctrl;
-						} else
-							((ContentControl)s).contentControl = null;
-					} ) );
+                        if (e.NewValue is UIElement)
+                            ((UIElement)e.NewValue).Parent = (UIElement)s;
+
+					    var ctrl = e.NewValue as Control;
+					    if ( ctrl != null ) {
+						    ((ContentControl)s).contentControl = ctrl;
+					    } else
+						    ((ContentControl)s).contentControl = null;
+
+                        ((ContentControl)s).OnContentChanged(e.OldValue, e.NewValue);
+                    } ) );
 
 		public object Content {
 			get { return GetValue (ContentProperty); }
@@ -50,9 +54,16 @@ namespace System.Windows.Controls {
 
 		#endregion
 
+        protected virtual void OnContentChanged (object oldContent, object newContent) {
+
+        }
+
 		public override void Invalidate () {
 			textSize = null;
 			base.Invalidate ();
+
+            if (this.Content is UIElement)
+                ((UIElement)this.Content).Invalidate();
 		}
 
 		public override void Initialize () {

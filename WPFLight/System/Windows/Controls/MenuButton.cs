@@ -37,34 +37,17 @@ namespace System.Windows.Controls {
 			window = new Window(this);
 			window.IsToolTip = true;
 			window.FontFamily = this.FontFamily;
-			//window.Padding = new Thickness (5);
 			window.Left = (int)this.GetAbsoluteLeft() + this.ActualWidth + 2;
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;
 			window.Width = this.ItemsPanel.ActualWidth;
 			window.Height = this.ItemsPanel.ActualHeight;
-			window.Closed += delegate {
-				unchecking = true;
-				//this.IsChecked = false;
-				unchecking = false;
-			};
-
-			var rcBackground = new System.Windows.Shapes.Rectangle ();
-			rcBackground.Fill = new SolidColorBrush (Colors.White * .9f);
-			rcBackground.Stroke = Brushes.Gray;
-			rcBackground.StrokeThickness = 1;
-			rcBackground.HorizontalAlignment = HorizontalAlignment.Stretch;
-			rcBackground.VerticalAlignment = VerticalAlignment.Stretch;
-			rcBackground.RadiusX = 0;
-			rcBackground.RadiusY = 0;
-			//rcBackground.Alpha = .4f;
-
-			window.Children.Add (rcBackground);
+            window.Margin = new Thickness(50);
+            window.Padding = new Thickness(50);
 
 			this.ItemsPanel.Parent = window;
-			window.Children.Add(this.ItemsPanel);
+            window.Content = this.ItemsPanel;
 
             foreach (var item in items) {
-				item.Parent = this.ItemsPanel;
 				this.ItemsPanel.Children.Add(item);
             }
             base.Initialize();

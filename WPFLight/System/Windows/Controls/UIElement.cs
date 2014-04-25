@@ -33,7 +33,7 @@ namespace System.Windows.Controls {
 
 		#endregion
 
-		#region Eigenschaftenu
+		#region Properties
 
 		// TODO Remove and Replace IUpdateable-Interface and methods
 		[Obsolete]
@@ -375,6 +375,7 @@ namespace System.Windows.Controls {
 				if (child.Parent != null)
 					result += child.Parent.GetAbsoluteLeft ();
 			}
+
 			return result;
 		}
 

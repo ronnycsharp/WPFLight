@@ -1,7 +1,7 @@
+using System.Windows.Media;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using WPFLight.Helpers;
-using System.Windows.Media;
 
 namespace System.Windows.Controls {
 	public abstract class DialogBox : Window {
@@ -13,24 +13,31 @@ namespace System.Windows.Controls {
 			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (45, GridUnitType.Pixel)));
 			gridRoot.RowDefinitions.Add (RowDefinition.Star);
 			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (65, GridUnitType.Pixel)));
-
-			gridContent = new Grid ();
-
-			this.Children.Add (gridRoot);
-			Grid.SetRow (gridRoot, gridContent, 1);
+            gridRoot.Background = Brushes.Yellow; //new SolidColorBrush(new System.Windows.Media.Color(.2f, .2f, .2f, .8f));
+            gridRoot.BorderBrush = new SolidColorBrush(new System.Windows.Media.Color(1, 1, 1, .8f));
+            gridRoot.BorderThickness = new Thickness(2);
+            gridRoot.Parent = this;
 		}
 
+        protected override void OnContentChanged (object oldContent, object newContent) {
+            base.OnContentChanged(oldContent, newContent);
+            var oldElement = oldContent as UIElement;
+            if (oldElement != null)
+                gridRoot.Children.Remove(oldElement);
+
+            var newElement = newContent as UIElement;
+            if (newElement != null) {
+                gridRoot.Children.Add(newElement);
+                Grid.SetRow(gridRoot, newElement, 1);
+            }
+        }
+
+        public override void Invalidate () {
+            base.Invalidate();
+            gridRoot.Invalidate();
+        }
+
 		public override void Initialize () {
-			rcTitle = new System.Windows.Shapes.Rectangle ();
-			rcTitle.RadiusX = 0;
-			rcTitle.RadiusY = 0;
-			rcTitle.Fill = new SolidColorBrush (System.Windows.Media.Color.FromArgb ( 240,50,50, 50 ));
-			rcTitle.Stroke = new SolidColorBrush (System.Windows.Media.Colors.White * .5f);
-			rcTitle.StrokeThickness = 1;
-
-			Grid.SetRowSpan (gridRoot, rcTitle, 3);
-
-			gridRoot.Children.Add (rcTitle);
 
 			lblTitle = new Label ();
 			lblTitle.Text = this.Title;
@@ -41,7 +48,7 @@ namespace System.Windows.Controls {
 
 			cmdCancel = new Button ();
 			cmdCancel.Content = "CANCEL";
-			//cmdCancel.FontScale = .35f;
+            cmdCancel.IsEnabled = true;
 			cmdCancel.Margin = new Thickness (15, 5, 15, 10);
 			cmdCancel.Width = 120;
 			cmdCancel.Foreground = Brushes.White;
@@ -56,7 +63,7 @@ namespace System.Windows.Controls {
 
 			cmdOkay = new Button ();
 			cmdOkay.Content = "OK";
-			//cmdOkay.FontScale = .35f;
+            cmdOkay.IsEnabled = true;
 			cmdOkay.Margin = new Thickness (15, 5, 145, 10);
 			cmdOkay.Width = 80;
 			cmdOkay.Foreground = Brushes.White;
@@ -77,23 +84,39 @@ namespace System.Windows.Controls {
 				this.Top = top;
 			}
 
-			gridRoot.Children.Add (gridContent);
+            gridRoot.Initialize();
 			base.Initialize ();
 		}
+
+        public override void OnTouchDown (Microsoft.Xna.Framework.Input.Touch.TouchLocation state) {
+            base.OnTouchDown(state);
+            gridRoot.OnTouchDown(state);
+        }
+
+        public override void OnTouchUp (Microsoft.Xna.Framework.Input.Touch.TouchLocation state) {
+            base.OnTouchUp(state);
+            gridRoot.OnTouchUp(state);
+        }
+
+        public override void Update (GameTime gameTime) {
+            base.Update(gameTime);
+            gridRoot.Update(gameTime);
+        }
+
+        public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
+            gridRoot.Draw(gameTime, batch, alpha, transform);
+            //base.Draw(gameTime, batch, alpha, transform);
+        }
 
 		#region Eigenschaften
 
 		public string Title { get; set; }
 
-		protected Grid Content { get { return gridContent; } }
-
 		#endregion
 
-		private System.Windows.Shapes.Rectangle rcTitle;
 		private Button cmdCancel;
 		private Button cmdOkay;
 		private Label lblTitle;
 		private Grid gridRoot;
-		private Grid gridContent;
 	}
 }

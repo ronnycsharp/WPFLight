@@ -12,6 +12,8 @@ namespace System.Windows.Controls {
 			this.HorizontalAlignment = HorizontalAlignment.Stretch;
 			this.VerticalAlignment = VerticalAlignment.Stretch;
 			this.Forecolor = Microsoft.Xna.Framework.Color.White;
+
+            rcBackground = new Shapes.Rectangle();
 		}
 
 		#region Events
@@ -152,8 +154,20 @@ namespace System.Windows.Controls {
 				TouchUp (this, EventArgs.Empty);
 		}
 
+        public override void Invalidate () {
+            base.Invalidate();
+
+            rcBackground.Fill = this.Background;
+            rcBackground.Stroke = this.BorderBrush;
+            rcBackground.StrokeThickness = this.BorderThickness.Left;
+            rcBackground.Invalidate();
+        }
+
 		protected virtual void DrawBackground (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
-			if (this.Background != null)
+            rcBackground.Draw(gameTime, batch, alpha*this.Alpha, transform);
+
+            /*
+            if (this.Background != null)
 				this.Background.Draw (
 					batch, 
 					new Rectangle (
@@ -163,9 +177,12 @@ namespace System.Windows.Controls {
 						(int)this.ActualHeight), 
 					transform, 
 					alpha);
+             * */
 		}
 
 		public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
+
+
 			//base.Draw (gameTime, batch, alpha, transform);
 
 			if (alpha > 0 && this.Alpha > 0 && this.IsVisible ()) {
@@ -237,12 +254,7 @@ namespace System.Windows.Controls {
 				} else {
 					if (this is Window) {
 						GraphicsDevice.ScissorRectangle =
-                            ScreenHelper.CheckScissorRect (
-							new Microsoft.Xna.Framework.Rectangle (
-								(int)this.Margin.Left,
-								(int)this.Margin.Top,
-								(int)(this.Width ?? 0),
-								(int)(this.Height ?? 0)));
+                            ScreenHelper.CheckScissorRect ( this.Bounds );
 					}
 				}
 
@@ -256,9 +268,9 @@ namespace System.Windows.Controls {
 				var top = this.GetAbsoluteTop ();
 
 				if (v.X >= left
-				                && v.Y >= top
-				                && v.X <= left + this.ActualWidth
-				                && v.Y <= top + this.ActualHeight) {
+				    && v.Y >= top
+				    && v.X <= left + this.ActualWidth
+				    && v.Y <= top + this.ActualHeight) {
 					return true;
 				}
 			}
@@ -306,17 +318,11 @@ namespace System.Windows.Controls {
 		protected virtual void OnForegroundChanged (Brush color) { }
 
 		protected virtual void OnBackgroundChanged (Brush color) { }
-
 			
 		static Dictionary<SpriteFont, float> fontScales;
-
-        static RasterizerState scissorEnabled =
-            new RasterizerState {
-                CullMode = CullMode.None,
-                ScissorTestEnable = true
-            };
-
         static readonly FontFamily DEFAULT_FONTFAMILY = new FontFamily("Large");
+
+        private Shapes.Rectangle rcBackground;
 	}
 
 	public enum VerticalAlignment {
