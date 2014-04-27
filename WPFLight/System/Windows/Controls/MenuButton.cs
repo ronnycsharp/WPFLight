@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 using System.Windows.Media;
+using System.Windows.Controls.Primitives;
 
 namespace System.Windows.Controls {
 	public class MenuButton : RadioButton {
@@ -111,7 +112,7 @@ namespace System.Windows.Controls {
 			cmd.BorderThickness = new Thickness (1f);
 			cmd.Tag = text;
 			cmd.Click += (sender, e) => {
-				if (!(sender is CheckButton)) {
+				if (!(sender is ToggleButton)) {
 					window.Close();
 					this.IsChecked = false;
 				}
@@ -133,7 +134,7 @@ namespace System.Windows.Controls {
 			cmd.Margin = new Thickness(2);
             cmd.HorizontalAlignment = HorizontalAlignment.Left;
             cmd.Click += (sender, e) => {
-                if (!(sender is CheckButton)) {
+				if (!(sender is ToggleButton)) {
                     window.Close();
                     this.IsChecked = false;
                 }
@@ -164,7 +165,7 @@ namespace System.Windows.Controls {
 			cmd.HorizontalAlignment = HorizontalAlignment.Left;
 			cmd.Tag = tag;
 			cmd.Click += (sender, e) => {
-				if (!(sender is CheckButton)) {
+				if (!(sender is ToggleButton)) {
 					window.Close();
 					this.IsChecked = false;
 				}
@@ -199,7 +200,7 @@ namespace System.Windows.Controls {
 			cmd.HorizontalAlignment = HorizontalAlignment.Left;
 			cmd.Tag = tag;
 			cmd.Click += (sender, e) => {
-				if (!(sender is CheckButton)) {
+				if (!(sender is ToggleButton)) {
 					window.Close();
 					this.IsChecked = false;
 				}

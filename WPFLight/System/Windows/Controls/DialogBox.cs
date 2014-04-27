@@ -13,24 +13,36 @@ namespace System.Windows.Controls {
 			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (45, GridUnitType.Pixel)));
 			gridRoot.RowDefinitions.Add (RowDefinition.Star);
 			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (65, GridUnitType.Pixel)));
-            gridRoot.Background = Brushes.Yellow; //new SolidColorBrush(new System.Windows.Media.Color(.2f, .2f, .2f, .8f));
-            gridRoot.BorderBrush = new SolidColorBrush(new System.Windows.Media.Color(1, 1, 1, .8f));
-            gridRoot.BorderThickness = new Thickness(2);
             gridRoot.Parent = this;
+
+			base.Content = gridRoot;
 		}
 
-        protected override void OnContentChanged (object oldContent, object newContent) {
-            base.OnContentChanged(oldContent, newContent);
-            var oldElement = oldContent as UIElement;
-            if (oldElement != null)
-                gridRoot.Children.Remove(oldElement);
+		#region Properties
 
-            var newElement = newContent as UIElement;
-            if (newElement != null) {
-                gridRoot.Children.Add(newElement);
-                Grid.SetRow(gridRoot, newElement, 1);
-            }
-        }
+		public new object Content {
+			get { 
+				return dialogContent;
+			}
+			set { 
+				if (dialogContent != value) {
+					var oldElement = dialogContent as UIElement;
+					if (oldElement != null)
+						gridRoot.Children.Remove(oldElement);
+
+					var newElement = value as UIElement;
+					if (newElement != null) {
+						gridRoot.Children.Add(newElement);
+						Grid.SetRow(gridRoot, newElement, 1);
+					}
+
+					dialogContent = value;
+				}
+			}
+		}
+
+		#endregion
+
 
         public override void Invalidate () {
             base.Invalidate();
@@ -88,6 +100,7 @@ namespace System.Windows.Controls {
 			base.Initialize ();
 		}
 
+		/*
         public override void OnTouchDown (Microsoft.Xna.Framework.Input.Touch.TouchLocation state) {
             base.OnTouchDown(state);
             gridRoot.OnTouchDown(state);
@@ -102,12 +115,8 @@ namespace System.Windows.Controls {
             base.Update(gameTime);
             gridRoot.Update(gameTime);
         }
-
-        public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
-            gridRoot.Draw(gameTime, batch, alpha, transform);
-            //base.Draw(gameTime, batch, alpha, transform);
-        }
-
+        */
+			
 		#region Eigenschaften
 
 		public string Title { get; set; }
@@ -118,5 +127,7 @@ namespace System.Windows.Controls {
 		private Button cmdOkay;
 		private Label lblTitle;
 		private Grid gridRoot;
+
+		private object dialogContent;
 	}
 }

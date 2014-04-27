@@ -87,7 +87,7 @@ namespace System.Windows.Controls {
         }
 
         public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
-            base.Draw(gameTime, batch, alpha, transform);
+			base.Draw(gameTime, batch, alpha, transform);
             scrollViewer.Draw(gameTime, batch, alpha, transform);
         }
 

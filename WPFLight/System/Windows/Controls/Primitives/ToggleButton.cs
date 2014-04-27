@@ -1,12 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Media;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
-namespace System.Windows.Controls {
-	public class CheckButton : Button {
-		public CheckButton ()  { }
+﻿namespace System.Windows.Controls.Primitives {
+	public class ToggleButton : Button {
+		public ToggleButton ()  { }
 
 		#region Ereignisse
 
@@ -20,11 +14,11 @@ namespace System.Windows.Controls {
 			DependencyProperty.Register (
 				"IsChecked", 
 				typeof(bool), 
-				typeof(CheckButton), 
+				typeof(ToggleButton), 
 				new PropertyMetadata (
 					new PropertyChangedCallback (
 						( sender, e) => {
-							((CheckButton)sender).OnCheckedChanged ((bool)e.NewValue);
+							((ToggleButton)sender).OnCheckedChanged ((bool)e.NewValue);
 						})));
 
 		public bool IsChecked {

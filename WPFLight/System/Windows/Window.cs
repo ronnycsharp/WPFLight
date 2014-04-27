@@ -14,7 +14,6 @@ namespace System.Windows {
 		}
 
 		public Window () {
-            rcBackground = new Shapes.Rectangle { Parent = this };
 			this.WindowStartUpLocation = WindowStartUpLocation.CenterScreen;
 		}
 
@@ -90,24 +89,6 @@ namespace System.Windows {
 		public bool IsToolTip { get; set; }
 
 		#endregion
-
-        public override void Update (GameTime gameTime) {
-            base.Update(gameTime);
-            rcBackground.Update(gameTime);
-        }
-
-        public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
-            rcBackground.Draw(gameTime, batch, this.Alpha * alpha, transform);
-            base.Draw(gameTime, batch, alpha, transform);
-        }
-
-        public override void Invalidate () {
-            base.Invalidate();
-
-            rcBackground.Fill = this.Background;
-            rcBackground.Stroke = this.BorderBrush;
-            rcBackground.StrokeThickness = this.BorderThickness.Left;
-        }
 
         public override float GetAbsoluteLeft () {
             return this.Left;
@@ -215,7 +196,6 @@ namespace System.Windows {
 		}
 
 		private bool focused;
-        private System.Windows.Shapes.Rectangle rcBackground;
 	}
 
 	public enum WindowStartUpLocation {

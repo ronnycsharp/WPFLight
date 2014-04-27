@@ -14,6 +14,8 @@ using System.Windows.Data;
 namespace System.Windows.Controls {
 	public class ComboBox : Selector {
         public ComboBox ( ) {
+			this.Background = Brushes.Green;
+
             this.ItemsPanel = new StackPanel() { Orientation = Orientation.Vertical };
 			this.ItemsPanel.VerticalAlignment = VerticalAlignment.Stretch;
 			this.ItemsPanel.HorizontalAlignment = HorizontalAlignment.Stretch;
@@ -25,10 +27,6 @@ namespace System.Windows.Controls {
 			this.Margin = new Thickness ();
 
 			cmdItem = new Button ();
-			cmdItem.Padding = new Thickness (9, 0, 0, 0);
-			cmdItem.HorizontalContentAlignment = HorizontalAlignment.Left;
-			cmdItem.Parent = this;
-			cmdItem.Style = ( Style ) this.FindResource ("ButtonNumberStyle");
 
 			this.ItemsPanel.Parent = window;
             window.Content = this.ItemsPanel;
@@ -69,6 +67,10 @@ namespace System.Windows.Controls {
         #endregion
 
         public override void Initialize () {
+			cmdItem.Padding = new Thickness (9, 0, 0, 0);
+			cmdItem.HorizontalContentAlignment = HorizontalAlignment.Left;
+			cmdItem.Parent = this;
+			cmdItem.Style = ( Style ) this.FindResource ("ButtonNumberStyle");
             cmdItem.FontSize = .35f;
 			cmdItem.Content = this.SelectedItem;
 			cmdItem.Initialize ();
@@ -129,7 +131,7 @@ namespace System.Windows.Controls {
         public override void Draw (GameTime gameTime, SpriteBatch batch, float a, Matrix transform) {
 			//base.Draw(gameTime, batch, a, transform);
 
-			cmdItem.Draw (gameTime, batch, Alpha, transform);
+			cmdItem.Draw (gameTime, batch, Alpha * a, transform);
 
 			batch.Begin (
 				SpriteSortMode.Deferred, 

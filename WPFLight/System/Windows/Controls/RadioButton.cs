@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using System.Windows.Media;
+using System.Windows.Controls.Primitives;
 
 namespace System.Windows.Controls {
-	public class RadioButton : CheckButton {
+	public class RadioButton : ToggleButton {
         public RadioButton () { }
 
 		#region Properties
@@ -15,6 +16,15 @@ namespace System.Windows.Controls {
             get { return (string)GetValue(GroupNameProperty); }
             set { SetValue(GroupNameProperty, value); }
         }
+
+		public static readonly DependencyProperty IsUncheckableProperty =
+			DependencyProperty.Register(
+				"IsUncheckable", typeof(bool), typeof(RadioButton));
+
+		public bool IsUncheckable {
+			get { return (bool)GetValue(IsUncheckableProperty); }
+			set { SetValue(IsUncheckableProperty, value); }
+		}
 
 		#endregion
 
@@ -37,6 +47,7 @@ namespace System.Windows.Controls {
 		}
 
         protected override void OnClick () {
+			RaiseClick ();
             if (this.Parent is Panel) {
                 foreach (var c in ((Panel)this.Parent).Children.OfType<RadioButton>()) {
                     if (c != this && c.IsChecked && c.GroupName == this.GroupName) {
@@ -44,8 +55,13 @@ namespace System.Windows.Controls {
                     }
                 }
             }
-            if (!this.IsChecked)
-                this.IsChecked = true;
+			if (!this.IsChecked)
+				this.IsChecked = true;
+			else {
+				if (this.IsUncheckable) {
+					this.IsChecked = false;
+				}
+			}
         }
 	}
 }

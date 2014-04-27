@@ -51,6 +51,7 @@
     <Folder Include="System\Collections\" />
     <Folder Include="System\Collections\Specialized\" />
     <Folder Include="System\Collections\ObjectModel\" />
+    <Folder Include="Themes\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
@@ -86,9 +87,6 @@
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\Button.cs">
       <Link>System\Windows\Controls\Button.cs</Link>
-    </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Controls\CheckButton.cs">
-      <Link>System\Windows\Controls\CheckButton.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\ColumnDefinition.cs">
       <Link>System\Windows\Controls\ColumnDefinition.cs</Link>
@@ -343,6 +341,18 @@
     <Compile Include="..\WPFLight\System\Windows\Data\BindingOperations.cs">
       <Link>System\Windows\Data\BindingOperations.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\FontContainer.cs">
+      <Link>System\Windows\Media\FontContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\VisualTreeHelper.cs">
+      <Link>System\Windows\Media\VisualTreeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Initializer.cs">
+      <Link>Initializer.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\ToggleButton.cs">
+      <Link>System\Windows\Controls\Primitives\ToggleButton.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\WPFLight\System\ComponentModel\PropertyChangedEventArgs.cs">
@@ -381,5 +391,10 @@
       <Project>{DB8508BB-9849-4CC2-BC0F-8EB5DACB3C47}</Project>
       <Name>MonoGame.Framework.iOS</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\WPFLight\Themes\Default.xaml">
+      <Link>Themes\Default.xaml</Link>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

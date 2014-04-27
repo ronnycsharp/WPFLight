@@ -83,6 +83,10 @@ namespace System.Windows.Controls {
         }
 						
 		protected virtual void OnClick () {
+			this.RaiseClick();
+		}
+
+		protected void RaiseClick ( ) {
 			if (this.Click != null)
 				this.Click (this, EventArgs.Empty);
 		}

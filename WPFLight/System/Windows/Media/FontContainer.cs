@@ -6,37 +6,42 @@ namespace System.Windows.Media {
 
 	public static class FontContainer {
         static FontContainer () {
-            registeredFonts = new Dictionary<string, SpriteFont>();
+			registeredFonts = new Dictionary<FontFamily, SpriteFont>();
         }
 
         public static void Register (FontFamily fontFamily, SpriteFont font) {
             if (fontFamily == null || font == null)
                 throw new ArgumentException();
 
-            registeredFonts[fontFamily.Source.ToLower ( )] = font;
+            registeredFonts[fontFamily] = font;
         }
 
         public static void Register (string fontName, SpriteFont font) {
             if (String.IsNullOrEmpty(fontName) || font == null )
                 throw new ArgumentException();
 
-            registeredFonts[fontName.ToLower ( )] = font;
+			var fontFamily = new FontFamily (fontName, font.Spacing, font.LineSpacing);
+			registeredFonts[fontFamily] = font;
         }
 
         public static SpriteFont Resolve (string fontName) {
             if (String.IsNullOrEmpty(fontName))
                 throw new ArgumentException();
 
-            return registeredFonts[fontName.ToLower ( )];
+			foreach ( var ff in registeredFonts ) {
+				if (ff.Key.Source.ToLower () == fontName.ToLower ())
+					return ff.Value;
+			}
+			throw new KeyNotFoundException ();
         }
 
         public static SpriteFont Resolve (FontFamily fontFamily) {
             if (fontFamily == null)
                 throw new ArgumentNullException();
 
-            return registeredFonts[fontFamily.Source.ToLower()];
+            return registeredFonts[fontFamily];
         }
 	
-        private static Dictionary<string, SpriteFont> registeredFonts;
+		private static Dictionary<FontFamily, SpriteFont> registeredFonts;
 	}
 }

@@ -14,6 +14,7 @@ namespace System.Windows.Controls {
 			this.Forecolor = Microsoft.Xna.Framework.Color.White;
 
             rcBackground = new Shapes.Rectangle();
+			rcBackground.Parent = this;
 		}
 
 		#region Events
@@ -157,6 +158,8 @@ namespace System.Windows.Controls {
         public override void Invalidate () {
             base.Invalidate();
 
+			rcBackground.Width = this.ActualWidth;
+			rcBackground.Height = this.ActualHeight;
             rcBackground.Fill = this.Background;
             rcBackground.Stroke = this.BorderBrush;
             rcBackground.StrokeThickness = this.BorderThickness.Left;
@@ -164,25 +167,10 @@ namespace System.Windows.Controls {
         }
 
 		protected virtual void DrawBackground (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
-            rcBackground.Draw(gameTime, batch, alpha*this.Alpha, transform);
-
-            /*
-            if (this.Background != null)
-				this.Background.Draw (
-					batch, 
-					new Rectangle (
-						(int)this.GetAbsoluteLeft (), 
-						(int)this.GetAbsoluteTop (), 
-						(int)this.ActualWidth, 
-						(int)this.ActualHeight), 
-					transform, 
-					alpha);
-             * */
+			rcBackground.Draw(gameTime, batch, alpha, transform);
 		}
 
 		public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
-
-
 			//base.Draw (gameTime, batch, alpha, transform);
 
 			if (alpha > 0 && this.Alpha > 0 && this.IsVisible ()) {
@@ -253,8 +241,10 @@ namespace System.Windows.Controls {
 
 				} else {
 					if (this is Window) {
+						/*
 						GraphicsDevice.ScissorRectangle =
                             ScreenHelper.CheckScissorRect ( this.Bounds );
+                            */
 					}
 				}
 
