@@ -7,6 +7,7 @@ using System.Text;
 namespace System.Windows.Data {
 	public class Binding {
 		public Binding () {
+			targets = new List<DependencyObject> ();
 			this.Mode = BindingMode.TwoWay;
 		}
 
@@ -30,11 +31,40 @@ namespace System.Windows.Data {
 
 		public PropertyPath Path { get; set; }
 
-		public object Source { get; set; }
+		public object Source { 
+			get { return source; }
+			set {
+				if (targets.Count > 0)
+					throw new InvalidOperationException ("Source cannot be changed after binding");
+
+				if (value != source) {
+					var npc = default ( INotifyPropertyChanged );
+					if (source != null) {
+						npc = source as INotifyPropertyChanged;
+						if (npc != null)
+							npc.PropertyChanged -= OnSourcePropertyChanged;
+					}
+
+					source = value;
+					npc = source as INotifyPropertyChanged;
+					if (npc != null)
+						npc.PropertyChanged += OnSourcePropertyChanged;
+				}
+			}
+		}
 
 		public UpdateSourceTrigger UpdateSourceTrigger { get; set; }
 
 		#endregion
+
+		void OnSourcePropertyChanged ( object sender, PropertyChangedEventArgs e ) {
+			if (e.PropertyName == this.Path.Path) {
+				OnSourceUpdated ();
+				foreach (var target in targets) {
+					this.UpdateTarget (target);
+				}
+			}
+		}
 
 		internal void OnSourceUpdated ( ) {
 			if (SourceUpdated != null)
@@ -45,6 +75,33 @@ namespace System.Windows.Data {
 			if (TargetUpdated != null)
 				TargetUpdated (this, EventArgs.Empty);
 		}
+
+		internal void AddTarget ( DependencyObject target ) {
+			if (target == null)
+				throw new ArgumentNullException ();
+
+			if ( !targets.Contains ( target ) )
+				targets.Add (target);
+		}
+
+		internal void UpdateTarget ( DependencyObject target ) {
+			if (target == null)
+				throw new ArgumentNullException ();
+
+			if (this.Source != null) {
+				var prop = this.Source.GetType ().GetProperty (this.Path.Path);
+				if (prop != null) {
+					var value = prop.GetValue (this.Source);
+
+
+
+					//target.SetValue (  , value );
+				}
+			}
+		}
+
+		private object 					source;
+		private List<DependencyObject> 	targets;
 	}
 	// Zusammenfassung:
 	//     Beschreibt die zeitliche Steuerung von Aktualisierungen der Bindungsquelle.

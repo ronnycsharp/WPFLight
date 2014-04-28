@@ -8,7 +8,7 @@ using WPFLight.Helpers;
 namespace System.Windows {
     public class FrameworkElement : UIElement, IDrawable2D {
 		public FrameworkElement () {
-
+			bindings = new List<Tuple<DependencyProperty, Binding>> ();
 		}
 
         #region Properties
@@ -46,13 +46,6 @@ namespace System.Windows {
 
 			this.CheckTrigger (dp);
 			this.CheckBinding (dp);
-		}
-
-		void CheckBinding ( DependencyProperty dp ) {
-			var binding = BindingOperations.GetBinding (this, dp);
-			if (binding != null) {
-				Console.WriteLine ( "");
-			}
 		}
 
         /// <summary>
@@ -316,25 +309,48 @@ namespace System.Windows {
 
         }
 			
+		void CheckBinding ( DependencyProperty dp ) {
+			if (dp == null)
+				throw new ArgumentNullException ();
+
+			if (bindings != null) {
+				var binds = bindings.Where (b => b != null && b.Item1 == dp).Select (b => b.Item2).ToArray ();
+				foreach (var binding in binds) {
+					// TODO Add BindingMode-Standard, ... FrameworkMetadata ...
+					if (binding.Mode == BindingMode.TwoWay
+					   || binding.Mode == BindingMode.OneWayToSource) {
+						binding.OnTargetUpdated ();
+					}
+				}
+			}
+		}
+
+		internal DependencyProperty GetBindingProperty ( Binding binding ) {
+			foreach (var bind in bindings) {
+				if (bind.Item2 == binding) {
+					return bind.Item1;
+				}
+			}
+			return null;
+		}
+
 		public void SetBinding ( DependencyProperty dp, Binding binding ) {
 			if (dp == null || binding == null)
 				throw new ArgumentNullException ();
 
-			binding.SourceUpdated += (object sender, EventArgs e) => {
-
-			};
-
-			BindingOperations.SetBinding (this, dp, binding);
+			binding.AddTarget (this);
+			binding.UpdateTarget (this);
 		}
 
 		public void SetBinding ( DependencyProperty dp, string path ) {
-			throw new NotImplementedException ();
+			SetBinding (dp, new Binding (path));
 		}
 
 		public object FindResource ( object resourceKey ) {
 			return ResourceHelper.GetResource (resourceKey);
 		}
 			
+		private List<Tuple<DependencyProperty,Binding>>						bindings;
 		private Dictionary<Trigger, Dictionary<DependencyProperty, Object>> storedValues;
 		private Dictionary<Trigger, Boolean> 					            triggerStates;
 		private Style 											            style;
