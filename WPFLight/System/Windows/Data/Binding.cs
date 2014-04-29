@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 namespace System.Windows.Data {
 	public class Binding {
 		public Binding () {
-			targets = new List<DependencyObject> ();
+            targetProperties = new List<Tuple<FrameworkElement, DependencyProperty>>();
 			this.Mode = BindingMode.TwoWay;
 		}
 
@@ -34,7 +35,7 @@ namespace System.Windows.Data {
 		public object Source { 
 			get { return source; }
 			set {
-				if (targets.Count > 0)
+				if (targetProperties.Count > 0)
 					throw new InvalidOperationException ("Source cannot be changed after binding");
 
 				if (value != source) {
@@ -58,12 +59,8 @@ namespace System.Windows.Data {
 		#endregion
 
 		void OnSourcePropertyChanged ( object sender, PropertyChangedEventArgs e ) {
-			if (e.PropertyName == this.Path.Path) {
+			if (e.PropertyName == this.Path.Path)
 				OnSourceUpdated ();
-				foreach (var target in targets) {
-					this.UpdateTarget (target);
-				}
-			}
 		}
 
 		internal void OnSourceUpdated ( ) {
@@ -76,32 +73,46 @@ namespace System.Windows.Data {
 				TargetUpdated (this, EventArgs.Empty);
 		}
 
-		internal void AddTarget ( DependencyObject target ) {
-			if (target == null)
-				throw new ArgumentNullException ();
+		internal void AddTargetProperty ( FrameworkElement element, DependencyProperty dp ) {
+            if (element == null || dp == null)
+                throw new ArgumentNullException();
 
-			if ( !targets.Contains ( target ) )
-				targets.Add (target);
+            targetProperties.Add(
+                new Tuple<FrameworkElement, DependencyProperty>(element, dp));
 		}
 
-		internal void UpdateTarget ( DependencyObject target ) {
-			if (target == null)
-				throw new ArgumentNullException ();
+        internal IEnumerable<DependencyProperty> GetTargetProperties (FrameworkElement element) {
+            foreach (var prop in targetProperties) {
+                if ( prop.Item1 == element )
+                    yield return prop.Item2;
+            }
+        }
 
-			if (this.Source != null) {
-				var prop = this.Source.GetType ().GetProperty (this.Path.Path);
-				if (prop != null) {
-					var value = prop.GetValue (this.Source);
+        internal bool HasTargetProperty (DependencyProperty dp) {
+            return targetProperties.Count(t => t.Item2 == dp) > 0;
+        }
 
+        /// <summary>
+        /// is called after a target-property is changed
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="dp"></param>
+        internal void OnTargetPropertyUpdated (FrameworkElement element, DependencyProperty dp) {
 
+            OnTargetUpdated();
+        }
 
-					//target.SetValue (  , value );
-				}
-			}
-		}
+        internal object GetSourceValue () {
+            if (sourceProperty == null)
+                sourceProperty = this.Source.GetType().GetProperty(this.Path.Path);
 
-		private object 					source;
-		private List<DependencyObject> 	targets;
+            return sourceProperty
+                .GetValue(this.Source, null);
+        }
+
+        private PropertyInfo                                        sourceProperty;
+		private object 					                            source;
+		private List<Tuple<FrameworkElement,DependencyProperty>> 	targetProperties;
 	}
 	// Zusammenfassung:
 	//     Beschreibt die zeitliche Steuerung von Aktualisierungen der Bindungsquelle.

@@ -69,6 +69,9 @@
     <Compile Include="..\WPFLight\Helpers\ScreenHelper.cs">
       <Link>Helpers\ScreenHelper.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\Initializer.cs">
+      <Link>Initializer.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\Resources\Textures.cs">
       <Link>Resources\Textures.cs</Link>
     </Compile>
@@ -95,9 +98,6 @@
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\Canvas.cs">
       <Link>System\Windows\Controls\Canvas.cs</Link>
-    </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Controls\CheckButton.cs">
-      <Link>System\Windows\Controls\CheckButton.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\ColumnDefinition.cs">
       <Link>System\Windows\Controls\ColumnDefinition.cs</Link>
@@ -179,6 +179,9 @@
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\Selector.cs">
       <Link>System\Windows\Controls\Primitives\Selector.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\ToggleButton.cs">
+      <Link>System\Windows\Controls\Primitives\ToggleButton.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\RadioButton.cs">
       <Link>System\Windows\Controls\RadioButton.cs</Link>
@@ -415,7 +418,13 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="..\WPFLight\Themes\Default.xaml">
+      <Link>Themes\Default.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

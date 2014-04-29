@@ -8,7 +8,7 @@ using WPFLight.Helpers;
 namespace System.Windows {
     public class FrameworkElement : UIElement, IDrawable2D {
 		public FrameworkElement () {
-			bindings = new List<Tuple<DependencyProperty, Binding>> ();
+            bindings = new List<Binding>();
 		}
 
         #region Properties
@@ -308,38 +308,44 @@ namespace System.Windows {
             Microsoft.Xna.Framework.Matrix transform) {
 
         }
-			
+		
+	    /// <summary>
+	    /// check whether the target has changed properties which are binded
+	    /// </summary>
+	    /// <param name="dp"></param>
 		void CheckBinding ( DependencyProperty dp ) {
 			if (dp == null)
 				throw new ArgumentNullException ();
 
 			if (bindings != null) {
-				var binds = bindings.Where (b => b != null && b.Item1 == dp).Select (b => b.Item2).ToArray ();
-				foreach (var binding in binds) {
-					// TODO Add BindingMode-Standard, ... FrameworkMetadata ...
-					if (binding.Mode == BindingMode.TwoWay
-					   || binding.Mode == BindingMode.OneWayToSource) {
-						binding.OnTargetUpdated ();
-					}
-				}
+                foreach (var binding in bindings) {
+                    if (binding.HasTargetProperty(dp)) {
+                        // TODO Add BindingMode-Standard, ... FrameworkMetadata ...
+                        if (binding.Mode == BindingMode.TwoWay
+                            || binding.Mode == BindingMode.OneWayToSource) {
+                            binding.OnTargetPropertyUpdated(this, dp);
+                        }
+                    }
+                }
 			}
-		}
-
-		internal DependencyProperty GetBindingProperty ( Binding binding ) {
-			foreach (var bind in bindings) {
-				if (bind.Item2 == binding) {
-					return bind.Item1;
-				}
-			}
-			return null;
 		}
 
 		public void SetBinding ( DependencyProperty dp, Binding binding ) {
 			if (dp == null || binding == null)
 				throw new ArgumentNullException ();
 
-			binding.AddTarget (this);
-			binding.UpdateTarget (this);
+			binding.AddTargetProperty (this, dp);
+            binding.SourceUpdated +=
+                (s, e) => {
+                    var bind = (Binding)s;
+                    if (bind.Mode != BindingMode.OneWayToSource) {
+                        var value = bind.GetSourceValue();
+                        foreach (var prop in bind.GetTargetProperties(this)) {
+                            this.SetValue(prop, value);
+                        }
+                    }
+                };
+            binding.OnSourceUpdated();
 		}
 
 		public void SetBinding ( DependencyProperty dp, string path ) {
@@ -350,7 +356,7 @@ namespace System.Windows {
 			return ResourceHelper.GetResource (resourceKey);
 		}
 			
-		private List<Tuple<DependencyProperty,Binding>>						bindings;
+		private List<Binding>						                        bindings;
 		private Dictionary<Trigger, Dictionary<DependencyProperty, Object>> storedValues;
 		private Dictionary<Trigger, Boolean> 					            triggerStates;
 		private Style 											            style;
