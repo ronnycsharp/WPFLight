@@ -25,6 +25,13 @@ namespace System.Windows.Data {
 
 		#region Eigenschaften
 
+		/// <summary>
+		/// Gets or sets the data context which is set when the source-property is null and the bound 
+		/// datacontext is changed
+		/// </summary>
+		/// <value>The data context.</value>
+		internal object DataContext { get; set; }
+
 		[DefaultValue ("")]
 		public string ElementName { get; set; }
 
@@ -39,6 +46,8 @@ namespace System.Windows.Data {
 					throw new InvalidOperationException ("Source cannot be changed after binding");
 
 				if (value != source) {
+					sourceProperty = null;
+
 					var npc = default ( INotifyPropertyChanged );
 					if (source != null) {
 						npc = source as INotifyPropertyChanged;
@@ -50,6 +59,10 @@ namespace System.Windows.Data {
 					npc = source as INotifyPropertyChanged;
 					if (npc != null)
 						npc.PropertyChanged += OnSourcePropertyChanged;
+
+					if (value != null) {
+						this.DataContext = null;
+					}
 				}
 			}
 		}
@@ -98,17 +111,40 @@ namespace System.Windows.Data {
         /// <param name="element"></param>
         /// <param name="dp"></param>
         internal void OnTargetPropertyUpdated (FrameworkElement element, DependencyProperty dp) {
+			var prop = element.GetType ().GetProperty (dp.Name);
+			var value = prop.GetValue (element, null);
 
+			this.SetSourceValue (value);
             OnTargetUpdated();
         }
 
-        internal object GetSourceValue () {
-            if (sourceProperty == null)
-                sourceProperty = this.Source.GetType().GetProperty(this.Path.Path);
+		internal void SetSourceValue ( object value ) {
+			if (sourceProperty == null)
+				sourceProperty = (this.Source 
+					?? this.DataContext).GetType ().GetProperty (this.Path.Path);
 
-            return sourceProperty
-                .GetValue(this.Source, null);
+			sourceProperty
+				.SetValue (this.Source 
+					?? this.DataContext, value);
+		}
+
+        internal object GetSourceValue () {
+			if (sourceProperty == null)
+				sourceProperty = 
+					(this.Source ?? this.DataContext).GetType ().GetProperty (this.Path.Path);
+
+			return sourceProperty
+					.GetValue (this.Source ?? this.DataContext, null);
         }
+
+		/// <summary>
+		/// Determines whether this instance is bound
+		/// </summary>
+		/// <returns><c>true</c> if this instance is bound; otherwise, <c>false</c>.</returns>
+		internal bool IsBound ( ) {
+			return ((this.Source != null || this.DataContext != null) 
+				&& targetProperties.Count > 0);
+		}
 
         private PropertyInfo                                        sourceProperty;
 		private object 					                            source;

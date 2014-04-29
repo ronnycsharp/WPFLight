@@ -1,4 +1,5 @@
 namespace System.Windows {
+	public delegate void DependencyPropertyChangedEventHandler ( object sender, DependencyPropertyChangedEventArgs e );
 	public class DependencyPropertyChangedEventArgs {
 		public DependencyPropertyChangedEventArgs(
 			DependencyProperty property, object oldValue, object newValue ) {
