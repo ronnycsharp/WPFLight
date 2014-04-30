@@ -52,17 +52,10 @@ namespace System.Windows.Controls {
 				"IsEnabled",
 				typeof(bool),
 				typeof(UIElement),
-				new PropertyMetadata ( true ) );
+				new FrameworkPropertyMetadata ( true ) { Inherits = true } );
 
 		public bool IsEnabled {
-			get { 
-				var enabled = (bool)GetValue (IsEnabledProperty);
-				if (enabled) {
-					if (this.Parent != null && !this.Parent.IsEnabled)
-						enabled = false;
-				}
-				return enabled;
-			}
+			get { return (bool)GetValue (IsEnabledProperty); }
 			set { SetValue (IsEnabledProperty, value); }
 		}
 
@@ -294,29 +287,6 @@ namespace System.Windows.Controls {
         }
 
 		#endregion
-
-		/// <summary>
-		/// Wenn derived = true, wird geprüft ob die Eigenschaft zugewiesen wurde,
-		/// ansonsten wird der erste gesetzte Wert eines übergeordneten Controls verwendet
-		/// </summary>
-		/// <param name="propertyName"></param>
-		/// <param name="derived"></param>
-		/// <returns></returns>
-		protected object GetValue (DependencyProperty property, bool derived) {
-
-			// TODO
-			throw new NotImplementedException ();
-
-			// Prüfen ob die Eigenschaft zugewiesen wurde
-			if (!this.IsAssignedProperty (property)
-			             && derived
-			             && this.Parent != null)
-                // Eigenschaft des übergeordneten Elements abfragen
-                return this.Parent.GetValue (property, true);
-			else
-                // Wert zurückgeben
-                return GetValue (property);
-		}
 
 		public virtual void Invalidate () {
 			this.InvalidateMeasure ();

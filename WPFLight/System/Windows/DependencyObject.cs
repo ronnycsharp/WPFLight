@@ -2,10 +2,15 @@ using System.Collections.Generic;
 using System.Linq;
 namespace System.Windows {
 	public abstract class DependencyObject {
-        protected object GetValue (DependencyProperty property) {
+        public object GetValue (DependencyProperty property) {
+			
+			
+	
             if (properties != null
                     && properties.ContainsKey(property))
                 return properties[property];
+				
+			
 
 			if (property.DefaultMetadata != null
 			    	&& property.DefaultMetadata.DefaultValue != null)
@@ -52,7 +57,7 @@ namespace System.Windows {
 			}
 		}
 
-        protected void SetValue (DependencyProperty property, object value) {
+        public void SetValue (DependencyProperty property, object value) {
 			var frameworkElement = this as FrameworkElement;
 			var setAsAssigned = frameworkElement != null 
 				&& !frameworkElement.IsInitialized;
