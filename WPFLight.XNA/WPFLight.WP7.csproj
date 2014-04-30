@@ -66,6 +66,9 @@
     <Compile Include="..\WPFLight.iOS\Helpers\ResourceHelper.cs">
       <Link>Resources\ResourceHelper.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\Extensions\EnumExtensions.cs">
+      <Link>Extensions\EnumExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\Helpers\ScreenHelper.cs">
       <Link>Helpers\ScreenHelper.cs</Link>
     </Compile>
@@ -240,6 +243,9 @@
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\FrameworkElement.cs">
       <Link>System\Windows\FrameworkElement.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\FrameworkPropertyMetadata.cs">
+      <Link>System\Windows\FrameworkPropertyMetadata.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\GameWindow.cs">
       <Link>System\Windows\GameWindow.cs</Link>
