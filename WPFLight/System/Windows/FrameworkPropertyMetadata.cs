@@ -103,15 +103,6 @@ namespace System.Windows {
         }
 
         /// <summary>
-        ///    The default UpdateSourceTrigger for two-way data bindings on this property.
-        /// </summary>
-        public UpdateSourceTrigger DefaultUpdateSourceTrigger {
-            get;
-            set;
-        }
-
-
-        /// <summary>
         ///     The value of this property should be saved/restored when journaling by URI
         /// </summary>
         public bool Journal {

@@ -64,6 +64,8 @@ namespace System.Windows.Controls {
 
             if (this.Content is UIElement)
                 ((UIElement)this.Content).Invalidate();
+
+
 		}
 
 		public override void Initialize () {

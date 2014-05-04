@@ -35,6 +35,9 @@ namespace System.Windows.Controls {
 
 		#region Properties
 
+		public bool IsMeasureValid { get; private set; }
+		public bool IsArrangeValid { get; private set; }
+
 		// TODO Remove and Replace IUpdateable-Interface and methods
 		[Obsolete]
 		public bool Enabled {
@@ -290,6 +293,7 @@ namespace System.Windows.Controls {
 
 		public virtual void Invalidate () {
 			this.InvalidateMeasure ();
+			this.InvalidateArrange ();
 		}
 
 		protected virtual void OnMarginChanged (Thickness newValue, Thickness oldValue) {}
@@ -312,6 +316,16 @@ namespace System.Windows.Controls {
 				result = child.MeasureHeight (this.ActualHeight);
 
 			return result;
+		}
+
+		protected virtual Size MeasureOverride(Size availableSize)
+		{
+			throw new NotImplementedException ();
+		}
+
+		protected virtual Size ArrangeOverride(Size finalSize)
+		{
+			throw new NotImplementedException ();
 		}
 
 		internal Size Measure (Size availableSize) {
@@ -345,7 +359,6 @@ namespace System.Windows.Controls {
 				if (child.Parent != null)
 					result += child.Parent.GetAbsoluteLeft ();
 			}
-
 			return result;
 		}
 
@@ -474,11 +487,17 @@ namespace System.Windows.Controls {
 				this.FocusChanged (this, EventArgs.Empty);
 		}
 
-		protected void InvalidateMeasure ( ) {
+		public void InvalidateMeasure ( ) {
+			this.IsMeasureValid = false;
+
 			actualWidth = null;
 			actualHeight = null;
 		}
 
+		public void InvalidateArrange ( ) {
+			this.IsArrangeValid = false;
+		}
+			
         protected internal virtual void OnRender (DrawingContext dc) { }
 
 		public virtual void Update (GameTime gameTime) { }
@@ -492,5 +511,27 @@ namespace System.Windows.Controls {
 		private float? actualWidth;
 		private float? actualHeight;
 		private UIElement focusedControl;
+	}
+
+	/// <summary>
+	/// Visibility - Enum which describes 3 possible visibility options.
+	/// </summary>
+	/// <seealso cref="UIElement" />
+	public enum Visibility : byte
+	{
+		/// <summary>
+		/// Normally visible.
+		/// </summary>
+		Visible = 0,
+
+		/// <summary>
+		/// Occupies space in the layout, but is not visible (completely transparent).
+		/// </summary>
+		Hidden,
+
+		/// <summary>
+		/// Not visible and does not occupy any space in layout, as if it doesn't exist.
+		/// </summary>
+		Collapsed
 	}
 }

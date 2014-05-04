@@ -52,6 +52,7 @@
     <Folder Include="System\Collections\Specialized\" />
     <Folder Include="System\Collections\ObjectModel\" />
     <Folder Include="Themes\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
@@ -352,6 +353,12 @@
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\ToggleButton.cs">
       <Link>System\Windows\Controls\Primitives\ToggleButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\FrameworkPropertyMetadata.cs">
+      <Link>System\Windows\FrameworkPropertyMetadata.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Extensions\EnumExtensions.cs">
+      <Link>Extensions\EnumExtensions.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

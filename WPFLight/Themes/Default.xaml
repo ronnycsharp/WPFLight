@@ -4,14 +4,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="{x:Type DialogBox}"  TargetType="{x:Type DialogBox}">
-        <Style.Setters>
-            <Setter Property="Background" Value="#EECCCCCC"/>
-            <Setter Property="BorderBrush" Value="#EEFFFFFF"/>
-            <Setter Property="BorderThickness" Value="1"/>
-        </Style.Setters>
-    </Style>
-
     <Style x:Key="{x:Type Window}"  TargetType="{x:Type Window}">
         <Style.Setters>
             <Setter Property="Background" Value="White"/>
@@ -82,6 +74,16 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="{x:Type ListBox}" TargetType="{x:Type ListBox}">
+    <Style.Setters>
+      <Setter Property="Alpha" Value="1.0"/>
+      <Setter Property="Background" Value="#05FFFFFF" />
+      <Setter Property="FontSize" Value="0.39" />
+      <Setter Property="BorderBrush" Value="#55FFFFFF" />
+      <Setter Property="BorderThickness" Value="1"/>
+    </Style.Setters>
+  </Style>
+
   <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
     <Style.Setters>
       <Setter Property="Alpha" Value="0.9"/>
@@ -102,7 +104,7 @@
       </Trigger>
       <Trigger Property="IsChecked" Value="True">
         <Trigger.Setters>
-      		<Setter Property="Background" Value="#88FFFFFF" />
+      		<Setter Property="Background" Value="CornflowerBlue" />
         </Trigger.Setters>
       </Trigger>
     </Style.Triggers>

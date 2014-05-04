@@ -91,11 +91,11 @@ namespace System.Windows {
 		#endregion
 
         public override float GetAbsoluteLeft () {
-            return this.Left;
+			return this.Left + this.Margin.Left - this.Margin.Right;
         }
 
         public override float GetAbsoluteTop () {
-            return this.Top;
+			return this.Top + this.Margin.Top - this.Margin.Bottom;
         }
 
 		public static void Focus (Window window) {

@@ -103,6 +103,7 @@ namespace System.Windows {
 			
 		protected override void OnPropertyChanged (
 			DependencyProperty dp, object oldValue, object newValue) {
+			base.OnPropertyChanged (dp, oldValue, newValue);
 
 			this.CheckTrigger (dp);
 			this.CheckBinding (dp);

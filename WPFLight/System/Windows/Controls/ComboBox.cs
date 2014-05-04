@@ -14,29 +14,48 @@ using System.Windows.Data;
 namespace System.Windows.Controls {
 	public class ComboBox : Selector {
         public ComboBox ( ) {
-			this.Background = Brushes.Green;
-
-            this.ItemsPanel = new StackPanel() { Orientation = Orientation.Vertical };
-			this.ItemsPanel.VerticalAlignment = VerticalAlignment.Stretch;
-			this.ItemsPanel.HorizontalAlignment = HorizontalAlignment.Stretch;
-			this.ItemsPanel.Padding = new Thickness(2);
-
-			window = new Window(this);
+			this.Background = Brushes.Red;
 
 			this.Padding = new Thickness ();
 			this.Margin = new Thickness ();
 
+			window = new Window(this);
 			cmdItem = new Button ();
+			lbItems = new ListBox ();
 
-			this.ItemsPanel.Parent = window;
-            window.Content = this.ItemsPanel;
+			var itemsBinding = new Binding ();
+			itemsBinding.Mode = BindingMode.OneWay;
+			itemsBinding.Source = this;
+			itemsBinding.Path = new PropertyPath ("Items");
+
+			lbItems.SetBinding (ListBox.ItemsProperty, itemsBinding);
+			lbItems.SelectionChanged += (s,e) => {
+				//window.DialogResult = this.SelectedItem != null;
+				//window.Close ();
+			};
+
+			lbItems.TouchUp += ( s, e ) => {
+				// needed to close the window if the same ListBoxItem is clicked
+
+				window.DialogResult = this.SelectedItem != null;
+				window.Close ();
+			};
+
+			window.Content = lbItems;
+
+			var selectedItemBinding = new Binding ("SelectedItem");
+			selectedItemBinding.Mode = BindingMode.TwoWay;
+			selectedItemBinding.Source = lbItems;
+
+			cmdItem.SetBinding (
+				Button.ContentProperty, 
+				selectedItemBinding);
+
+			this.SetBinding (
+				ListBox.SelectedItemProperty, 
+				selectedItemBinding);
         }
-
-        #region Ereignisse
-
-
-        #endregion
-
+			
         #region Properties
 
 		public static DependencyProperty IsDropDownOpenProperty = 
@@ -62,8 +81,6 @@ namespace System.Windows.Controls {
 			}
 		}
 
-		public Panel ItemsPanel { get; set; }
-
         #endregion
 
         public override void Initialize () {
@@ -78,20 +95,14 @@ namespace System.Windows.Controls {
             window.FontFamily = this.FontFamily;
 			window.IsToolTip = false;
 			window.Left = (int)this.GetAbsoluteLeft();
-			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight + 1;
 			window.Width = this.ActualWidth;
-			window.Height = 208;//this.ItemsPanel.ActualHeight;
-            window.Background = new SolidColorBrush(Colors.White * .7f);
-            window.BorderBrush = new SolidColorBrush(Colors.Gray * .9f);
+			window.Height = 192;	// TODO ComputeItemsHeight()
+			window.Background = new SolidColorBrush (Colors.Black * .8f);
+			window.BorderBrush = Brushes.Transparent;
             window.BorderThickness = new Thickness(1);
             window.LostFocus += delegate {
-
 				ignoreTouchDown = window.DialogResult == null;
-				/*
-				if ( !selectionChanged && window.DialogResult != null )
-					ignoreTouchDown = true;
-				*/
-
 				this.IsDropDownOpen = false;
 			};
 
@@ -164,57 +175,20 @@ namespace System.Windows.Controls {
 			
 		public override void OnTouchDown (TouchLocation state) {
 			if (!ignoreTouchDown) {
-				selectionChanged = false;
 				base.OnTouchDown (state);
 				this.IsDropDownOpen = !IsDropDownOpen;
 			}
 			ignoreTouchDown = false;
 		}
 			
-		protected override void OnItemsCollectionChanged (object sender, NotifyCollectionChangedEventArgs e) {
-			base.OnItemsCollectionChanged (sender, e);
-			switch ( e.Action ) {
-				case NotifyCollectionChangedAction.Add: {
-						foreach ( var item in e.NewItems ) {
-							var cmd = 
-								new Button ( ) {
-									FontFamily = this.FontFamily,
-									Content = item,
-									CornerRadiusX = 5,
-									CornerRadiusY = 5,
-									VerticalAlignment = VerticalAlignment.Top,
-									HorizontalContentAlignment = HorizontalAlignment.Left,
-									Background = new SolidColorBrush ( Colors.White * .6f ),
-									Foreground = Brushes.Black,
-									Height = 58,
-                                    FontSize = .36f,
-									Alpha =  1,
-									Margin = new Thickness ( 5,3,5,0 ),
-									Padding = new Thickness ( 10,0,0,0 ),
-							};
-							cmd.Click += (object s, EventArgs ea) => {
-								selectionChanged = true;
-								this.SelectedItem = cmd.Content;
-								window.DialogResult = true;
-								window.Close ();
-							};
-							this.ItemsPanel.Children.Add ( cmd );
-						}
-						break;
-					}
-			}
-			window.Height = this.Items.Count * 84;
-		}
-
 		protected override void OnSelectionChanged () {
 			base.OnSelectionChanged ();
-			this.cmdItem.Content = this.SelectedItem;
+			//this.cmdItem.Content = this.SelectedItem;
 		}
 
-
-		private bool selectionChanged;
 		private bool ignoreTouchDown;
 		private Window window;
+		private ListBox lbItems;
 		private Button cmdItem;
     }
 }

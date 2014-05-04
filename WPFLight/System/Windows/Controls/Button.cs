@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 
 namespace System.Windows.Controls {
 	public class Button : ContentControl {
-        public Button () { }
+		public Button () { }
 
 		#region Ereignisse
 

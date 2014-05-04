@@ -51,7 +51,7 @@ namespace System.Windows.Controls {
 								this.SelectedItem = ((ListBoxItem)s).Content;
 							}
 						};
-
+							
 						lbItem.Initialize ();
 						contentPanel.Children.Add (lbItem);
 					} else {

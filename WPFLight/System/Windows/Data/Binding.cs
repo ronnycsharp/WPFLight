@@ -46,23 +46,36 @@ namespace System.Windows.Data {
 					throw new InvalidOperationException ("Source cannot be changed after binding");
 
 				if (value != source) {
+
+					// binds to DependencyObjects or objets which implements INotifyPropertyChanged
+
 					sourceProperty = null;
-
-					var npc = default ( INotifyPropertyChanged );
-					if (source != null) {
-						npc = source as INotifyPropertyChanged;
-						if (npc != null)
-							npc.PropertyChanged -= OnSourcePropertyChanged;
+					if ( source != null ) {
+						var notifyPropertyChanged = source as INotifyPropertyChanged;
+						if (notifyPropertyChanged != null) {
+							notifyPropertyChanged.PropertyChanged -= OnSourcePropertyChanged;
+						} else {
+							var dependencyObject = source as DependencyObject;
+							if (dependencyObject != null) {
+								dependencyObject.PropertyChanged -= OnSourceDependencyPropertyChanged;
+							}
+						}
 					}
-
 					source = value;
-					npc = source as INotifyPropertyChanged;
-					if (npc != null)
-						npc.PropertyChanged += OnSourcePropertyChanged;
-
-					if (value != null) {
-						this.DataContext = null;
+					if ( source != null ) {
+						var notifyPropertyChanged = source as INotifyPropertyChanged;
+						if (notifyPropertyChanged != null) {
+							notifyPropertyChanged.PropertyChanged += OnSourcePropertyChanged;
+						} else {
+							var dependencyObject = source as DependencyObject;
+							if (dependencyObject != null) {
+								dependencyObject.PropertyChanged += OnSourceDependencyPropertyChanged;
+							}
+						}
 					}
+
+					if (value != null)
+						this.DataContext = null;
 				}
 			}
 		}
@@ -70,6 +83,11 @@ namespace System.Windows.Data {
 		public UpdateSourceTrigger UpdateSourceTrigger { get; set; }
 
 		#endregion
+
+		void OnSourceDependencyPropertyChanged ( object sender, DependencyPropertyChangedEventArgs e ) {
+			if (e.Property.Name == this.Path.Path)
+				OnSourceUpdated ();
+		}
 
 		void OnSourcePropertyChanged ( object sender, PropertyChangedEventArgs e ) {
 			if (e.PropertyName == this.Path.Path)

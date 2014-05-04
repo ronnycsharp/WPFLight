@@ -28,26 +28,33 @@ namespace System.Windows.Controls {
 
 		public static DependencyProperty FontFamilyProperty =
 			DependencyProperty.Register (
-				"FontFamily", typeof(FontFamily), typeof(Control));
+				"FontFamily", 
+				typeof(FontFamily), 
+				typeof(Control), 
+				new FrameworkPropertyMetadata ( 
+					null, FrameworkPropertyMetadataOptions.Inherits 
+						| FrameworkPropertyMetadataOptions.AffectsRender ) );
 
 		public FontFamily FontFamily {
 			get {
                 // if property is null, the property is inherited from its parent-control
-                var fontFamily = (FontFamily)GetValue (FontFamilyProperty);
-                if (fontFamily == null && this.Parent is Control)
-                    fontFamily = ((Control)this.Parent).FontFamily;
-
-                if (fontFamily == null)
-                    fontFamily = DEFAULT_FONTFAMILY;
-
-                return fontFamily;
+				var result = (FontFamily)GetValue (FontFamilyProperty);
+				if (result == null) {
+					result = DEFAULT_FONTFAMILY;
+				}
+				return result;
             }
 			set { SetValue (FontFamilyProperty, value); }
 		}
 
 		public static DependencyProperty FontSizeProperty =
 			DependencyProperty.Register (
-				"FontSize", typeof(float), typeof(Control));
+				"FontSize", 
+				typeof(float), 
+				typeof(Control),
+				new FrameworkPropertyMetadata ( 
+					null, FrameworkPropertyMetadataOptions.Inherits 
+						| FrameworkPropertyMetadataOptions.AffectsRender ) );
 
 		public float FontSize {
 			get{ return (float)GetValue (FontSizeProperty); }
@@ -60,7 +67,9 @@ namespace System.Windows.Controls {
 			DependencyProperty.Register (
 				"BorderBrush",
 				typeof(Brush),
-				typeof(Control));
+				typeof(Control),
+				new FrameworkPropertyMetadata ( 
+					null, FrameworkPropertyMetadataOptions.AffectsRender ) );
 
 		public Brush BorderBrush {
 			get { return (Brush)GetValue (BorderBrushProperty); }
@@ -71,7 +80,9 @@ namespace System.Windows.Controls {
 			DependencyProperty.Register (
 				"Background",
 				typeof(Brush),
-				typeof(Control));
+				typeof(Control),
+				new FrameworkPropertyMetadata ( 
+					null, FrameworkPropertyMetadataOptions.AffectsRender ) );
 
 		public Brush Background {
 			get { return (Brush)GetValue (BackgroundProperty); }
@@ -82,7 +93,9 @@ namespace System.Windows.Controls {
 			DependencyProperty.Register (
 				"BorderThickness",
 				typeof(Thickness),
-				typeof(Control));
+				typeof(Control),
+				new FrameworkPropertyMetadata ( 
+					null, FrameworkPropertyMetadataOptions.AffectsRender ) );
 
 		public Thickness BorderThickness {
 			get { return (Thickness)GetValue (BorderThicknessProperty); }

@@ -17,9 +17,6 @@ namespace System.Windows.Controls {
 			this.Padding = new Thickness ();
 
 			this.ItemsPanel = new StackPanel();
-			this.ItemsPanel.VerticalAlignment = VerticalAlignment.Stretch;
-			this.ItemsPanel.HorizontalAlignment = HorizontalAlignment.Stretch;
-			this.ItemsPanel.Padding = new Thickness(2);
         }
 
         #region Ereignisse
@@ -42,8 +39,6 @@ namespace System.Windows.Controls {
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;
 			window.Width = this.ItemsPanel.ActualWidth;
 			window.Height = this.ItemsPanel.ActualHeight;
-            window.Margin = new Thickness(50);
-            window.Padding = new Thickness(50);
 
 			this.ItemsPanel.Parent = window;
             window.Content = this.ItemsPanel;
@@ -222,6 +217,7 @@ namespace System.Windows.Controls {
         protected override void OnCheckedChanged (bool chk) {
 			base.OnCheckedChanged (chk);
 			if (chk) {
+				window.Invalidate ();
 				window.Show (false);
 			} else {
 				/*
