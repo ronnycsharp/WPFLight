@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Markup;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,6 +12,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 using WPFLight.Resources;
 
 namespace System.Windows.Controls {
+	[ContentProperty("Content")]
 	public abstract class ContentControl : Control {
 		public ContentControl () : base ( ) {
 			this.HorizontalContentAlignment = HorizontalAlignment.Center;

@@ -301,9 +301,6 @@ namespace System.Windows.Markup {
                                 null);
                         }
                     } else {
-
-
-
 						// child of a collection
 						var childItem = this.ReadElement (
 							childElement, null, targetStyleType, item);
@@ -378,6 +375,20 @@ namespace System.Windows.Markup {
 						ConvertPropertyValues (childItem);
                     }
 				}
+
+				if (!String.IsNullOrWhiteSpace (element.Value)) {
+					if (contentPropertyInfo != null) {
+						contentPropertyInfo.SetValue (
+							item, 
+							Convert(
+								this.ReadValue(
+									element.Value.Trim(), contentPropertyInfo.PropertyType), 
+								contentPropertyInfo.PropertyType),
+							null);
+					} else {
+						// there is content, but this is not allowed without a ContentPropertyAttribute
+					}
+				}
 			}
 			return item;
 		}
@@ -428,6 +439,9 @@ namespace System.Windows.Markup {
         /// <returns></returns>
         object Convert (object value, Type propertyType) {
 			// TODO check ValueType and throw exception if value is null
+
+			if (propertyType == typeof(Object))
+				return value;
 
             if (value == null)
                 return null;
