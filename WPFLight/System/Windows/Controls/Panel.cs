@@ -1,14 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Markup;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace System.Windows.Controls {
+	[ContentProperty("Children")]
 	public abstract class Panel : Control {
-		public Panel ( ) : base () {
+		public Panel ( ) {
             this.Children = new UIElementCollection(this);
 		}
 

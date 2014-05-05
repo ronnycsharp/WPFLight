@@ -360,6 +360,9 @@
     <Compile Include="..\WPFLight\Extensions\EnumExtensions.cs">
       <Link>Extensions\EnumExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\UserControl.cs">
+      <Link>System\Windows\Controls\UserControl.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\WPFLight\System\ComponentModel\PropertyChangedEventArgs.cs">

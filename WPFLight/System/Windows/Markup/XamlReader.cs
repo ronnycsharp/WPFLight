@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
+using System.Linq;
 using WPFLight.Helpers;
+using System.Windows.Controls;
 
 namespace System.Windows.Markup {
 	public sealed class XamlReader {
@@ -132,6 +134,19 @@ namespace System.Windows.Markup {
                 return Activator.CreateInstance(propType);
             }
         }
+
+		Type GetTypeByClassAttribute ( XElement element ) {
+			var classAttr = element.Attributes ()
+				.Where (a => a.Name.LocalName == "Class")
+				.FirstOrDefault ();
+
+			var type = default ( Type );
+			if (classAttr != null)
+				type = Assembly.GetEntryAssembly()
+					.GetType (classAttr.Value, true);
+
+			return type;
+		}
 			
 		/// <summary>
 		/// reads a xml-element and also its children to return it as object
@@ -144,38 +159,42 @@ namespace System.Windows.Markup {
 			Type targetStyleType, 
 			object parent ) {
 
+			var classType = GetTypeByClassAttribute (element);
+			if (classType != null)
+				targetType = classType;
 
 			var isPropertyElement = element.Name.LocalName.Contains ( "." ) 
 				&& element.Parent != null 
 				&& element.Name.LocalName.StartsWith (
 					element.Parent.Name.LocalName + ".");
-					
+
+			var parentContentPropertyInfo = default ( PropertyInfo );
+			if (parent != null) {
+				var parentType = parent.GetType ();
+				var parentContentPropertyAttr = (ContentPropertyAttribute)parentType.GetCustomAttribute (
+                    typeof(ContentPropertyAttribute), true);
+
+				if (parentContentPropertyAttr != null)
+					parentContentPropertyInfo = parentType.GetProperty (parentContentPropertyAttr.Name);
+			}
+				
 			var item = default ( Object );
 			if (targetType == null ) {
-                if (parent != null && !( parent is ResourceDictionary))
-                    item = CreateObject(element, parent);
-                else
-                    item = CreateObject(element);
+
+				if (parentContentPropertyInfo != null) {
+
+					item = CreateObject (element);
+
+				} else {
+
+					if (parent != null && !(parent is ResourceDictionary))
+						item = CreateObject (element, parent);
+					else
+						item = CreateObject (element);
+				}
             } else
                 item = Activator.CreateInstance(targetType);
-
-            if (item is System.Windows.Media.LinearGradientBrush) {
-                Console.WriteLine(item);
-            }
-
-			// TODO SingleValue-Support like <Setter.Value>Red</Setter.Value>
-			/*
-			if (element.Name.LocalName == "Setter.Value") {
-				if ( !String.IsNullOrEmpty ( element.Value ) ) {
-					if (element.Value.StartsWith ("<") && element.Value.EndsWith ("<")) {
-
-					}
-				}
-				return ReadValue (element.Value, typeof(Object));
-			}
-			*/
 				
-
 			if (item != null) {
 				var itemType = item.GetType ();
                 var contentPropertyInfo = default ( PropertyInfo );
@@ -198,10 +217,17 @@ namespace System.Windows.Markup {
 					// iterate attributes
 					foreach (var attribute in element.Attributes ( )) {
 						if ( !attribute.IsNamespaceDeclaration ) {
-                            if (this.IsKeyAttribute(attribute)) {
+							if (this.IsKeyAttribute (attribute)) {
 								// save resource by key
 								ResourceHelper.SetResourceKey (
-										ReadValue ( attribute.Value,null ), item);
+									ReadValue (attribute.Value, null), item);
+							} else if (this.IsNameAttribute (attribute)) {
+								// TODO RegisterName in FrameworkElement
+
+								Console.WriteLine ("");
+
+							} else if ( this.IsClassAttribute ( attribute ) ) {
+								// do nothing, it will be checked at the beginning
                             } else {
                                 var name = attribute.Name.LocalName;
                                 var value = attribute.Value;
@@ -275,6 +301,9 @@ namespace System.Windows.Markup {
                                 null);
                         }
                     } else {
+
+
+
 						// child of a collection
 						var childItem = this.ReadElement (
 							childElement, null, targetStyleType, item);
@@ -282,6 +311,11 @@ namespace System.Windows.Markup {
 						if (item is ResourceDictionary) {
 							((ResourceDictionary)item).Add (
 								ResourceHelper.GetResourceKey (childItem), childItem);
+						} else if (item is Panel) {
+							if ( childItem is UIElement )
+								((Panel)item).Children.Add ((UIElement)childItem);
+						} else if (item is ContentControl) {
+							((ContentControl)item).Content = childItem;
 						} else {
                             if (item is IList) {
                                 var parentCollection = item as IList;
@@ -349,14 +383,17 @@ namespace System.Windows.Markup {
 		}
 
         bool IsKeyAttribute (XAttribute attr) {
-
-            // I need a way to find a key with its prefix like x:Key,
-            // but at the moment I can only find attributes with the name "Key",
-
-			// DIRTY
-			return attr.Name.LocalName == "Key"; //attr.ToString ( ).StartsWith(GetXamlSchemaVariable() + ":Key");
+			return attr.Name.LocalName == "Key";
         }
-			
+
+		bool IsNameAttribute (XAttribute attr) {
+			return attr.Name.LocalName == "Name";
+		}
+
+		bool IsClassAttribute (XAttribute attr) {
+			return attr.Name.LocalName == "Class";
+		}
+
 		void ConvertPropertyValues ( object value ) {
 			if ( value != null ){
 				var setter = value as Setter;
@@ -390,6 +427,8 @@ namespace System.Windows.Markup {
         /// <param name="value"></param>
         /// <returns></returns>
         object Convert (object value, Type propertyType) {
+			// TODO check ValueType and throw exception if value is null
+
             if (value == null)
                 return null;
 								
@@ -401,6 +440,11 @@ namespace System.Windows.Markup {
             return System.Convert.ChangeType(
                 value, propertyType, System.Globalization.CultureInfo.InvariantCulture);
 #else 
+
+			var underlyingType = Nullable.GetUnderlyingType ( propertyType );
+			if ( underlyingType != null )
+				propertyType = underlyingType;
+
 			var conv = TypeDescriptor.GetConverter(propertyType);
             return conv.ConvertFrom(value);
 #endif
@@ -426,7 +470,7 @@ namespace System.Windows.Markup {
                         true );
 			    }
             }
-			return value; //Convert(value, targetType);
+			return value;
 		}
 
 		/// <summary>
