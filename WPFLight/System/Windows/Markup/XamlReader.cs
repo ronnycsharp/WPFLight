@@ -304,13 +304,12 @@ namespace System.Windows.Markup {
 													| BindingFlags.Instance);
 
 										if (method != null) {
+											// create delegate
 											var del = Delegate.CreateDelegate (
 												eventInfo.EventHandlerType, codeBehind, attribute.Value, false, true );
 
+											// add eventhandler-delegate
 											eventInfo.AddEventHandler (item, del);
-
-											((Button)item).RaiseClick ();
-
 										} else {
 											// handler-method doesn't exsists
 											throw new Exception ("Declared EventHandler-Method not found.");
