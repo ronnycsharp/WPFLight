@@ -13,7 +13,7 @@ namespace System.Windows.Controls {
 
 		#region Ereignisse
 
-		public event EventHandler Click;
+		public event EventHandler<EventArgs> Click;
 
 		#endregion
 
@@ -86,7 +86,7 @@ namespace System.Windows.Controls {
 			this.RaiseClick();
 		}
 
-		protected void RaiseClick ( ) {
+		internal protected void RaiseClick ( ) {
 			if (this.Click != null)
 				this.Click (this, EventArgs.Empty);
 		}

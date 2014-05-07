@@ -38,7 +38,7 @@ namespace System.Windows.Markup {
 			var reader = new XamlReader ();
 			reader.Document = xdoc;
 			reader.ReadNamespaces ();
-			return reader.ReadElement (xdoc.Root, null, null, null);
+			return reader.ReadElement (xdoc.Root, null, null, null,null);
 		}
 
 		/// <summary>
@@ -147,6 +147,21 @@ namespace System.Windows.Markup {
 
 			return type;
 		}
+
+		/// <summary>
+		/// // assign a field in codebehind-class to a named Xaml-Element, like <Button x:Name="button1" /> 
+		/// </summary>
+		/// <param name="elementName">Element name.</param>
+		/// <param name="codeBehind">Code behind.</param>
+		/// <param name="element">Element.</param>
+		void SetElementField ( string elementName, object codeBehind, object element ) {
+			if (codeBehind == null || element == null || String.IsNullOrWhiteSpace ( elementName ) )
+				throw new ArgumentException ();
+				
+			var elementField = codeBehind.GetType ().GetField (elementName, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance );
+			if (elementField != null)
+				elementField.SetValue (codeBehind, element);
+		}
 			
 		/// <summary>
 		/// reads a xml-element and also its children to return it as object
@@ -157,11 +172,13 @@ namespace System.Windows.Markup {
 			XElement element, 
 			Type targetType, 
 			Type targetStyleType, 
-			object parent ) {
+			object parent,
+			object codeBehind ) {
 
 			var classType = GetTypeByClassAttribute (element);
-			if (classType != null)
+			if (classType != null) {
 				targetType = classType;
+			}
 
 			var isPropertyElement = element.Name.LocalName.Contains ( "." ) 
 				&& element.Parent != null 
@@ -179,7 +196,7 @@ namespace System.Windows.Markup {
 			}
 				
 			var item = default ( Object );
-			if (targetType == null ) {
+			if (targetType == null) {
 
 				if (parentContentPropertyInfo != null) {
 
@@ -192,8 +209,11 @@ namespace System.Windows.Markup {
 					else
 						item = CreateObject (element);
 				}
-            } else
-                item = Activator.CreateInstance(targetType);
+			} else {
+				item = Activator.CreateInstance (targetType);
+				if (classType != null)
+					codeBehind = item;
+			}
 				
 			if (item != null) {
 				var itemType = item.GetType ();
@@ -222,19 +242,28 @@ namespace System.Windows.Markup {
 								ResourceHelper.SetResourceKey (
 									ReadValue (attribute.Value, null), item);
 							} else if (this.IsNameAttribute (attribute)) {
-								// TODO RegisterName in FrameworkElement
+								if (String.IsNullOrWhiteSpace (attribute.Value))
+									throw new InvalidDataException ( "Name-Attribute can't be empty" );
 
-								Console.WriteLine ("");
-
+								if (codeBehind != null) {
+									this.SetElementField (attribute.Value, codeBehind, item );
+									var frameworkElement = codeBehind as FrameworkElement;
+									if (frameworkElement != null) {
+										// TODO Implement RegisterName
+										//frameworkElement.RegisterName (attribute.Value, item);
+									}
+								}
 							} else if ( this.IsClassAttribute ( attribute ) ) {
 								// do nothing, it will be checked at the beginning
                             } else {
                                 var name = attribute.Name.LocalName;
                                 var value = attribute.Value;
+
+								// check if a property exists
                                 var propInfo = itemType.GetProperty(name);
-								if (propInfo != null  ) {
-									if (propInfo.PropertyType == typeof ( DependencyProperty ) 
-											&& targetStyleType != null) {
+								if (propInfo != null) {
+									if (propInfo.PropertyType == typeof(DependencyProperty)
+									    && targetStyleType != null) {
 										// sets the DependecyProperty-Value
 										propInfo.SetValue (
 											item, 
@@ -242,26 +271,53 @@ namespace System.Windows.Markup {
 												value, targetStyleType), 
 											null);
 									} else {
-                                        if (propInfo.PropertyType != typeof(System.Object)
-                                                && ( propInfo.PropertyType != typeof ( Type ) ) ) {
-                                            propInfo.SetValue (
-                                                item,
-                                                Convert(
-                                                    this.ReadValue(
-                                                        attribute.Value, propInfo.PropertyType), 
-                                                    propInfo.PropertyType),
-                                                null );
-                                        } else {
-                                            // sets the converted value
-                                            propInfo.SetValue(
-                                                item,
+										if (propInfo.PropertyType != typeof(System.Object)
+										                                  && (propInfo.PropertyType != typeof(Type))) {
+											propInfo.SetValue (
+												item,
+												Convert (
+													this.ReadValue (
+														attribute.Value, propInfo.PropertyType), 
+													propInfo.PropertyType),
+												null);
+										} else {
+											// sets the converted value
+											propInfo.SetValue (
+												item,
                                                 //Convert (
-                                                    this.ReadValue(
-                                                        attribute.Value,
-                                                        propInfo.PropertyType),
+												this.ReadValue (
+													attribute.Value,
+													propInfo.PropertyType),
                                                 //propInfo.PropertyType ),
-                                                null);
-                                        }
+												null);
+										}
+									}
+								} else {
+									// check if an event exists
+									var eventInfo = itemType.GetEvent (name);
+									if (eventInfo != null) {
+										// gets the handler-method
+										var method = codeBehind.GetType ()
+											.GetMethod (attribute.Value, 
+												BindingFlags.NonPublic 
+													| BindingFlags.Public
+													| BindingFlags.Instance);
+
+										if (method != null) {
+											var del = Delegate.CreateDelegate (
+												eventInfo.EventHandlerType, codeBehind, attribute.Value, false, true );
+
+											eventInfo.AddEventHandler (item, del);
+
+											((Button)item).RaiseClick ();
+
+										} else {
+											// handler-method doesn't exsists
+											throw new Exception ("Declared EventHandler-Method not found.");
+										}
+									} else {
+										// there is a xaml-attribute defined, 
+										// which doesn't exists as property or event in the final object
 									}
 								}
                             }
@@ -296,14 +352,15 @@ namespace System.Windows.Markup {
 										childElement, 
 										propInfo.PropertyType, 
 										targetStyleType, 
-										item),
+										item,
+										codeBehind ),
                                     propInfo.PropertyType),
                                 null);
                         }
                     } else {
 						// child of a collection
 						var childItem = this.ReadElement (
-							childElement, null, targetStyleType, item);
+							childElement, null, targetStyleType, item, codeBehind);
 
 						if (item is ResourceDictionary) {
 							((ResourceDictionary)item).Add (
