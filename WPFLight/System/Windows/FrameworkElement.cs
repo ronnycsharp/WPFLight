@@ -13,7 +13,8 @@ namespace System.Windows {
 
 		#region Events
 
-		public event DependencyPropertyChangedEventHandler DataContextChanged;
+		public event DependencyPropertyChangedEventHandler  DataContextChanged;
+        public event SizeChangedEventHandler                SizeChanged;
 
 		#endregion
 
@@ -26,8 +27,8 @@ namespace System.Windows {
 					var oldStyle = style;
 					style = value;
 					this.OnStyleChanged (oldStyle, value);
-					ApplyStyle (style);
-					Invalidate ();
+					this.ApplyStyle (style);
+                    this.UpdateLayout();
 				}
 			}
 		}
@@ -425,6 +426,43 @@ namespace System.Windows {
 		public object FindResource (object resourceKey) {
 			return ResourceHelper.GetResource (resourceKey);
 		}
+
+        protected virtual Size MeasureOverride (Size availableSize) {
+            return new Size(0, 0);
+        }
+
+        /// <summary>
+        /// ArrangeOverride allows for the customization of the positioning of children.
+        /// </summary>
+        /// <remarks>
+        /// Element authors should override this method, call Arrange on each visible child element,
+        /// passing final size for each child element via finalSize parameter.
+        /// Note: It is required that a parent element calls Arrange on each child or they won't be rendered.
+        /// Typical override follows a pattern roughly like this (pseudo-code):
+        /// <example>
+        ///     <code lang="C#">
+        /// <![CDATA[
+        ///
+        ///
+        /// protected override Size ArrangeOverride(Size finalSize)
+        /// {
+        ///     foreach (UIElement child in VisualChildren)
+        ///     {
+        ///         child.Arrange(new Rect(childX, childY, childFinalSize));
+        ///     }
+        ///     return finalSize; //this can be another size if the panel actually takes smaller/larger then finalSize
+        /// }
+        /// ]]>
+        ///     </code>
+        /// </example>
+        /// </remarks>
+        /// <param name="finalSize">The final size that element should use to arrange itself and its children.</param>
+        /// <returns>The size that element actually is going to use for rendering. If this size is not the same as finalSize
+        /// input parameter, the AlignmentX/AlignmentY properties will position the ink rect of the element
+        /// appropriately.</returns>
+        protected virtual Size ArrangeOverride (Size finalSize) {
+            return finalSize;
+        }
 
 		private List<Binding> bindings;
 		private Dictionary<Trigger, Dictionary<DependencyProperty, Object>> storedValues;

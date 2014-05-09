@@ -14,14 +14,10 @@ namespace System.Windows.Controls {
 			this.Game = WPFLight.Helpers.ScreenHelper.Game;
 			this.GraphicsDevice = WPFLight.Helpers.ScreenHelper.Device;
 
-			this.Visible = true;
-			this.IsEnabled = true;
-
 			enabled = true;
-			visible = true;
 		}
 
-		#region Ereignisse
+		#region Events
 
 		public event EventHandler<EventArgs> LostFocus;
 		public event EventHandler<EventArgs> GotFocus;
@@ -31,12 +27,23 @@ namespace System.Windows.Controls {
 		public event EventHandler<EventArgs> DrawOrderChanged;
 		public event EventHandler<EventArgs> VisibleChanged;
 
+        public event DependencyPropertyChangedEventHandler IsVisibleChanged;
+
 		#endregion
 
 		#region Properties
 
-		public bool IsMeasureValid { get; private set; }
-		public bool IsArrangeValid { get; private set; }
+        public Size DesiredSize {
+            get {
+                if (this.Visibility == Visibility.Collapsed)
+                    return new Size(0, 0);
+
+                return desiredSize;
+            }
+        }
+
+		public bool IsMeasureValid  { get; private set; }
+		public bool IsArrangeValid  { get; private set; }
 
 		// TODO Remove and Replace IUpdateable-Interface and methods
 		[Obsolete]
@@ -61,6 +68,20 @@ namespace System.Windows.Controls {
 			get { return (bool)GetValue (IsEnabledProperty); }
 			set { SetValue (IsEnabledProperty, value); }
 		}
+
+        public static readonly DependencyProperty IsVisibleProperty =
+            DependencyProperty.Register(
+                "IsVisible",
+                typeof(bool),
+                typeof(UIElement),
+                new PropertyMetadata(
+                    new PropertyChangedCallback(
+                        OnIsVisibleChanged)));
+
+        public bool IsVisible {
+            get { return (bool)GetValue(IsVisibleProperty); }
+            private set { SetValue(IsVisibleProperty, value); }
+        }
 
 		public Rect Bounds {
 			get {
@@ -105,7 +126,19 @@ namespace System.Windows.Controls {
 		/// <value>The focusable parent.</value>
 		public UIElement FocusableParent { get; set; }
 
-		public UIElement Parent { get; set; }
+        public static readonly DependencyProperty ParentProperty =
+            DependencyProperty.Register(
+                "Parent",
+                typeof(UIElement),
+                typeof(UIElement),
+                new PropertyMetadata(
+                    new PropertyChangedCallback(
+                        OnParentChanged)));
+
+        public UIElement Parent {
+            get { return (UIElement)GetValue(ParentProperty); }
+            set { SetValue(ParentProperty, value); }
+        }
 
 		public bool IsInitialized { get; protected set; }
 
@@ -133,29 +166,33 @@ namespace System.Windows.Controls {
 			}
 		}
 
+        [Obsolete]
+        public float Alpha {
+            get { return Opacity; }
+            set { this.Opacity = value; }
+        }
+
 		public object Tag { get; set; }
 
-		public static readonly DependencyProperty AlphaProperty =
+		public static readonly DependencyProperty OpacityProperty =
 			DependencyProperty.Register (
-				"Alpha",
+				"Opacity",
 				typeof(float),
 				typeof(UIElement),
 				new PropertyMetadata ( 1f ) );
 
-		public float Alpha {
-			get { return (float)GetValue (AlphaProperty); }
-			set { SetValue (AlphaProperty, value); }
+		public float Opacity {
+			get { return (float)GetValue (OpacityProperty); }
+			set { SetValue (OpacityProperty, value); }
 		}
 
+        [Obsolete]
 		public bool Visible {
 			get {
-				return visible;
+                return this.IsVisible;
 			}
 			set {
-				if (visible != value) {
-					visible = value;
-					OnVisibleChanged (value);
-				}
+                this.IsVisible = value;
 			}
 		}
 			
@@ -234,6 +271,21 @@ namespace System.Windows.Controls {
 			set { SetValue (MarginProperty, value); }
 		}
 
+        public static readonly DependencyProperty VisibilityProperty =
+            DependencyProperty.Register(
+                "Visibility",
+                typeof(Visibility),
+                typeof(UIElement),
+                new FrameworkPropertyMetadata(
+                    Visibility.Visible,
+                    new PropertyChangedCallback ( OnVisibilityChanged ),
+                    FrameworkPropertyMetadataOptions.AffectsMeasure));
+
+        public Visibility Visibility {
+            get { return (Visibility)GetValue(VisibilityProperty); }
+            set { SetValue(VisibilityProperty, value); }
+        }
+
 		public static readonly DependencyProperty PaddingProperty =
 			DependencyProperty.Register (
 				"Padding",
@@ -291,6 +343,28 @@ namespace System.Windows.Controls {
 
 		#endregion
 
+        static void OnVisibilityChanged (object sender, DependencyPropertyChangedEventArgs e) {
+            ((UIElement)sender).UpdateIsVisible();
+        }
+
+        static void OnIsVisibleChanged (object sender, DependencyPropertyChangedEventArgs e) {
+            var uie = sender as UIElement;
+            if (uie.IsVisibleChanged != null)
+                uie.IsVisibleChanged(uie, e);
+        }
+
+        static void OnParentChanged (object sender, DependencyPropertyChangedEventArgs e ) {
+            var uie = sender as UIElement;
+            if (uie != null && e.NewValue != null ) {
+                var parent = e.NewValue as UIElement;
+                parent.IsVisibleChanged 
+                    += (s, ea) => {
+                        uie.UpdateIsVisible();
+                    };
+            }
+        }
+
+        [Obsolete("Use UpdateLayout")]
 		public virtual void Invalidate () {
 			this.InvalidateMeasure ();
 			this.InvalidateArrange ();
@@ -318,20 +392,26 @@ namespace System.Windows.Controls {
 			return result;
 		}
 
-		protected virtual Size MeasureOverride(Size availableSize)
-		{
-			throw new NotImplementedException ();
-		}
+        public void Measure (Size availableSize) {
+            if (!this.IsMeasureValid) {
+                desiredSize = new Size(
+                    this.MeasureWidth((float)availableSize.Width),
+                    this.MeasureHeight((float)availableSize.Height));
 
-		protected virtual Size ArrangeOverride(Size finalSize)
-		{
-			throw new NotImplementedException ();
-		}
+                this.IsMeasureValid = true;
+            }
+        }
 
-		internal Size Measure (Size availableSize) {
-            return new Size(
-				this.MeasureWidth((float)availableSize.Width),
-				this.MeasureHeight((float)availableSize.Height));
+        protected virtual Size MeasureCore (Size availableSize) {
+            return new Size(0, 0);
+        }
+
+        protected virtual void ArrangeCore (Size availableSize) {
+            // TODO Implement
+        }
+
+        public void Arrange (Rect finalRect) {
+            this.IsArrangeValid = true;
         }
 
 		internal virtual float MeasureWidth (float availableWidth) {
@@ -402,27 +482,6 @@ namespace System.Windows.Controls {
                     this.Margin.Top;
 		}
 
-		protected bool IsVisible () {
-			var result = this.Visible && this.Alpha > 0;
-			if (result) {
-				if (this.Parent != null && !this.Parent.IsVisible ())
-					result = false;
-			}
-			return result;
-		}
-
-		/*
-		protected bool IsEnabled () {
-			var result = this.IsEnabled;
-			if (result) {
-				if (this.Parent != null && !this.Parent.IsEnabled ()) {
-					result = false;
-				}
-			}
-			return result;
-		}
-		*/
-
 		protected virtual void OnDeviceReset () {
 
 		}
@@ -453,6 +512,7 @@ namespace System.Windows.Controls {
 				OnDeviceReset ();
 			};
 			this.IsInitialized = true;
+            this.UpdateIsVisible();
 		}
 
 		public void Focus () {
@@ -497,6 +557,17 @@ namespace System.Windows.Controls {
 		public void InvalidateArrange ( ) {
 			this.IsArrangeValid = false;
 		}
+
+        public void UpdateLayout () {
+            this.InvalidateMeasure();
+            this.InvalidateArrange();
+        }
+
+        void UpdateIsVisible ( ) {
+            this.IsVisible = 
+                this.Visibility == Visibility.Visible 
+                    && ( this.Parent == null || this.Parent.IsVisible );
+        }
 			
         protected internal virtual void OnRender (DrawingContext dc) { }
 
@@ -504,13 +575,13 @@ namespace System.Windows.Controls {
 
 		public virtual void Dispose () { }
 
-		private bool visible;
-		private bool enabled;
-		private int drawOrder;
-		private int updateOrder;
-		private float? actualWidth;
-		private float? actualHeight;
-		private UIElement focusedControl;
+		private bool        enabled;
+		private int         drawOrder;
+		private int         updateOrder;
+		private float?      actualWidth;
+		private float?      actualHeight;
+		private UIElement   focusedControl;
+        private Size        desiredSize;
 	}
 
 	/// <summary>

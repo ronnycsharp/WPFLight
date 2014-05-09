@@ -40,14 +40,14 @@ namespace System.Windows.Controls {
 
 		public override void Draw (GameTime gameTime, Microsoft.Xna.Framework.Graphics.SpriteBatch batch, float alpha, Matrix transform) {
 			base.Draw (gameTime, batch, alpha, transform);
-			if (this.IsVisible () && this.Alpha > 0) {
+			if (this.IsVisible && this.Opacity > 0) {
 				var drawable = this.Children.OfType<IDrawable> ()
 									.OrderBy (d => d.DrawOrder)
 									.ToArray ();
 
 				if (drawable.Length > 0) {
 					foreach (var d in drawable.OfType<IDrawable2D>())
-						d.Draw (gameTime, batch, alpha * this.Alpha, transform);
+						d.Draw (gameTime, batch, alpha * this.Opacity, transform);
 				}
 			}
 		}
@@ -62,7 +62,7 @@ namespace System.Windows.Controls {
 
 		public override void OnTouchDown (TouchLocation state) {
 			foreach (var c in this.Children.OfType<Control>()) {
-				if (c.IsEnabled && c.Alpha > 0 && c.Visible && c.HitTest(state.Position)) {
+				if (c.IsEnabled && c.Opacity > 0 && c.IsVisible && c.HitTest(state.Position)) {
 					c.OnTouchDown(state);
 				}
 			}
@@ -71,7 +71,7 @@ namespace System.Windows.Controls {
 
 		public override void OnTouchUp (TouchLocation state) {
 			foreach (var c in this.Children.OfType<Control>())
-				if (c.IsEnabled && c.Alpha > 0 && c.Visible && (c.HitTest(state.Position) || c.IsTouchDown))
+				if (c.IsEnabled && c.Opacity > 0 && c.IsVisible && (c.HitTest(state.Position) || c.IsTouchDown))
 					c.OnTouchUp(state);
 
 			base.OnTouchUp (state);
@@ -79,7 +79,7 @@ namespace System.Windows.Controls {
 
 		public override void OnTouchMove (TouchLocation state) {
 			foreach (var c in this.Children.OfType<Control>())
-				if (c.IsEnabled && c.Alpha > 0 && c.Visible && (c.HitTest(state.Position) || c.IsTouchDown))
+				if (c.IsEnabled && c.Opacity > 0 && c.IsVisible && (c.HitTest(state.Position) || c.IsTouchDown))
 					c.OnTouchMove(state);
 
 			base.OnTouchMove (state);

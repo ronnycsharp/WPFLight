@@ -132,11 +132,11 @@ namespace System.Windows.Controls {
 
 		public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
 			base.Draw (gameTime, batch, alpha, transform);
-			if (this.Content != null && this.IsVisible ( )) {
+			if (this.Content != null && this.IsVisible ) {
 				if (contentControl != null 
 						&& contentControl.IsInitialized )
 					contentControl.Draw (
-						gameTime, batch, this.Alpha * alpha, transform);
+						gameTime, batch, this.Opacity * alpha, transform);
 				else if (this.Content is String) {
 					// Beschriftung zeichnen
 					var text = this.Content as String;
@@ -200,7 +200,7 @@ namespace System.Windows.Controls {
 							GetFont(),
 							text,
 							new Vector2 (newLeft, newTop),
-							this.Forecolor	* alpha * this.Alpha,
+							this.Forecolor	* alpha * this.Opacity,
 							0.0f,
 							Vector2.Zero,
 							GetConvertedFontScale ( ),

@@ -143,7 +143,7 @@ namespace System.Windows.Data {
 
 			sourceProperty
 				.SetValue (this.Source 
-					?? this.DataContext, value);
+					?? this.DataContext, value, null);
 		}
 
         internal object GetSourceValue () {

@@ -93,7 +93,7 @@ namespace System.Windows.Controls {
 			rcVScroll.Margin = new Thickness ();
 			rcVScroll.Width = 3;
 			rcVScroll.Visible = true;
-			rcVScroll.Alpha = .9f;
+			rcVScroll.Opacity = .9f;
 			rcVScroll.Fill = Brushes.White;
 			rcVScroll.Parent = this;
 			rcVScroll.Initialize ();
@@ -102,7 +102,7 @@ namespace System.Windows.Controls {
 			rcHScroll.VerticalAlignment = VerticalAlignment.Bottom;
 			rcHScroll.HorizontalAlignment = HorizontalAlignment.Stretch;
 			rcHScroll.Height = 3;
-			rcHScroll.Alpha = .9f;
+			rcHScroll.Opacity = .9f;
 			rcHScroll.Fill = Brushes.White;
 			rcHScroll.Parent = this;
 			rcHScroll.Initialize ();
@@ -117,8 +117,10 @@ namespace System.Windows.Controls {
 			if (this.ActualHeight > 0 && this.ActualHeight > 0) {
 				var element = this.Content as FrameworkElement;
 				if (element != null) {
-					measure = element.Measure (
-						new Size (this.ActualWidth, this.ActualHeight));
+                    element.Measure(
+                        new Size(this.ActualWidth, this.ActualHeight));
+
+                    measure = element.DesiredSize;
 
 					rcVScroll.Invalidate ();
 					rcHScroll.Invalidate ();
@@ -232,14 +234,14 @@ namespace System.Windows.Controls {
 			float alpha, 
 			Matrix transform) {
 
-			if (this.IsVisible () && alpha > 0) {
+			if (this.IsVisible && alpha > 0) {
 				if (this.HasContent && this.Content is FrameworkElement) {
 
 					if (this.HorizontalScrollBarVisibility != ScrollBarVisibility.Hidden)
-						rcHScroll.Draw (gameTime, batch, this.Alpha * alpha, transform);
+						rcHScroll.Draw (gameTime, batch, this.Opacity * alpha, transform);
 
 					if (this.VerticalScrollBarVisibility != ScrollBarVisibility.Hidden)
-						rcVScroll.Draw (gameTime, batch, this.Alpha * alpha, transform);
+						rcVScroll.Draw (gameTime, batch, this.Opacity * alpha, transform);
 
 					var element = this.Content as FrameworkElement;
 
@@ -248,8 +250,8 @@ namespace System.Windows.Controls {
 
 					var height = this.ActualHeight - 6;
 
-					measure = element.Measure (
-						new Size (this.ActualWidth, this.ActualHeight));
+                    element.Measure(new Size(this.ActualWidth, this.ActualHeight));
+                    measure = element.DesiredSize;
 						
 					GraphicsDevice.ScissorRectangle = WPFLight.Helpers.ScreenHelper.CheckScissorRect (this.Bounds);
 					GraphicsDevice.RasterizerState = SCISSOR_ENABLED;

@@ -14,7 +14,7 @@
     
    <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
     	<Style.Setters>
-    		<Setter Property="Alpha" Value="0.9"/>
+    		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background">
         		<Setter.Value>
 	                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
@@ -36,7 +36,7 @@
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
         		<Trigger.Setters>
-        			<Setter Property="Alpha" Value="1"/>
+        			<Setter Property="Opacity" Value="1"/>
         		</Trigger.Setters>
         	</Trigger>
         </Style.Triggers>
@@ -44,7 +44,7 @@
         
     <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
     	<Style.Setters>
-    		<Setter Property="Alpha" Value="0.9"/>
+    		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background">
         		<Setter.Value>
         		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
@@ -68,7 +68,7 @@
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
         		<Trigger.Setters>
-        			<Setter Property="Alpha" Value="1.0"/>
+        			<Setter Property="Opacity" Value="1.0"/>
         		</Trigger.Setters>
         	</Trigger>
         </Style.Triggers>
@@ -76,7 +76,7 @@
 
     <Style x:Key="{x:Type ListBox}" TargetType="{x:Type ListBox}">
     <Style.Setters>
-      <Setter Property="Alpha" Value="1.0"/>
+      <Setter Property="Opacity" Value="1.0"/>
       <Setter Property="Background" Value="#05FFFFFF" />
       <Setter Property="FontSize" Value="0.39" />
       <Setter Property="BorderBrush" Value="#55FFFFFF" />
@@ -86,7 +86,7 @@
 
   <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
     <Style.Setters>
-      <Setter Property="Alpha" Value="0.9"/>
+      <Setter Property="Opacity" Value="0.9"/>
       <Setter Property="Background" Value="#17FFFFFF" />
       <Setter Property="Foreground" Value="White" />
       <Setter Property="FontSize" Value="0.39" />
@@ -99,7 +99,7 @@
     <Style.Triggers>
       <Trigger Property="IsTouchDown" Value="True">
         <Trigger.Setters>
-          <Setter Property="Alpha" Value="1.0"/>
+          <Setter Property="Opacity" Value="1.0"/>
         </Trigger.Setters>
       </Trigger>
       <Trigger Property="IsChecked" Value="True">
@@ -112,7 +112,7 @@
 
   <Style x:Key="{x:Type ToggleButton}" TargetType="{x:Type ToggleButton}">
     	<Style.Setters>
-    		<Setter Property="Alpha" Value="0.9"/>
+    		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background">
         		<Setter.Value>
         		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
@@ -136,7 +136,7 @@
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
         		<Trigger.Setters>
-        			<Setter Property="Alpha" Value="1"/>
+        			<Setter Property="Opacity" Value="1"/>
         		</Trigger.Setters>
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
@@ -160,7 +160,7 @@
         
     <Style x:Key="{x:Type RadioButton}" TargetType="{x:Type RadioButton}">
     	<Style.Setters>
-    		<Setter Property="Alpha" Value="0.9"/>
+    		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background">
         		<Setter.Value>
         		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
@@ -184,7 +184,7 @@
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
         		<Trigger.Setters>
-        			<Setter Property="Alpha" Value="1"/>
+        			<Setter Property="Opacity" Value="1"/>
         		</Trigger.Setters>
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
@@ -225,7 +225,7 @@
         
     <Style x:Key="{x:Type MenuButton}" TargetType="{x:Type MenuButton}">
     	<Style.Setters>
-    		<Setter Property="Alpha" Value="0.9"/>
+    		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background">
         		<Setter.Value>
     	    	<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
@@ -249,7 +249,7 @@
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
         		<Trigger.Setters>
-        			<Setter Property="Alpha" Value="1"/>
+        			<Setter Property="Opacity" Value="1"/>
         		</Trigger.Setters>
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
@@ -273,7 +273,7 @@
         
     <Style x:Key="{x:Type RepeatButton}" TargetType="{x:Type RepeatButton}">
     	<Style.Setters>
-    		<Setter Property="Alpha" Value="0.9"/>
+    		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background" Value="#FF555555" />
         	<Setter Property="Foreground" Value="White" />
         	<Setter Property="FontSize" Value="0.37" />
@@ -286,7 +286,7 @@
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
         		<Trigger.Setters>
-        			<Setter Property="Alpha" Value="1.0"/>
+        			<Setter Property="Opacity" Value="1.0"/>
         		</Trigger.Setters>
         	</Trigger>
         </Style.Triggers>

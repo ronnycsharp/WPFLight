@@ -97,7 +97,7 @@ namespace System.Windows.Controls {
         }
 
         public override void Draw ( GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform ) {
-            if ( this.Visible && alpha > 0 && this.Alpha > 0 ) {
+            if ( this.Visible && alpha > 0 && this.Opacity > 0 ) {
                 var currentValue = 0f;
                 if ( hiding )
                     currentValue = fadeAnimation.GetCurrentValue ( );

@@ -141,9 +141,15 @@ namespace System.Windows.Markup {
 				.FirstOrDefault ();
 
 			var type = default ( Type );
-			if (classAttr != null)
-				type = Assembly.GetEntryAssembly()
-					.GetType (classAttr.Value, true);
+            if (classAttr != null) {
+#if WINDOWS_PHONE
+                type = Assembly.GetExecutingAssembly ()
+                    .GetType(classAttr.Value, true);
+#else
+                type = Assembly.GetEntryAssembly()
+                    .GetType(classAttr.Value, true);
+#endif
+            }
 
 			return type;
 		}
@@ -188,8 +194,14 @@ namespace System.Windows.Markup {
 			var parentContentPropertyInfo = default ( PropertyInfo );
 			if (parent != null) {
 				var parentType = parent.GetType ();
+#if WINDOWS_PHONE
+                var parentContentPropertyAttr = (ContentPropertyAttribute)(parentType.GetCustomAttributes(
+                    typeof(ContentPropertyAttribute), true)).FirstOrDefault ( );
+
+#else
 				var parentContentPropertyAttr = (ContentPropertyAttribute)parentType.GetCustomAttribute (
                     typeof(ContentPropertyAttribute), true);
+#endif
 
 				if (parentContentPropertyAttr != null)
 					parentContentPropertyInfo = parentType.GetProperty (parentContentPropertyAttr.Name);
@@ -243,7 +255,7 @@ namespace System.Windows.Markup {
 									ReadValue (attribute.Value, null), item);
 							} else if (this.IsNameAttribute (attribute)) {
 								if (String.IsNullOrWhiteSpace (attribute.Value))
-									throw new InvalidDataException ( "Name-Attribute can't be empty" );
+									throw new InvalidOperationException ( "Name-Attribute can't be empty" );
 
 								if (codeBehind != null) {
 									this.SetElementField (attribute.Value, codeBehind, item );

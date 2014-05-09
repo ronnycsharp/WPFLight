@@ -237,7 +237,7 @@ namespace System.Windows.Shapes {
 		}
 
         public override void Draw (Microsoft.Xna.Framework.GameTime gameTime, SpriteBatch batch, float alpha, Microsoft.Xna.Framework.Matrix transform) {
-            if (this.IsVisible() && alpha > 0) {
+            if (this.IsVisible && alpha > 0 && this.Opacity > 0 ) {
                 // check whether the rectangle draws itself and not a created texture
                 var renderShape = (this.RadiusX == 0 && this.RadiusY == 0
                         && (this.Fill == null || this.Fill is SolidColorBrush)
@@ -274,7 +274,7 @@ namespace System.Windows.Shapes {
                         (int)(this.ActualHeight - this.StrokeThickness - this.StrokeThickness)),
                         backgroundColor
                             
-                            * this.Alpha * alpha);
+                            * this.Opacity * alpha);
 
                     if (StrokeThickness > 0) {
                         // Rahmen TOP

@@ -186,7 +186,7 @@ namespace System.Windows.Controls {
 		public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
 			//base.Draw (gameTime, batch, alpha, transform);
 
-			if (alpha > 0 && this.Alpha > 0 && this.IsVisible ()) {
+			if (alpha > 0 && this.Opacity > 0 && this.IsVisible ) {
 				if (this.Parent != null && ( this.Parent is Control ) && ((Control) this.Parent).ScissorTest) {
 					var parentHeight = this.Parent.ActualHeight;
 					var parentWidth = this.Parent.ActualWidth;
@@ -261,7 +261,7 @@ namespace System.Windows.Controls {
 					}
 				}
 
-				this.DrawBackground (gameTime, batch, this.Alpha * alpha, transform);
+				this.DrawBackground (gameTime, batch, this.Opacity * alpha, transform);
 			}
 		}
 

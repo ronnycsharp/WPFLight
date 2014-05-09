@@ -72,7 +72,7 @@ namespace System.Windows.Controls {
             this.Children.Add(this.gridRoot);
 
             cmdDown = new Button();
-			cmdDown.Content = new Image (Textures.ArrowDown){ Margin = new Thickness ( 10,15,10,15 ), Alpha = .6f };
+			cmdDown.Content = new Image (Textures.ArrowDown){ Margin = new Thickness ( 10,15,10,15 ), Opacity = .6f };
 			//cmdDown.FontScale = .3f;
 			//cmdDown.Foreground = System.Windows.Media.Color.White;
 			//cmdDown.Background = new SolidColorBrush (this.GraphicsDevice, Color.Black * .45f);
@@ -89,7 +89,7 @@ namespace System.Windows.Controls {
             Grid.SetColumn(gridRoot, cmdDown, 1);
 
             cmdUp = new Button();
-			cmdUp.Content = new Image (Textures.ArrowUp){ Margin = new Thickness ( 10,15,10,15 ), Alpha = .6f };
+			cmdUp.Content = new Image (Textures.ArrowUp){ Margin = new Thickness ( 10,15,10,15 ), Opacity = .6f };
 			//cmdUp.Background = new SolidColorBrush (this.GraphicsDevice, Color.Black * .45f);
 			cmdUp.BorderThickness = new Thickness (1);
 			//cmdUp.BorderColor = Color.White * .45f;

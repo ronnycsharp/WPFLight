@@ -11,7 +11,7 @@ namespace System.Windows.Controls
         public Plane ( Game game, Vector3 x1, Vector3 x2, Vector3 y1, Vector3 y2, Color color ) : base ( )
         {
             this.Color = color;
-            this.Alpha = 1.0f;
+            this.Opacity = 1.0f;
             this.X1 = x1;
             this.X2 = x2;
             this.Y1 = y1;
@@ -75,7 +75,7 @@ namespace System.Windows.Controls
             basicEffect.VertexColorEnabled = true;
             basicEffect.LightingEnabled = false;
             basicEffect.PreferPerPixelLighting = false;
-            basicEffect.Alpha = this.Alpha * ( this.Color.A / 256f ) * alpha;
+            basicEffect.Alpha = this.Opacity * ( this.Color.A / 256f ) * alpha;
 
             this.Draw ( basicEffect );
         }

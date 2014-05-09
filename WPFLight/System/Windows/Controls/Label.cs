@@ -66,13 +66,13 @@ namespace System.Windows.Controls {
 
         public override void Draw ( GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform )
         {
-            if ( this.IsVisible ( ) )
+            if ( this.IsVisible && alpha > 0.0f && this.Opacity > 0.0f )
             {
 				base.Draw ( gameTime, batch, alpha, transform );
 
                 if ( !String.IsNullOrEmpty ( Text ) )
                 {
-                    var x 		= this.Alpha * alpha * ( IsEnabled  ? 1f : .5f );
+                    var x 		= this.Opacity * alpha * ( IsEnabled  ? 1f : .5f );
                     var left 	= GetAbsoluteLeft ( );
                     var top 	= GetAbsoluteTop ( );
 

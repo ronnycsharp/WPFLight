@@ -79,7 +79,7 @@ namespace System.Windows.Controls {
 			cmdTrack.BorderThickness = new Thickness (0);
 			cmdTrack.Width = 33;
 			cmdTrack.Height = 33;
-			cmdTrack.Alpha = .9f;
+			cmdTrack.Opacity = .9f;
 			cmdTrack.VerticalAlignment = VerticalAlignment.Center;
 			cmdTrack.Left = 0;
 			cmdTrack.Top = 0;

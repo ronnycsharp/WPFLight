@@ -33,7 +33,7 @@ namespace System.Windows.Controls {
 			this.Focusable = true;
 			this.Text = String.Empty;
 
-			this.rcBackground.Alpha = .3f;
+			this.rcBackground.Opacity = .3f;
 			this.rcCursor.Visible = false;
 		}
 
@@ -79,7 +79,7 @@ namespace System.Windows.Controls {
 			rcCursor.VerticalAlignment = VerticalAlignment.Stretch;
 			rcCursor.Margin = new Thickness (0, 5, 0, 5);
 			rcCursor.Fill = Brushes.White;
-			rcCursor.Alpha = 1f;
+			rcCursor.Opacity = 1f;
 			rcCursor.Visible = false;
 
 			rcCursor.Left = 1;
@@ -149,7 +149,7 @@ namespace System.Windows.Controls {
 		}
 
 		protected override void OnGotFocus () {
-			this.rcBackground.Alpha = .9f;
+			this.rcBackground.Opacity = .9f;
 			this.rcCursor.Visible = true;
 			lastCursorBlink = DateTime.UtcNow + TimeSpan.FromMilliseconds (50);
 			this.CursorIndex = (ushort)this.Text.Length;
@@ -158,7 +158,7 @@ namespace System.Windows.Controls {
 		}
 
 		protected override void OnLostFocus () {
-			this.rcBackground.Alpha = .3f;
+			this.rcBackground.Opacity = .3f;
 			this.rcCursor.Visible = false;
 
 			base.OnLostFocus ();

@@ -404,6 +404,9 @@
     <Compile Include="..\WPFLight\System\Windows\Size.cs">
       <Link>System\Windows\Size.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\System\Windows\SizeChangedEventArgs.cs">
+      <Link>System\Windows\SizeChangedEventArgs.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\System\Windows\Style.cs">
       <Link>System\Windows\Style.cs</Link>
     </Compile>

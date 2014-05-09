@@ -142,7 +142,7 @@ namespace System.Windows.Controls {
         public override void Draw (GameTime gameTime, SpriteBatch batch, float a, Matrix transform) {
 			//base.Draw(gameTime, batch, a, transform);
 
-			cmdItem.Draw (gameTime, batch, Alpha * a, transform);
+			cmdItem.Draw (gameTime, batch, Opacity * a, transform);
 
 			batch.Begin (
 				SpriteSortMode.Deferred, 

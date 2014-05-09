@@ -42,7 +42,7 @@ namespace System.Windows.Controls {
 					(int)this.ActualWidth, 
 					(int)this.ActualHeight ),
 				(Rectangle?)null,
-				Color.White * alpha * this.Alpha,
+				Color.White * alpha * this.Opacity,
 				this.Rotation,
 				Vector2.Zero,
 				SpriteEffects.None, 

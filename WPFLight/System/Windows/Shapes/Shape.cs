@@ -120,7 +120,7 @@ namespace System.Windows.Shapes {
 				&& !texture.IsDisposed
 			    && alpha > 0
 				&& (this.Stroke != null || this.Fill != null)
-				&&	this.IsVisible ( )
+				&&	this.IsVisible
 				&& this.ActualWidth > 0
 				&& this.ActualHeight > 0) {
 
