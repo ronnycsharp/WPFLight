@@ -9,9 +9,21 @@ namespace System.Windows.Controls {
 			Orientation = Orientation.Vertical;
 		}
 
-		#region Eigenschaften
+		#region Properties
 
-		public Orientation Orientation { get; set; }
+		public static readonly DependencyProperty OrientationProperty =
+			DependencyProperty.Register ( 
+				"Orientation", 
+				typeof ( Orientation ), 
+				typeof ( StackPanel ),
+				new FrameworkPropertyMetadata (
+					Orientation.Vertical,
+					FrameworkPropertyMetadataOptions.AffectsMeasure ) );
+
+		public Orientation Orientation { 
+			get { return (Orientation)GetValue (OrientationProperty); }
+			set { SetValue (OrientationProperty, value); } 
+		}
 
 		#endregion
 

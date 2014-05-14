@@ -14,7 +14,7 @@ namespace System.Windows.Controls {
             this.Children = new UIElementCollection(this);
 		}
 
-		#region Eigenschaften
+		#region Properties
 
 		public UIElementCollection Children { get; protected set; }
 
