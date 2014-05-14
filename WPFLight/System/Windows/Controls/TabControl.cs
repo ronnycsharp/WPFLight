@@ -15,13 +15,13 @@ namespace System.Windows.Controls {
             lbItems.SelectionChanged += 
                 (s, e) => { this.SelectedIndex = lbItems.SelectedIndex; };
 
-            Grid.SetRow(gridItems, lbItems, 0);
+            Grid.SetRow(lbItems, 0);
         }
 
         public override void Initialize () {
             foreach (var item in this.Items.OfType<TabItem> ( ) ) {
                 gridItems.Children.Add(item);
-                Grid.SetRow(gridItems, item, 1);
+                Grid.SetRow(item, 1);
                 lbItems.Items.Add(item.Header);
             }
             base.Initialize();

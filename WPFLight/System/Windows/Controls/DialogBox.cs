@@ -36,7 +36,7 @@ namespace System.Windows.Controls {
 					var newElement = value as UIElement;
 					if (newElement != null) {
 						gridRoot.Children.Add(newElement);
-						Grid.SetRow(gridRoot, newElement, 1);
+						Grid.SetRow(newElement, 1);
 					}
 
 					dialogContent = value;
@@ -74,7 +74,7 @@ namespace System.Windows.Controls {
 			};
 
 			gridRoot.Children.Add (cmdCancel);
-			Grid.SetRow (gridRoot, cmdCancel, 2);
+			Grid.SetRow ( cmdCancel, 2);
 
 			cmdOkay = new Button ();
 			cmdOkay.Content = "OK";
@@ -89,7 +89,7 @@ namespace System.Windows.Controls {
 			};
 
 			gridRoot.Children.Add (cmdOkay);
-			Grid.SetRow (gridRoot, cmdOkay, 2);
+			Grid.SetRow (cmdOkay, 2);
 
 			if (this.WindowStartUpLocation == WindowStartUpLocation.CenterScreen) {
 				var left = ((float)ScreenHelper.ORIGINAL_WIDTH / 2f) - this.ActualWidth / 2f;

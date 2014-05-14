@@ -86,7 +86,7 @@ namespace System.Windows.Controls {
 
             gridRoot.Children.Add(cmdDown);
 
-            Grid.SetColumn(gridRoot, cmdDown, 1);
+            Grid.SetColumn(cmdDown, 1);
 
             cmdUp = new Button();
 			cmdUp.Content = new Image (Textures.ArrowUp){ Margin = new Thickness ( 10,15,10,15 ), Opacity = .6f };
@@ -101,7 +101,7 @@ namespace System.Windows.Controls {
 
             gridRoot.Children.Add(cmdUp);
 
-            Grid.SetColumn(gridRoot, cmdUp, 2);
+            Grid.SetColumn(cmdUp, 2);
 
 			lblValue = new Label();
 			lblValue.VerticalAlignment = VerticalAlignment.Center;

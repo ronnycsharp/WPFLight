@@ -17,102 +17,73 @@ namespace System.Windows.Controls {
 
 		#region Eigenschaften
 
-		public List<ColumnDefinition> ColumnDefinitions { get; private set; }
+		public static DependencyProperty RowProperty =
+			DependencyProperty.RegisterAttached ( 
+				"Row", 
+				typeof ( int ), 
+				typeof ( Grid ), 
+				new FrameworkPropertyMetadata ( 
+					0, FrameworkPropertyMetadataOptions.AffectsArrange ) );
 
+		public static DependencyProperty RowSpanProperty =
+			DependencyProperty.RegisterAttached ( 
+				"RowSpan", 
+				typeof ( int ), 
+				typeof ( Grid ), 
+				new FrameworkPropertyMetadata ( 
+					1, FrameworkPropertyMetadataOptions.AffectsArrange ) );
+
+		public static DependencyProperty ColumnProperty =
+			DependencyProperty.RegisterAttached ( 
+				"Column", 
+				typeof ( int ), 
+				typeof ( Grid ), 
+				new FrameworkPropertyMetadata ( 
+					0, FrameworkPropertyMetadataOptions.AffectsArrange ) );
+
+		public static DependencyProperty ColumnSpanProperty =
+			DependencyProperty.RegisterAttached ( 
+				"ColumnSpan", 
+				typeof ( int ), 
+				typeof ( Grid ), 
+				new FrameworkPropertyMetadata ( 
+					1, FrameworkPropertyMetadataOptions.AffectsArrange ) );
+
+		public List<ColumnDefinition> ColumnDefinitions { get; private set; }
 		public List<RowDefinition> RowDefinitions { get; private set; }
 
 		#endregion
 
-		internal void SetRow (UIElement item, int row) {
-			if (rows == null)
-				rows = new Dictionary<UIElement, int> ();
-
-			rows [item] = row;
+		public static void SetRow (UIElement item, int row) {
+			item.SetValue (RowProperty, row);
 		}
 
-		internal void SetRowSpan (UIElement item, int rowSpan) {
-			if (rowSpans == null)
-				rowSpans = new Dictionary<UIElement, int> ();
-
-			rowSpans [item] = rowSpan;
+		public static void SetRowSpan (UIElement item, int rowSpan) {
+			item.SetValue (RowSpanProperty, rowSpan);
 		}
 
-		internal void SetColumn (UIElement item, int column) {
-			if (columns == null)
-				columns = new Dictionary<UIElement, int> ();
-
-			columns [item] = column;
+		public static void SetColumn (UIElement item, int column) {
+			item.SetValue (ColumnProperty, column);
 		}
 
-		internal void SetColumnSpan (UIElement item, int columnSpan) {
-			if (columnSpans == null)
-				columnSpans = new Dictionary<UIElement, int> ();
-
-			columnSpans [item] = columnSpan;
+		public static void SetColumnSpan (UIElement item, int columnSpan) {
+			item.SetValue (ColumnSpanProperty, columnSpan);
+		}
+			
+		public static int GetRow (UIElement item) {
+			return ( int ) item.GetValue (RowProperty);
 		}
 
-		public static void SetRow (Grid gridParent, UIElement item, int row) {
-			gridParent.SetRow (item, row);
+		public static int GetRowSpan (UIElement item) {
+			return ( int ) item.GetValue (RowSpanProperty);
 		}
 
-		public static void SetRowSpan (Grid gridParent, UIElement item, int rowSpan) {
-			gridParent.SetRowSpan (item, rowSpan);
+		public static int GetColumn (UIElement item) {
+			return ( int ) item.GetValue (ColumnProperty);
 		}
 
-		public static void SetColumn (Grid gridParent, UIElement item, int column) {
-			gridParent.SetColumn (item, column);
-		}
-
-		public static void SetColumnSpan (Grid gridParent, UIElement item, int columnSpan) {
-			gridParent.SetColumnSpan (item, columnSpan);
-		}
-
-		internal int GetRow (UIElement item) {
-			int row = 0;
-			if (rows != null && rows.ContainsKey (item)) {
-				row = rows [item];
-				if (row >= this.RowDefinitions.Count)
-					row = this.RowDefinitions.Count - 1;
-				else {
-					if (row < 0)
-						row = 0;
-				}
-			}
-			return row;
-		}
-
-		internal int GetRowSpan (UIElement item) {
-			int rowSpan = 1;
-			if (rowSpans != null && rowSpans.ContainsKey (item)) {
-				rowSpan = rowSpans [item];
-				if (rowSpan < 1)
-					rowSpan = 1;
-			}
-			return rowSpan;
-		}
-
-		internal int GetColumn (UIElement item) {
-			int column = 0;
-			if (columns != null && columns.ContainsKey (item)) {
-				column = columns [item];
-				if (column >= this.ColumnDefinitions.Count)
-					column = this.ColumnDefinitions.Count - 1;
-				else {
-					if (column < 0)
-						column = 0;
-				}
-			}
-			return column;
-		}
-
-		internal int GetColumnSpan (UIElement item) {
-			int columnSpan = 1;
-			if (columnSpans != null && columnSpans.ContainsKey (item)) {
-				columnSpan = columnSpans [item];
-				if (columnSpan < 1)
-					columnSpan = 1;
-			}
-			return columnSpan;
+		public static int GetColumnSpan (UIElement item) {
+			return ( int ) item.GetValue (ColumnSpanProperty);
 		}
 
 		internal float GetStarColumnsWidth () {
