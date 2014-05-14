@@ -14,6 +14,10 @@ namespace System.Windows.Controls {
 
 		#endregion
 
+		internal override float GetAbsoluteLeft (UIElement child) {
+			return base.GetAbsoluteLeft (child);
+		}
+
 		internal override float MeasureHeight (float availableHeight) {
 			var height = 0f;
 			var maxHeight = 0f;

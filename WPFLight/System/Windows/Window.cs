@@ -98,6 +98,14 @@ namespace System.Windows {
 			return this.Top + this.Margin.Top - this.Margin.Bottom;
         }
 
+		internal override float GetAbsoluteLeft (UIElement child) {
+			return base.GetAbsoluteLeft (child);
+		}
+
+		internal override float GetAbsoluteTop (UIElement child) {
+			return base.GetAbsoluteTop (child);
+		}
+
 		public static void Focus (Window window) {
 			if (FocusedWindow != window) {
 				if (FocusedWindow != null)

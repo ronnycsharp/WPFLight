@@ -14,7 +14,7 @@ namespace System.Windows {
 		#region Events
 
 		public event DependencyPropertyChangedEventHandler  DataContextChanged;
-        public event SizeChangedEventHandler                SizeChanged;
+		//public event SizeChangedEventHandler                SizeChanged;
 
 		#endregion
 

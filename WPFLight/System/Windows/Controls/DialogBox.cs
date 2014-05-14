@@ -8,6 +8,9 @@ namespace System.Windows.Controls {
 		public DialogBox ( ) {
 			this.Width = 200;
 			this.Height = 200;
+			this.Background = new SolidColorBrush (System.Windows.Media.Color.FromArgb (100, 100, 100, 100 ));
+			this.BorderBrush = new SolidColorBrush (System.Windows.Media.Color.FromArgb (200, 200, 200, 200 ));
+			this.BorderThickness = new Thickness (1);
 
 			gridRoot = new Grid ();
 			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (45, GridUnitType.Pixel)));

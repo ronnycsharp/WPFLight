@@ -14,8 +14,6 @@ namespace System.Windows.Controls {
 
 			this.HorizontalContentAlignment = HorizontalAlignment.Left;
 			this.GroupName = "MenuButton";
-			this.Padding = new Thickness ();
-
 			this.ItemsPanel = new StackPanel();
         }
 
