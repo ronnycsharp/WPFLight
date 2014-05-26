@@ -60,6 +60,7 @@ namespace System.Windows.Controls {
 
 		internal override float GetAbsoluteLeft (UIElement child) {
 			var left = child.Parent.GetAbsoluteLeft ();
+			left += this.Padding.Left;
 			foreach (var c in this.Children.OfType<UIElement>()) {
 				if (c == child)
 					return left + c.Margin.Left;
@@ -72,6 +73,7 @@ namespace System.Windows.Controls {
 
 		internal override float GetAbsoluteTop (UIElement child) {
 			var top = child.Parent.GetAbsoluteTop ();
+			top += this.Padding.Top;
 			foreach (var c in this.Children.OfType<UIElement>()) {
 				if (c == child)
 					return top + c.Margin.Top;

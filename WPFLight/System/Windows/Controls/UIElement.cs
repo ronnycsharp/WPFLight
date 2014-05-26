@@ -364,7 +364,7 @@ namespace System.Windows.Controls {
             }
         }
 
-        [Obsolete("Use UpdateLayout")]
+		//[Obsolete("Use UpdateLayout")]
 		public virtual void Invalidate () {
 			this.InvalidateMeasure ();
 			this.InvalidateArrange ();

@@ -30,15 +30,17 @@ namespace System.Windows.Controls {
 
 			lbItems.SetBinding (ListBox.ItemsProperty, itemsBinding);
 			lbItems.SelectionChanged += (s,e) => {
-				//window.DialogResult = this.SelectedItem != null;
-				//window.Close ();
+				window.DialogResult = this.SelectedItem != null;
+				window.Close ();
 			};
 
 			lbItems.TouchUp += ( s, e ) => {
 				// needed to close the window if the same ListBoxItem is clicked
 
-				window.DialogResult = this.SelectedItem != null;
-				window.Close ();
+				Console.WriteLine ( "" );
+
+				//window.DialogResult = this.SelectedItem != null;
+				//window.Close ();
 			};
 
 			window.Content = lbItems;

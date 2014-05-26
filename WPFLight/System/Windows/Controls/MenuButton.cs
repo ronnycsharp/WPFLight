@@ -17,26 +17,54 @@ namespace System.Windows.Controls {
 			this.ItemsPanel = new StackPanel();
         }
 
-        #region Ereignisse
+		#region Events
 
 		public event EventHandler ItemClick;
 
         #endregion
 
-        #region Eigenschaften
+		#region Properties
 
 		public Panel ItemsPanel { get; set; }
+
+		public static DependencyProperty IsDropDownOpenProperty = 
+			DependencyProperty.Register ( 
+				"IsDropDownOpen", 
+				typeof ( bool ), 
+				typeof ( MenuButton ),
+				new PropertyMetadata (
+					new PropertyChangedCallback (
+						( s, e ) => {
+							if ( ( bool ) e.NewValue ) 
+								((MenuButton)s).OpenDropDownList ( );
+							else
+								((MenuButton)s).CloseDropDownList ( );
+						} ) ) );
+
+		public bool IsDropDownOpen {
+			get {
+				return ( bool ) GetValue (IsDropDownOpenProperty);
+			}
+			set {
+				SetValue (IsDropDownOpenProperty, value);
+			}
+		}
 
         #endregion
 
         public override void Initialize () {
 			window = new Window(this);
-			window.IsToolTip = true;
+			window.IsToolTip = false;
 			window.FontFamily = this.FontFamily;
 			window.Left = (int)this.GetAbsoluteLeft() + this.ActualWidth + 2;
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;
 			window.Width = this.ItemsPanel.ActualWidth;
 			window.Height = this.ItemsPanel.ActualHeight;
+			window.LostFocus += delegate {
+				ignoreTouchDown = window.DialogResult == null;
+				this.IsDropDownOpen = false;
+				this.IsChecked = false;
+			};
 
 			this.ItemsPanel.Parent = window;
             window.Content = this.ItemsPanel;
@@ -91,11 +119,14 @@ namespace System.Windows.Controls {
 			batch.End ();
         }
 
-        public void AddItem (string text) {
+		public void AddItem ( string text ) {
+			AddItem (text, null);
+		}
+
+		public void AddItem (string text, Brush foreground) {
 			var cmd = new Button ();
 			cmd.Parent = this.ItemsPanel;
 			cmd.Content = text;
-			cmd.Visible = true;
 			cmd.Height = 60;
 			cmd.Width = 80;
 			cmd.Style = Style.GetStyleResource ("ButtonNumberStyle");
@@ -103,6 +134,10 @@ namespace System.Windows.Controls {
 			cmd.HorizontalAlignment = HorizontalAlignment.Left;
 			cmd.BorderBrush = new SolidColorBrush ( Colors.Black * .17f );
 			cmd.BorderThickness = new Thickness (1f);
+
+			if (foreground != null)
+				cmd.Foreground = foreground;
+
 			cmd.Tag = text;
 			cmd.Click += (sender, e) => {
 				if (!(sender is ToggleButton)) {
@@ -121,7 +156,6 @@ namespace System.Windows.Controls {
 			
         public void AddItem (Button cmd) {
 			cmd.Parent = this.ItemsPanel;
-            cmd.Visible = true;
 			cmd.Height = 60;
 			cmd.Width = 80;
 			cmd.Margin = new Thickness(2);
@@ -149,8 +183,6 @@ namespace System.Windows.Controls {
 			var cmd = new Button ();
 			cmd.Content = img;
 			cmd.Parent = this.ItemsPanel;
-			//cmd.Background = new SolidColorBrush ( .2f, .2f, .2f );
-			cmd.Visible = true;
 			cmd.Height = 60;
 			cmd.Width = 80;
 			cmd.Margin = new Thickness(2);
@@ -184,8 +216,6 @@ namespace System.Windows.Controls {
 			var cmd = new Button ();
 			cmd.Content = new Image ( image) { Margin = margin };
 			cmd.Parent = this.ItemsPanel;
-			//cmd.Background = new SolidColorBrush ( .2f, .2f, .2f );
-			cmd.Visible = true;
 			cmd.Height = 60;
 			cmd.Width = 80;
 			cmd.Margin = new Thickness(2);
@@ -208,26 +238,26 @@ namespace System.Windows.Controls {
 		}
 
 		public override void OnTouchDown (TouchLocation state) {
-			base.OnTouchDown (state);
-
+			if (!ignoreTouchDown) {
+				base.OnTouchDown (state);
+				this.IsDropDownOpen = !IsDropDownOpen;
+			}
+			ignoreTouchDown = false;
 		}
 
-        protected override void OnCheckedChanged (bool chk) {
-			base.OnCheckedChanged (chk);
-			if (chk) {
-				window.Invalidate ();
+		void OpenDropDownList ( ) {
+			if (this.IsInitialized) {
 				window.Show (false);
-			} else {
-				/*
-				if (window.IsActive) {
-					unchecking = true;
-					window.Close ();
-					unchecking = false;
-				}
-				*/
 			}
-        }
+		}
+
+		void CloseDropDownList ( ) {
+			if (this.IsInitialized) {
+				window.Close ();
+			}
+		}
 			
+		private bool 			ignoreTouchDown;
 		private bool 			unchecking;
 		private Window 			window;
 		private List<Button> 	items;

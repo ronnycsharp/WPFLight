@@ -26,10 +26,6 @@ namespace System.Windows.Controls {
 
 		#endregion
 
-		internal override float GetAbsoluteLeft (UIElement child) {
-			return base.GetAbsoluteLeft (child);
-		}
-
 		internal override float MeasureHeight (float availableHeight) {
 			var height = 0f;
 			var maxHeight = 0f;
@@ -66,17 +62,17 @@ namespace System.Windows.Controls {
 			}
 		}
 
-		void Refresh ( ){
-			var left = 0f;
-			var top = 0f;
+		void Refresh ( ) {
+			var left = this.Padding.Left; // 0f;
+			var top = this.Padding.Top; // 0f;
 			foreach (var c in this.Children.OfType<Control> ( )) {
 				if (this.Orientation == Orientation.Vertical) {
 					if ((top + c.ActualHeight + c.Margin.Bottom) > this.ActualHeight) {
-						top = 0f;
+						top = this.Padding.Top;
 						left += c.ActualWidth + c.Margin.Right;
 					}
 
-					if (top == 0)
+					if (top == this.Padding.Top)
 						left += c.Margin.Left;
 
 					top += c.Margin.Top;
@@ -87,11 +83,11 @@ namespace System.Windows.Controls {
 					top += c.ActualHeight + c.Margin.Bottom;
 				} else {
 					if ((left + c.ActualWidth + c.Margin.Right) > this.ActualWidth) {
-						left = 0f;
+						left = this.Padding.Left;
 						top += c.ActualHeight + c.Margin.Bottom;
 					}
 
-					if (left == 0)
+					if (left == this.Padding.Left)
 						top += c.Margin.Top;
 
 					left += c.Margin.Left;
