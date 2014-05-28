@@ -52,6 +52,13 @@ namespace System.Windows.Controls {
 
         #endregion
 
+		public override void Invalidate () {
+			window.Left = (int)this.GetAbsoluteLeft() + this.ActualWidth + 2;
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;
+
+			base.Invalidate ();
+		}
+
         public override void Initialize () {
 			window = new Window(this);
 			window.IsToolTip = false;

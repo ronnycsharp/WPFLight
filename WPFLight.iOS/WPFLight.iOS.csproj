@@ -10,7 +10,7 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>XAMLLight.iOS</AssemblyName>
     <ReleaseVersion>2.1</ReleaseVersion>
-    <ProductVersion>12.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -362,6 +362,12 @@
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\UserControl.cs">
       <Link>System\Windows\Controls\UserControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Extensions\ArrayExtensions.cs">
+      <Link>Extensions\ArrayExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Helpers\ArrayHelper.cs">
+      <Link>Helpers\ArrayHelper.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

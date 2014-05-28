@@ -142,10 +142,7 @@ namespace System.Windows.Controls {
 		}
 
         public override void Draw (GameTime gameTime, SpriteBatch batch, float a, Matrix transform) {
-			//base.Draw(gameTime, batch, a, transform);
-
 			cmdItem.Draw (gameTime, batch, Opacity * a, transform);
-
 			batch.Begin (
 				SpriteSortMode.Deferred, 
 				BlendState.AlphaBlend, 
@@ -186,6 +183,12 @@ namespace System.Windows.Controls {
 		protected override void OnSelectionChanged () {
 			base.OnSelectionChanged ();
 			//this.cmdItem.Content = this.SelectedItem;
+		}
+
+		public override void Invalidate () {
+			base.Invalidate ();
+			window.Left = (int)this.GetAbsoluteLeft();
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight + 1;
 		}
 
 		private bool ignoreTouchDown;
