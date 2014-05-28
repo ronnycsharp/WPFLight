@@ -46,12 +46,12 @@ namespace System.Windows.Media
             return hash.GetHashCode();
         }
 
-        protected override Texture2D CreateTexture()
-        {
+        protected override Texture2D CreateTexture() {
             var width = 100;
             var height = 100;
 
             var tex = new Texture2D(this.GraphicsDevice, width, height);
+            /*
             var data = new int[width * height];
             
             var deltaX = EndPoint.X - StartPoint.X;
@@ -67,8 +67,9 @@ namespace System.Windows.Media
                         (int)GetGradientColor(t / 100f).PackedValue;
                 }
             }
-
             tex.SetData(data);
+             * */
+            tex.SetData(this.GetTextureData(width, height));
             return tex;
         }
 
@@ -77,8 +78,17 @@ namespace System.Windows.Media
 			var deltaY = EndPoint.Y - StartPoint.Y;
 			var denom = 1.0f / ((deltaX * deltaX) + (deltaY * deltaY));
 			var t = (deltaX * (x - StartPoint.X) + deltaY * (y - StartPoint.Y)) * denom;
-
 			return this.GetGradientColor (t / 100f);
 		}
+
+        internal override int[] GetTextureData (int width, int height) {
+            var pixels = new int[width * height];
+            for ( var y = 0; y < height; y++ ) {
+                for ( var x = 0; x < width; x++) {
+                    pixels[y * width + x] = ( int ) GetPixel(x, y, width, height).PackedValue;
+                }
+            }
+            return pixels;
+        }
     }
 }

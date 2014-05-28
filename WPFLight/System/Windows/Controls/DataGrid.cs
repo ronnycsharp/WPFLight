@@ -25,17 +25,16 @@ namespace System.Windows.Controls
             loadedItems = new List<DataGridItem> ( );
 		}
 
-        #region Ereignisse
+        #region Events
 
         public event LoadItemEventHandler LoadItem;
 
         #endregion
 
-        #region Eigenschaften
+        #region Properties
 
 		public List<ColumnHeader> 	    Columns 	    { get; private set; }
         public DataGridItemColleciton   Items           { get; private set; }
-		//public float 				    FontScale 	    { get; set; }
         public float                    VerticalOffset  { get; private set; }
 
 		#endregion
@@ -46,8 +45,9 @@ namespace System.Windows.Controls
             gridHeader.HorizontalAlignment = HorizontalAlignment.Stretch;
             gridHeader.VerticalAlignment = VerticalAlignment.Top;
             gridHeader.Height = 50;
-			gridHeader.Background = new SolidColorBrush (
-				this.GraphicsDevice,new System.Windows.Media.Color (1, 1, 1, .1f));
+            gridHeader.Opacity = 1;
+            gridHeader.Background = new SolidColorBrush (
+				this.GraphicsDevice,new System.Windows.Media.Color (1, 1, 1f)*.19f);
 
             foreach ( var c in this.Columns )
                 gridHeader.ColumnDefinitions.Add ( c );
@@ -58,12 +58,12 @@ namespace System.Windows.Controls
             rcScrollBar.Width = 3;
             rcScrollBar.Margin = new Thickness (0, 2, 2, 2);
             rcScrollBar.HorizontalAlignment = HorizontalAlignment.Left;
-			rcScrollBar.Fill = new SolidColorBrush (this.GraphicsDevice, new System.Windows.Media.Color (1f, 1f, 1f, .35f));
+            rcScrollBar.Fill = new SolidColorBrush(this.GraphicsDevice, new System.Windows.Media.Color(1f, 1f, 1f) * .45f);
             rcScrollBar.Height = 100;
             rcScrollBar.Left = this.ActualWidth - 7;
-            rcScrollBar.Visible = true;
+            rcScrollBar.Visibility = Visibility.Visible;
+            this.Children.Add ( rcScrollBar );
 
-            this.Children.Add ( rcScrollBar ); 
 			base.Initialize ();
 		}
 
@@ -99,7 +99,8 @@ namespace System.Windows.Controls
 
 		public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform)
 		{
-			if ( this.Visible ) {
+            base.Draw(gameTime, batch, alpha, transform);
+			if ( this.IsVisible ) {
 
                 var absLeft = this.GetAbsoluteLeft ( );
                 var absTop  = this.GetAbsoluteTop ( );
@@ -167,89 +168,6 @@ namespace System.Windows.Controls
                     i++;
                 }
 
-				/*
-				if ( this.Background.A > 0 ){
-					batch.Begin (
-						SpriteSortMode.Deferred,
-						BlendState.AlphaBlend,
-						null,
-						DepthStencilState.None,
-						RasterizerState.CullNone,
-						null,
-						transform );
-
-					// Hintergrund
-					batch.Draw (
-						Textures.Background,
-						new Microsoft.Xna.Framework.Rectangle (
-						( int ) ( left + this.BorderThickness.Left ),
-						( int ) ( top + this.BorderThickness.Top ),
-						( int ) ( this.ActualWidth - this.BorderThickness.Left - this.BorderThickness.Right ),
-						( int ) ( this.ActualHeight - this.BorderThickness.Top - this.BorderThickness.Bottom ) ),
-						this.Background
-						* ( (float)this.Background.A / 256f )
-						* this.Alpha * alpha );
-
-					if ( BorderThickness.Top > 0 )
-					{
-						// Rahmen TOP
-						batch.Draw (
-							Textures.Background,
-							new Microsoft.Xna.Framework.Rectangle (
-							( int ) ( left + BorderThickness.Left ),
-							( int ) top,
-							( int ) ( this.Width - BorderThickness.Left - BorderThickness.Right ),
-							( int ) this.BorderThickness.Top ),
-							this.BorderColor
-							* ( (float)this.BorderColor.A / 256f )
-							* alpha );
-					}
-
-					if ( BorderThickness.Bottom > 0 )
-					{
-						// Rahmen BOTTOM
-						batch.Draw (
-							Textures.Background,
-							new Microsoft.Xna.Framework.Rectangle (
-							(int)( left + BorderThickness.Left ),
-							(int)( top + this.ActualHeight - BorderThickness.Bottom ),
-							(int)( this.ActualWidth - BorderThickness.Left - BorderThickness.Right ),
-							(int)this.BorderThickness.Bottom ),
-							this.BorderColor
-							* ( (float)this.BorderColor.A / 256f )
-							* alpha );
-					}
-
-					if ( BorderThickness.Left > 0 ) {
-						// Rahmen LEFT
-						batch.Draw (
-							Textures.Background,
-							new Microsoft.Xna.Framework.Rectangle (
-							(int)( left),
-							(int)( top ),
-							(int)( BorderThickness.Left ),
-							(int) ( this.ActualHeight ) ),
-							this.BorderColor
-							* ( (float)this.BorderColor.A / 256f )
-							* alpha );
-					}
-
-					if ( BorderThickness.Right > 0 ) {
-						// Rahmen RIGHT
-						batch.Draw (
-							Textures.Background,
-							new Microsoft.Xna.Framework.Rectangle (
-							(int)( left + this.Width - BorderThickness.Right ),
-							(int)( top ),
-							(int)( BorderThickness.Right ),
-							(int)( this.ActualHeight ) ),
-							this.BorderColor
-							* ( (float)this.BorderColor.A / 256f )
-							* alpha );
-					}
-					batch.End ( );
-				}*/
-
                 left = absLeft;
 				top = absTop + this.VerticalOffset + 50;
                 foreach ( var item in this.Items ) {
@@ -287,7 +205,7 @@ namespace System.Windows.Controls
 								(int)( top + 5 ),
 								(int)( columnWidth - 1 ),
 								(int) 29 ),
-								new Microsoft.Xna.Framework.Color(1f,1f,1f) * .04f );
+								new Microsoft.Xna.Framework.Color(1f,1f,1f) * .08f );
 
 							batch.End ();
 
@@ -326,7 +244,6 @@ namespace System.Windows.Controls
 					}
                     top += 30;
                 }
-				base.Draw ( gameTime, batch, alpha, transform );
 			}
 		}
 
@@ -413,8 +330,8 @@ namespace System.Windows.Controls
 		private int     	startPos;
 		private float 		contentHeight;
 		private Grid 		gridHeader;
-		private System.Windows.Shapes.Rectangle 	rcScrollBar;
 
+		private System.Windows.Shapes.Rectangle 	rcScrollBar;
         private List<DataGridItem> loadedItems;
 
 		static RasterizerState scissorEnabled = 

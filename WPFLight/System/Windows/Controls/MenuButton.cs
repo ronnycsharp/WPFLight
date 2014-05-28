@@ -56,6 +56,7 @@ namespace System.Windows.Controls {
 			window = new Window(this);
 			window.IsToolTip = false;
 			window.FontFamily = this.FontFamily;
+            window.Background = new SolidColorBrush(new System.Windows.Media.Color ( .8f, .8f, .8f ) * .8f);
 			window.Left = (int)this.GetAbsoluteLeft() + this.ActualWidth + 2;
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;
 			window.Width = this.ItemsPanel.ActualWidth;
@@ -129,7 +130,6 @@ namespace System.Windows.Controls {
 			cmd.Content = text;
 			cmd.Height = 60;
 			cmd.Width = 80;
-			cmd.Style = Style.GetStyleResource ("ButtonNumberStyle");
 			cmd.Margin = new Thickness(2);
 			cmd.HorizontalAlignment = HorizontalAlignment.Left;
 			cmd.BorderBrush = new SolidColorBrush ( Colors.Black * .17f );

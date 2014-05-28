@@ -1,11 +1,11 @@
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-
 using WPFLight.Helpers;
 
 namespace System.Windows.Media {
 	public class ImageBrush : Brush {
+        [Obsolete]
 		public ImageBrush (GraphicsDevice graphicsDevice, Texture2D texture)
             : base (graphicsDevice) {
 			if (texture == null)
@@ -23,7 +23,7 @@ namespace System.Windows.Media {
 		}
 
 
-		#region Eigenschaften
+		#region Properties
 
 		internal Texture2D Texture { get; private set; }
 
@@ -71,6 +71,13 @@ namespace System.Windows.Media {
 		internal override Color GetPixel (int x, int y, int width, int height) {
 			throw new NotImplementedException ();
 		}
+
+        internal override int[] GetTextureData (int width, int height) {
+            // TODO, test
+            var data = new int []{};
+            Texture.GetData<int>(data);
+            return data;
+        }
 			
 		static RasterizerState scissorEnabled = 
 			new RasterizerState { 

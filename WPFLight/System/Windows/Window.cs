@@ -6,6 +6,8 @@ using System.Windows.Media.Animation;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Windows.Media;
+using System.Windows.Data;
 
 namespace System.Windows {
 	public class Window : ContentControl {
@@ -15,6 +17,27 @@ namespace System.Windows {
 
 		public Window () {
 			this.WindowStartUpLocation = WindowStartUpLocation.CenterScreen;
+            
+            rcBackground = new System.Windows.Shapes.Rectangle();
+            rcBackground.Parent = this;
+            rcBackground.RadiusX = 14;
+            rcBackground.RadiusY = 14;
+
+            rcBackground.SetBinding (
+                System.Windows.Shapes.Rectangle.FillProperty, 
+                new Binding("Background") { 
+                    Source = this,
+                    Mode = BindingMode.OneWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                });
+
+            rcBackground.SetBinding (
+                System.Windows.Shapes.Rectangle.StrokeProperty,
+                new Binding("BorderBrush") {
+                    Source = this,
+                    Mode = BindingMode.OneWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                });
 		}
 
 		public Window (FrameworkElement owner) : this ( ) {
@@ -90,6 +113,11 @@ namespace System.Windows {
 
 		#endregion
 
+        public override void Initialize () {
+            rcBackground.Initialize();
+            base.Initialize();
+        }
+
         public override float GetAbsoluteLeft () {
 			return this.Left + this.Margin.Left - this.Margin.Right;
         }
@@ -105,6 +133,16 @@ namespace System.Windows {
 		internal override float GetAbsoluteTop (UIElement child) {
 			return base.GetAbsoluteTop (child);
 		}
+
+        public override void Draw (GameTime gameTime, SpriteBatch batch, float alpha, Matrix transform) {
+            rcBackground.Draw(gameTime, batch, alpha, transform);
+            if (this.Content != null
+                    && this.Content is FrameworkElement ) {
+                ((FrameworkElement)this.Content).Draw(
+                    gameTime, batch, alpha, transform);
+            }
+            //base.Draw(gameTime, batch, alpha, transform);
+        }
 
 		public static void Focus (Window window) {
 			if (FocusedWindow != window) {
@@ -161,7 +199,7 @@ namespace System.Windows {
 			this.DialogResult = null;
 			this.IsOpened = true;
 			this.IsActive = true;
-			this.Visible = true;
+            this.Visibility = Visibility.Visible;
 			this.IsModal = modal;
 
 			if (modal)
@@ -180,7 +218,7 @@ namespace System.Windows {
 
 		public virtual void Close () {
 			this.IsActive = false;
-			this.Visible = false;
+            this.Visibility = Visibility.Hidden;
 			this.IsOpened = false;
 
 			if (this.IsModal)
@@ -203,7 +241,8 @@ namespace System.Windows {
 			}
 		}
 
-		private bool focused;
+		private bool                focused;
+        private Shapes.Rectangle    rcBackground;
 	}
 
 	public enum WindowStartUpLocation {

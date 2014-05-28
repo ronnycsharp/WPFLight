@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Media;
 using WPFLight.Helpers;
+using WPFLight.Extensions;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace System.Windows.Shapes {
@@ -125,14 +126,20 @@ namespace System.Windows.Shapes {
 			if (width < 1 || height < 1)
 				throw new ArgumentNullException ();
 
+            var brushPixels = brush.GetTextureData(width, height);
+            var getBrushPixel = new Func<int, int, Color>(
+                (x, y) => {
+                    return new Color { PackedValue = (uint)brushPixels[Math.Min ( y, height - 1 ) * width + x] };
+                });
+
 			foreach (var rc in rects) {
 				for (var x = (int)rc.Left; x < rc.Right && rc.Right <= width; x++) {
 
 					var pixelTopColor = new Color { PackedValue = (uint)pixels [((int)rc.Top) * width + x] };
 					var pixelBottomColor = new Color { PackedValue = (uint)pixels [((int)rc.Bottom-1) * width + x] };
 
-					var topColor = brush.GetPixel (x, (int)rc.Top, width, height);
-					var bottomColor = brush.GetPixel (x, (int)rc.Bottom, width, height);
+                    var topColor = getBrushPixel(x, (int)rc.Top);//brush.GetPixel (x, (int)rc.Top, width, height);
+                    var bottomColor = getBrushPixel(x, (int)rc.Bottom); //brush.GetPixel (x, (int)rc.Bottom, width, height);
 
 					// Antialiazing, Top
 
@@ -147,7 +154,7 @@ namespace System.Windows.Shapes {
 					}
 
 					for (var y = (int)rc.Top; y < rc.Bottom; y++) {
-						pixels [y * width + x] = ( int ) ( brush.GetPixel (x, y, width, height) ).PackedValue;
+						pixels [y * width + x] = ( int ) ( getBrushPixel ( x, y ) ).PackedValue;
 					}
 
 					// Antialiazing, Bottom
@@ -219,10 +226,8 @@ namespace System.Windows.Shapes {
 			var tex = new Microsoft.Xna.Framework.Graphics.Texture2D (ScreenHelper.Device, width, height);
 			var pixels = new int[width * height];
 
-			var transparent = (int)Colors.Transparent.PackedValue;
-			for (var i = 0; i < pixels.Length; i++)
-				pixels [i] = transparent;
-				
+            pixels.Fill((int)Colors.Transparent.PackedValue);
+
 			if ( this.Stroke != null && this.StrokeThickness > 0 )
 				FillPixels (
 					this.Stroke, borderRects, width, height, ref pixels);

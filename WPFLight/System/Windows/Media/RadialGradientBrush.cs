@@ -62,6 +62,10 @@ namespace System.Windows.Media {
 			return this.GetGradientColor (grad / 100f);
 		}
 
+        internal override int[] GetTextureData (int width, int height) {
+            throw new NotImplementedException();
+        }
+
 		#region Eigenschaften
 
 		/// <summary>

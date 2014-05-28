@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using WPFLight.Helpers;
+using WPFLight.Extensions;
 
 namespace System.Windows.Media {
 	public class SolidColorBrush : Brush {
@@ -67,15 +68,8 @@ namespace System.Windows.Media {
 		Texture2D CreateSolidTexture () {
 			var width = 10;
 			var height = 10;
-			//var widthF = (float)width;
-
 			var tex = new Texture2D (ScreenHelper.Device, width, height);
-			var pixels = new int[width * height];
-
-			for (var x = 0; x < width; x++) {
-				for (var y = 0; y < height; y++)
-					pixels [y * width + x] = (int)Colors.White.PackedValue;
-			}
+            var pixels = GetTextureData(width, height);
 			tex.SetData (pixels);
 			return tex;
 		}
@@ -83,6 +77,13 @@ namespace System.Windows.Media {
 		internal override Color GetPixel (int x, int y, int width, int height) {
 			return this.Color;
 		}
+
+        internal override int[] GetTextureData (int width, int height) {
+            var pixels = new int[width * height];
+            pixels.Fill((int)this.Color.PackedValue);
+            //pixels[y * width + x]
+            return pixels;
+        }
 
         public override int GetHashCode () {
             return this.Color.GetHashCode();

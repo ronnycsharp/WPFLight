@@ -1,6 +1,4 @@
 using System.Windows.Media;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using WPFLight.Helpers;
 
 namespace System.Windows.Controls {
@@ -9,8 +7,8 @@ namespace System.Windows.Controls {
 			this.Width = 200;
 			this.Height = 200;
 			this.Background = new SolidColorBrush (System.Windows.Media.Color.FromArgb (200, 100, 100, 100 ));
-			this.BorderBrush = new SolidColorBrush (System.Windows.Media.Color.FromArgb (200, 200, 200, 200 ));
-			this.BorderThickness = new Thickness (1);
+			this.BorderBrush = new SolidColorBrush (System.Windows.Media.Color.FromArgb (230, 230, 230, 200 ));
+			this.BorderThickness = new Thickness (2);
 
 			gridRoot = new Grid ();
 			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (45, GridUnitType.Pixel)));
@@ -53,7 +51,6 @@ namespace System.Windows.Controls {
         }
 
 		public override void Initialize () {
-
 			lblTitle = new Label ();
 			lblTitle.Text = this.Title;
 			lblTitle.FontScale = .4f;
@@ -66,7 +63,10 @@ namespace System.Windows.Controls {
             cmdCancel.IsEnabled = true;
 			cmdCancel.Margin = new Thickness (15, 5, 15, 10);
 			cmdCancel.Width = 120;
-			cmdCancel.Foreground = Brushes.White;
+            cmdCancel.Style = ( Style ) this.FindResource("ButtonNumberStyle");
+            cmdCancel.FontSize = .36f;
+            cmdCancel.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
+			//cmdCancel.Foreground = Brushes.White;
 			cmdCancel.HorizontalAlignment = HorizontalAlignment.Right;
 			cmdCancel.Click += delegate {
 				this.DialogResult = false;
@@ -81,7 +81,10 @@ namespace System.Windows.Controls {
             cmdOkay.IsEnabled = true;
 			cmdOkay.Margin = new Thickness (15, 5, 145, 10);
 			cmdOkay.Width = 80;
-			cmdOkay.Foreground = Brushes.White;
+			//cmdOkay.Foreground = Brushes.White;
+            cmdOkay.Style = (Style)this.FindResource("ButtonNumberStyle");
+            cmdOkay.FontSize = .36f;
+            cmdOkay.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
 			cmdOkay.HorizontalAlignment = HorizontalAlignment.Right;
 			cmdOkay.Click += delegate {
 				this.DialogResult = true;
@@ -102,23 +105,6 @@ namespace System.Windows.Controls {
             gridRoot.Initialize();
 			base.Initialize ();
 		}
-
-		/*
-        public override void OnTouchDown (Microsoft.Xna.Framework.Input.Touch.TouchLocation state) {
-            base.OnTouchDown(state);
-            gridRoot.OnTouchDown(state);
-        }
-
-        public override void OnTouchUp (Microsoft.Xna.Framework.Input.Touch.TouchLocation state) {
-            base.OnTouchUp(state);
-            gridRoot.OnTouchUp(state);
-        }
-
-        public override void Update (GameTime gameTime) {
-            base.Update(gameTime);
-            gridRoot.Update(gameTime);
-        }
-        */
 			
 		#region Eigenschaften
 

@@ -66,8 +66,14 @@
     <Compile Include="..\WPFLight.iOS\Helpers\ResourceHelper.cs">
       <Link>Resources\ResourceHelper.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\Extensions\ArrayExtensions.cs">
+      <Link>Extensions\ArrayExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\Extensions\EnumExtensions.cs">
       <Link>Extensions\EnumExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Helpers\ArrayHelper.cs">
+      <Link>Helpers\ArrayHelper.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\Helpers\ScreenHelper.cs">
       <Link>Helpers\ScreenHelper.cs</Link>

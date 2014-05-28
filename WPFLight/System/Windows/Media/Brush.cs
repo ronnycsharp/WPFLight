@@ -15,14 +15,8 @@ namespace System.Windows.Media {
 			this.GraphicsDevice = ScreenHelper.Device;
 		}
 
+        [Obsolete]
 		public Brush (GraphicsDevice graphicsDevice) {
-			/*
-            if (graphicsDevice == null)
-                throw new ArgumentNullException();
-
-            this.GraphicsDevice = graphicsDevice;
-            */
-
 			this.GraphicsDevice = ScreenHelper.Device;
 		}
 
@@ -35,6 +29,8 @@ namespace System.Windows.Media {
 		#endregion
 
 		internal abstract Color GetPixel (int x, int y, int width, int height);
+
+        internal abstract int [] GetTextureData (int width, int height);
 
 		public abstract void Draw (SpriteBatch batch, Rectangle bounds, Matrix transform, float alpha);
 
