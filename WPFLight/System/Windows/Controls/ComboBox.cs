@@ -97,10 +97,10 @@ namespace System.Windows.Controls {
             window.FontFamily = this.FontFamily;
 			window.IsToolTip = false;
 			window.Left = (int)this.GetAbsoluteLeft();
-			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight + 1;
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
 			window.Width = this.ActualWidth;
 			window.Height = 192;	// TODO ComputeItemsHeight()
-			window.Background = new SolidColorBrush (Colors.Black * .8f);
+			window.Background = new SolidColorBrush (new System.Windows.Media.Color ( .5f, .5f, .5f ) * .95f);
 			window.BorderBrush = Brushes.Transparent;
             window.BorderThickness = new Thickness(1);
             window.LostFocus += delegate {
@@ -188,7 +188,7 @@ namespace System.Windows.Controls {
 		public override void Invalidate () {
 			base.Invalidate ();
 			window.Left = (int)this.GetAbsoluteLeft();
-			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight + 1;
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
 		}
 
 		private bool ignoreTouchDown;

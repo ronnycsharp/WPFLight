@@ -369,6 +369,9 @@
     <Compile Include="..\WPFLight\Helpers\ArrayHelper.cs">
       <Link>Helpers\ArrayHelper.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\System\Windows\MessageBox.cs">
+      <Link>System\Windows\MessageBox.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\WPFLight\System\ComponentModel\PropertyChangedEventArgs.cs">

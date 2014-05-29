@@ -209,7 +209,7 @@ namespace System.Windows.Shapes {
 			// Image-Scaling 2x - looks better
 
 			var width = (int)Math.Ceiling (this.ActualWidth*2.0);
-            var height = (int)Math.Ceiling (this.ActualHeight*2.0);
+			var height = (int)Math.Ceiling (this.ActualHeight*2.0);
 
 			var rcBorder = new Rect (
 				0, 0, width, height);
