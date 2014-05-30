@@ -33,6 +33,11 @@ namespace System.Windows.Media {
             return children;
         }
 
+		public static bool IsVisible ( UIElement c ) {
+			return c.IsVisible 
+				&& (c.Parent == null || IsVisible (c.Parent));
+		}
+
         public static UIElement GetRoot (UIElement c) {
             if (c.Parent == null)
                 return c;

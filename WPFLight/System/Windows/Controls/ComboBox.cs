@@ -32,6 +32,7 @@ namespace System.Windows.Controls {
 			lbItems.SelectionChanged += (s,e) => {
 				window.DialogResult = this.SelectedItem != null;
 				window.Close ();
+				this.IsDropDownOpen = false;
 			};
 
 			lbItems.TouchUp += ( s, e ) => {
@@ -40,7 +41,8 @@ namespace System.Windows.Controls {
 				Console.WriteLine ( "" );
 
 				//window.DialogResult = this.SelectedItem != null;
-				//window.Close ();
+
+				//this.IsDropDownOpen = false;
 			};
 
 			window.Content = lbItems;
@@ -104,8 +106,8 @@ namespace System.Windows.Controls {
 			window.BorderBrush = Brushes.Transparent;
             window.BorderThickness = new Thickness(1);
             window.LostFocus += delegate {
-				ignoreTouchDown = window.DialogResult == null;
-				this.IsDropDownOpen = false;
+				if ( !ignoreLostFocus )
+					this.IsDropDownOpen = false;
 			};
 
 			window.Initialize ();
@@ -173,16 +175,21 @@ namespace System.Windows.Controls {
         }
 			
 		public override void OnTouchDown (TouchLocation state) {
-			if (!ignoreTouchDown) {
-				base.OnTouchDown (state);
-				this.IsDropDownOpen = !IsDropDownOpen;
-			}
-			ignoreTouchDown = false;
+			base.OnTouchDown (state);
+			ignoreLostFocus = true;
+			this.IsDropDownOpen = !this.IsDropDownOpen;
+		}
+
+		public override void OnTouchUp (TouchLocation state) {
+			base.OnTouchUp (state);
+			ignoreLostFocus = false;
+
+			if (this.IsDropDownOpen)
+				window.Focus ();
 		}
 			
 		protected override void OnSelectionChanged () {
 			base.OnSelectionChanged ();
-			//this.cmdItem.Content = this.SelectedItem;
 		}
 
 		public override void Invalidate () {
@@ -191,7 +198,7 @@ namespace System.Windows.Controls {
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
 		}
 
-		private bool ignoreTouchDown;
+		private bool ignoreLostFocus;
 		private Window window;
 		private ListBox lbItems;
 		private Button cmdItem;

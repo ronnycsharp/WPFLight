@@ -6,6 +6,7 @@ using System.Windows.Markup;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
+using System.Windows.Media;
 
 namespace System.Windows.Controls {
 	[ContentProperty("Children")]
@@ -62,7 +63,10 @@ namespace System.Windows.Controls {
 
 		public override void OnTouchDown (TouchLocation state) {
 			foreach (var c in this.Children.OfType<Control>()) {
-				if (c.IsEnabled && c.Opacity > 0 && c.IsVisible && c.HitTest(state.Position)) {
+				if (c.IsEnabled 
+						&& c.Opacity > 0 // TODO Should remove, in WPF, transparent Buttons are clickable
+						&& VisualTreeHelper.IsVisible ( c ) 
+						&& c.HitTest(state.Position)) {
 					c.OnTouchDown(state);
 				}
 			}
@@ -71,7 +75,10 @@ namespace System.Windows.Controls {
 
 		public override void OnTouchUp (TouchLocation state) {
 			foreach (var c in this.Children.OfType<Control>())
-				if (c.IsEnabled && c.Opacity > 0 && c.IsVisible && (c.HitTest(state.Position) || c.IsTouchDown))
+				if (c.IsEnabled 
+						&& c.Opacity > 0 
+						&& VisualTreeHelper.IsVisible ( c ) 
+						&& (c.HitTest(state.Position) || c.IsTouchDown))
 					c.OnTouchUp(state);
 
 			base.OnTouchUp (state);
@@ -79,7 +86,10 @@ namespace System.Windows.Controls {
 
 		public override void OnTouchMove (TouchLocation state) {
 			foreach (var c in this.Children.OfType<Control>())
-				if (c.IsEnabled && c.Opacity > 0 && c.IsVisible && (c.HitTest(state.Position) || c.IsTouchDown))
+				if (c.IsEnabled 
+						&& c.Opacity > 0 
+						&& VisualTreeHelper.IsVisible ( c ) 
+						&& (c.HitTest(state.Position) || c.IsTouchDown))
 					c.OnTouchMove(state);
 
 			base.OnTouchMove (state);

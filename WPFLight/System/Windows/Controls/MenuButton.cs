@@ -15,6 +15,7 @@ namespace System.Windows.Controls {
 			this.HorizontalContentAlignment = HorizontalAlignment.Left;
 			this.GroupName = "MenuButton";
 			this.ItemsPanel = new StackPanel();
+			this.IsUncheckable = true;
         }
 
 		#region Events
@@ -63,14 +64,12 @@ namespace System.Windows.Controls {
 			window = new Window(this);
 			window.IsToolTip = false;
 			window.FontFamily = this.FontFamily;
-            window.Background = new SolidColorBrush(new System.Windows.Media.Color ( .8f, .8f, .8f ) * .8f);
+			window.Background = new SolidColorBrush(/*new System.Windows.Media.Color ( .8f, .8f, .8f )*/ Colors.CornflowerBlue * .8f);
 			window.Left = (int)this.GetAbsoluteLeft() + this.ActualWidth + 2;
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;
 			window.Width = this.ItemsPanel.ActualWidth;
 			window.Height = this.ItemsPanel.ActualHeight;
 			window.LostFocus += delegate {
-				ignoreTouchDown = window.DialogResult == null;
-				this.IsDropDownOpen = false;
 				this.IsChecked = false;
 			};
 
@@ -245,11 +244,13 @@ namespace System.Windows.Controls {
 		}
 
 		public override void OnTouchDown (TouchLocation state) {
-			if (!ignoreTouchDown) {
+			if ( !this.IsDropDownOpen ) 
 				base.OnTouchDown (state);
-				this.IsDropDownOpen = !IsDropDownOpen;
-			}
-			ignoreTouchDown = false;
+		}
+
+		protected override void OnCheckedChanged (bool chk) {
+			base.OnCheckedChanged (chk);
+			this.IsDropDownOpen = this.IsChecked;
 		}
 
 		void OpenDropDownList ( ) {
@@ -264,8 +265,6 @@ namespace System.Windows.Controls {
 			}
 		}
 			
-		private bool 			ignoreTouchDown;
-		private bool 			unchecking;
 		private Window 			window;
 		private List<Button> 	items;
     }

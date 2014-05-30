@@ -357,6 +357,7 @@ namespace System.Windows.Controls {
             var uie = sender as UIElement;
             if (uie != null && e.NewValue != null ) {
                 var parent = e.NewValue as UIElement;
+				uie.UpdateIsVisible ();
                 parent.IsVisibleChanged 
                     += (s, ea) => {
                         uie.UpdateIsVisible();

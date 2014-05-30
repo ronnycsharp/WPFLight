@@ -21,7 +21,7 @@ namespace System.Windows.Controls {
             scrollViewer.ScissorTest = true;
         }
 
-        #region Eigenschaften
+		#region Properties
 
         #endregion
 

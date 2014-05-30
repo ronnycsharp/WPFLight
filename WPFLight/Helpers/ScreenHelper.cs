@@ -10,14 +10,17 @@ namespace WPFLight.Helpers {
         public static int ORIGINAL_WIDTH = 800;
         public static int ORIGINAL_HEIGHT = 480;
 	 	#endif
+
 		#if WIN8
         public static int ORIGINAL_WIDTH = 1366;
         public static int ORIGINAL_HEIGHT = 768;
 		#endif
+
 		#if IOS
 		public static int ORIGINAL_WIDTH = 1024;
 		public static int ORIGINAL_HEIGHT = 768;
 		#endif
+
 		public static int SCREEN_WIDTH = GraphicsDeviceManager.DefaultBackBufferWidth;
 		public static int SCREEN_HEIGHT = GraphicsDeviceManager.DefaultBackBufferHeight;
 		static float SCALE_TRANSFORM_X;
@@ -94,7 +97,11 @@ namespace WPFLight.Helpers {
 
 		public static Rectangle CheckScissorRect ( Rect bounds ) {
 			return CheckScissorRect (
-				new Rectangle ((int)bounds.X, (int)bounds.Y, (int)bounds.Width, (int)bounds.Height));
+				new Rectangle (
+					(int)bounds.X, 
+					(int)bounds.Y, 
+					(int)bounds.Width, 
+					(int)bounds.Height));
 		}
 
 		/// <summary>
@@ -116,9 +123,6 @@ namespace WPFLight.Helpers {
 			if (bounds.Height < 0)
 				bounds.Height = 0;
 
-
-
-
 			// LANDSCAPE-MODE
 #if WINDOWS_PHONE
 
@@ -130,11 +134,11 @@ namespace WPFLight.Helpers {
 #else
             // TEST
 
-            if (bounds.Right > ORIGINAL_HEIGHT)
-                bounds.Width = ORIGINAL_HEIGHT - bounds.X;
+			if (bounds.Right > ORIGINAL_WIDTH)
+				bounds.Width = ORIGINAL_WIDTH - bounds.X;
 
-			if (bounds.Bottom > ORIGINAL_WIDTH)
-				bounds.Height = ORIGINAL_WIDTH - bounds.Y;
+			if (bounds.Bottom > ORIGINAL_HEIGHT)
+				bounds.Height = ORIGINAL_HEIGHT - bounds.Y;
 #endif
 
 
@@ -152,10 +156,10 @@ namespace WPFLight.Helpers {
 
 			return
 				new Microsoft.Xna.Framework.Rectangle (
-				(int)(bounds.Left * scaleX), 
-				(int)(bounds.Top * scaleY), 
-				(int)(bounds.Width * scaleX), 
-				(int)(bounds.Height * scaleY));
+					(int)((float)bounds.Left * scaleX), 
+					(int)((float)bounds.Top * scaleY), 
+					(int)((float)bounds.Width * scaleX), 
+					(int)((float)bounds.Height * scaleY));
 		}
 
 		public static Matrix GetScreenTransform () {
