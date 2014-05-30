@@ -229,12 +229,12 @@
         	<Setter Property="Background">
         		<Setter.Value>
     	    	<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-                    <LinearGradientBrush.GradientStops>
-                        <GradientStop Color="#FF3C8AFB" Offset="0.0" />
-                        <GradientStop Color="#FF3564A8" Offset="0.42" />
-                        <GradientStop Color="#FF305495" Offset="0.43" />
-                        <GradientStop Color="#FF4486D4" Offset="1.0" />
-                    </LinearGradientBrush.GradientStops>
+             		<LinearGradientBrush.GradientStops>
+			          <GradientStop Color="#FF707070" Offset="0.0" />
+			          <GradientStop Color="#FF909090" Offset="0.42" />
+			          <GradientStop Color="#FF808080" Offset="0.43" />
+			          <GradientStop Color="#FF666666" Offset="1.0" />
+             		</LinearGradientBrush.GradientStops>
                 </LinearGradientBrush>
         		</Setter.Value>
         	</Setter>
@@ -256,14 +256,14 @@
         		<Trigger.Setters>
 		        	<Setter Property="Background">
 		        		<Setter.Value>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-                    <LinearGradientBrush.GradientStops>
-                        <GradientStop Color="#FF69A5FB" Offset="0.0" />
-                        <GradientStop Color="#FF4275BD" Offset="0.42" />
-                        <GradientStop Color="#FF3E66AE" Offset="0.422" />
-                        <GradientStop Color="#FF63A4F1" Offset="1.0" />
-                    </LinearGradientBrush.GradientStops>
-                </LinearGradientBrush>
+			                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+			             		<LinearGradientBrush.GradientStops>
+						          <GradientStop Color="#FF909090" Offset="0.0" />
+						          <GradientStop Color="#FFAAAAAA" Offset="0.42" />
+						          <GradientStop Color="#FF999999" Offset="0.43" />
+						          <GradientStop Color="#FF888888" Offset="1.0" />
+			             		</LinearGradientBrush.GradientStops>
+			                </LinearGradientBrush>
 		        		</Setter.Value>
 		        	</Setter>
         		</Trigger.Setters>
