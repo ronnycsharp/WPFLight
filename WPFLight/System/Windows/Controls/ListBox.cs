@@ -41,9 +41,10 @@ namespace System.Windows.Controls {
 						var lbItem =
 							new ListBoxItem {
                                 FontFamily = this.FontFamily,
+								Padding = new Thickness ( 10,0,0,0 ),
 								Parent = contentPanel,
+								HorizontalContentAlignment = HorizontalAlignment.Left,	// TODO REMOVE
 								Content = item,
-								Height = 60,
 							};
 
 						lbItem.CheckedChanged += (s, e) => {
@@ -51,6 +52,10 @@ namespace System.Windows.Controls {
 								this.SelectedItem = ((ListBoxItem)s).Content;
 							}
 						};
+
+						if (this.ItemContainerStyle != null) {
+							lbItem.Style = this.ItemContainerStyle;
+						}
 							
 						lbItem.Initialize ();
 						contentPanel.Children.Add (lbItem);

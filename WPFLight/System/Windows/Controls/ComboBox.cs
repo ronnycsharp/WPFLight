@@ -28,6 +28,9 @@ namespace System.Windows.Controls {
 			itemsBinding.Source = this;
 			itemsBinding.Path = new PropertyPath ("Items");
 
+			lbItems.Margin = new Thickness (2);
+			lbItems.BorderThickness = new Thickness (0);
+			lbItems.ItemContainerStyle = (Style)this.FindResource ("ComboBoxItemStyle");
 			lbItems.SetBinding (ListBox.ItemsProperty, itemsBinding);
 			lbItems.SelectionChanged += (s,e) => {
 				window.DialogResult = this.SelectedItem != null;
@@ -93,10 +96,10 @@ namespace System.Windows.Controls {
 			window.Left = (int)this.GetAbsoluteLeft();
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
 			window.Width = this.ActualWidth;
-			window.Height = 192;	// TODO ComputeItemsHeight()
-			window.Background = new SolidColorBrush (Colors.CornflowerBlue * .75f);
-			window.BorderBrush = Brushes.Transparent;
-			window.BorderThickness = new Thickness(0);
+			window.Height = 225;	// TODO ComputeItemsHeight()
+			window.Background = new SolidColorBrush (Colors.White * .7f);
+			window.BorderBrush = Brushes.Transparent; //new SolidColorBrush (Colors.CornflowerBlue * .4f);
+			window.BorderThickness = new Thickness(1);
             window.LostFocus += delegate {
 				if ( !ignoreLostFocus )
 					this.IsDropDownOpen = false;
@@ -187,7 +190,7 @@ namespace System.Windows.Controls {
 		public override void Invalidate () {
 			base.Invalidate ();
 			window.Left = (int)this.GetAbsoluteLeft();
-			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight - 5;
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight - 3;
 		}
 
 		private bool ignoreLostFocus;

@@ -51,8 +51,31 @@ namespace System.Windows.Controls {
 			}
 		}
 
-		public HorizontalAlignment HorizontalContentAlignment { get; set; }
-		public VerticalAlignment VerticalContentAlignment { get; set; }
+		public static readonly DependencyProperty HorizontalContentAlignmentProperty =
+			DependencyProperty.Register ( 
+				"HorizontalContentAlignment", 
+				typeof ( HorizontalAlignment ), 
+				typeof ( ContentControl ),
+				new PropertyMetadata ( 
+					HorizontalAlignment.Center ) );
+
+		public HorizontalAlignment HorizontalContentAlignment {
+			get { return (HorizontalAlignment)this.GetValue (HorizontalContentAlignmentProperty); }
+			set { this.SetValue (HorizontalContentAlignmentProperty, value); }
+		}
+
+		public static readonly DependencyProperty VerticalContentAlignmentProperty =
+			DependencyProperty.Register ( 
+				"VerticalContentAlignment", 
+				typeof ( VerticalAlignment ), 
+				typeof ( ContentControl ),
+				new PropertyMetadata ( 
+					VerticalAlignment.Center ) );
+
+		public VerticalAlignment VerticalContentAlignment {
+			get { return (VerticalAlignment) this.GetValue (VerticalContentAlignmentProperty); }
+			set { this.SetValue (VerticalContentAlignmentProperty, value); }
+		}
 
 		#endregion
 
@@ -147,7 +170,7 @@ namespace System.Windows.Controls {
 						var width = this.ActualWidth;
 
 						if (textSize == null)
-							textSize = GetFont().MeasureString (text) * this.FontSize; //* this.GetConvertedFontScale ( );
+							textSize = this.GetFont().MeasureString (text) * this.FontSize; //* this.GetConvertedFontScale ( );
 							
 						var newLeft = 0f;
 						var newTop = 0f;

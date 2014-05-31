@@ -87,6 +87,7 @@
   <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
     <Style.Setters>
       <Setter Property="Opacity" Value="0.9"/>
+      <Setter Property="Height" Value="60"/>
       <Setter Property="Background" Value="#17FFFFFF" />
       <Setter Property="Foreground" Value="White" />
       <Setter Property="FontSize" Value="0.39" />
@@ -95,6 +96,7 @@
       <Setter Property="Margin" Value="3,3,3,0" />
       <Setter Property="CornerRadiusX" Value="0" />
       <Setter Property="CornerRadiusY" Value="0" />
+      <Setter Property="HorizontalContentAlignment"  Value="Left"/>
     </Style.Setters>
     <Style.Triggers>
       <Trigger Property="IsTouchDown" Value="True">
@@ -109,6 +111,58 @@
       </Trigger>
     </Style.Triggers>
   </Style>
+
+  <Style x:Key="ComboBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+    <Style.Setters>
+      <Setter Property="Opacity" Value="0.9"/>
+      <Setter Property="Height" Value="54"/>
+	<Setter Property="Background">
+		<Setter.Value>
+        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+                 		<LinearGradientBrush.GradientStops>
+				          <GradientStop Color="#FFDDDDDD" Offset="0.0" />
+				          <GradientStop Color="#FFFFFFFF" Offset="0.42" />
+				          <GradientStop Color="#FFDFDFDF" Offset="0.43" />
+				          <GradientStop Color="#FFCDCDCD" Offset="1.0" />
+                 		</LinearGradientBrush.GradientStops>
+				    </LinearGradientBrush>
+		</Setter.Value>
+	</Setter>
+      <Setter Property="Foreground" Value="#FF222222" />
+      <Setter Property="FontSize" Value="0.36" />
+      <Setter Property="BorderBrush" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Margin" Value="2,1,2,0" />
+      <Setter Property="CornerRadiusX" Value="9" />
+     <Setter Property="CornerRadiusY" Value="9" />
+      <Setter Property="HorizontalContentAlignment"  Value="Left"/>
+    </Style.Setters>
+    <Style.Triggers>
+      <Trigger Property="IsTouchDown" Value="True">
+        <Trigger.Setters>
+          <Setter Property="Opacity" Value="1.0"/>
+        </Trigger.Setters>
+      </Trigger>
+      <Trigger Property="IsChecked" Value="True">
+        <Trigger.Setters>
+        	<Setter Property="Foreground" Value="White" />
+        	<Setter Property="Background">
+        		<Setter.Value>
+	                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
+	                    <LinearGradientBrush.GradientStops>
+	                        <GradientStop Color="#FF3C8AFC" Offset="0.0" />
+	                        <GradientStop Color="#FF3564A8" Offset="0.42" />
+	                        <GradientStop Color="#FF305495" Offset="0.43" />
+	                        <GradientStop Color="#FF4486D4" Offset="1.0" />
+	                    </LinearGradientBrush.GradientStops>
+	                </LinearGradientBrush>
+        		</Setter.Value>
+        	</Setter>
+        </Trigger.Setters>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+
 
   <Style x:Key="{x:Type ToggleButton}" TargetType="{x:Type ToggleButton}">
     	<Style.Setters>
