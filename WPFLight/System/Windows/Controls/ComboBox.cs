@@ -34,17 +34,7 @@ namespace System.Windows.Controls {
 				window.Close ();
 				this.IsDropDownOpen = false;
 			};
-
-			lbItems.TouchUp += ( s, e ) => {
-				// needed to close the window if the same ListBoxItem is clicked
-
-				Console.WriteLine ( "" );
-
-				//window.DialogResult = this.SelectedItem != null;
-
-				//this.IsDropDownOpen = false;
-			};
-
+				
 			window.Content = lbItems;
 
 			var selectedItemBinding = new Binding ("SelectedItem");
@@ -92,6 +82,8 @@ namespace System.Windows.Controls {
 			cmdItem.HorizontalContentAlignment = HorizontalAlignment.Left;
 			cmdItem.Parent = this;
 			cmdItem.Style = ( Style ) this.FindResource ("ButtonNumberStyle");
+			cmdItem.BorderBrush = Brushes.Transparent;
+			cmdItem.BorderThickness = new Thickness ();
             cmdItem.FontSize = .35f;
 			cmdItem.Content = this.SelectedItem;
 			cmdItem.Initialize ();
@@ -102,9 +94,9 @@ namespace System.Windows.Controls {
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
 			window.Width = this.ActualWidth;
 			window.Height = 192;	// TODO ComputeItemsHeight()
-			window.Background = new SolidColorBrush (new System.Windows.Media.Color ( .5f, .5f, .5f ) * .95f);
+			window.Background = new SolidColorBrush (Colors.CornflowerBlue * .75f);
 			window.BorderBrush = Brushes.Transparent;
-            window.BorderThickness = new Thickness(1);
+			window.BorderThickness = new Thickness(0);
             window.LostFocus += delegate {
 				if ( !ignoreLostFocus )
 					this.IsDropDownOpen = false;
@@ -160,10 +152,10 @@ namespace System.Windows.Controls {
 			batch.Draw (
 				Textures.ArrowDown, 
 				new Rectangle (
-					(int)Math.Floor (left + this.ActualWidth - 24), 
+					(int)Math.Floor (left + this.ActualWidth - 30), 
 					(int)Math.Floor (top + this.ActualHeight / 2f), 24, 24),
 				null, 
-				new Microsoft.Xna.Framework.Color ( .32f, .32f, .32f ),
+				new Microsoft.Xna.Framework.Color ( .4f, .4f, .4f ),
 				MathHelper.ToRadians (0),
 				new Vector2 (
 					WPFLight.Resources.Textures.ArrowDown.Bounds.Width / 2f,
@@ -195,7 +187,7 @@ namespace System.Windows.Controls {
 		public override void Invalidate () {
 			base.Invalidate ();
 			window.Left = (int)this.GetAbsoluteLeft();
-			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight - 5;
 		}
 
 		private bool ignoreLostFocus;
