@@ -28,7 +28,7 @@
         		</Setter.Value>
         	</Setter>
         	<Setter Property="Foreground" Value="Black" />
-        	<Setter Property="FontSize" Value="0.32" />
+        	<Setter Property="FontSize" Value="0.31" />
         	<Setter Property="BorderBrush" Value="{x:Null}" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
@@ -58,7 +58,7 @@
         		</Setter.Value>
         	</Setter>
         	<Setter Property="Foreground" Value="White" />
-        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="FontSize" Value="0.34" />
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
@@ -128,13 +128,13 @@
 				    </LinearGradientBrush>
 		</Setter.Value>
 	</Setter>
-      <Setter Property="Foreground" Value="#FF222222" />
-      <Setter Property="FontSize" Value="0.36" />
+      <Setter Property="Foreground" Value="#FF444444" />
+      <Setter Property="FontSize" Value="0.3" />
       <Setter Property="BorderBrush" Value="Transparent" />
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Margin" Value="2,1,2,0" />
-      <Setter Property="CornerRadiusX" Value="9" />
-     <Setter Property="CornerRadiusY" Value="9" />
+      <Setter Property="CornerRadiusX" Value="6" />
+      <Setter Property="CornerRadiusY" Value="6" />
       <Setter Property="HorizontalContentAlignment"  Value="Left"/>
     </Style.Setters>
     <Style.Triggers>
@@ -180,7 +180,7 @@
         		</Setter.Value>
         	</Setter>
         	<Setter Property="Foreground" Value="White" />
-        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="FontSize" Value="0.34" />
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
@@ -228,7 +228,7 @@
         		</Setter.Value>
         	</Setter>
         	<Setter Property="Foreground" Value="White" />
-        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="FontSize" Value="0.34" />
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />

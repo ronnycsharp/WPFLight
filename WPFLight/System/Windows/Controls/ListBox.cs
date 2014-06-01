@@ -71,6 +71,16 @@ namespace System.Windows.Controls {
             base.Invalidate();
         }
 
+		protected override void OnSelectionChanged () {
+			base.OnSelectionChanged ();
+
+			/*
+			if (this.SelectedIndex < contentPanel.Children.Count) {
+				((ListBoxItem)contentPanel.Children [this.SelectedIndex]).IsChecked = true;
+			}
+			*/
+		}
+
 		public override void OnTouchMove (TouchLocation state) {
 			base.OnTouchMove (state);
 			scrollViewer.OnTouchMove (state);

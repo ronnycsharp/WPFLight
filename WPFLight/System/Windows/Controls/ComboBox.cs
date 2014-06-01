@@ -87,7 +87,7 @@ namespace System.Windows.Controls {
 			cmdItem.Style = ( Style ) this.FindResource ("ButtonNumberStyle");
 			cmdItem.BorderBrush = Brushes.Transparent;
 			cmdItem.BorderThickness = new Thickness ();
-            cmdItem.FontSize = .35f;
+			cmdItem.FontSize = .32f;
 			cmdItem.Content = this.SelectedItem;
 			cmdItem.Initialize ();
 
@@ -190,7 +190,7 @@ namespace System.Windows.Controls {
 		public override void Invalidate () {
 			base.Invalidate ();
 			window.Left = (int)this.GetAbsoluteLeft();
-			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight - 3;
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight - 5;
 		}
 
 		private bool ignoreLostFocus;
