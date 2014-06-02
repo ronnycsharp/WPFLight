@@ -364,6 +364,9 @@
     <Compile Include="..\WPFLight\System\Windows\Media\VisualTreeHelper.cs">
       <Link>System\Windows\Media\VisualTreeHelper.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\System\Windows\MessageBox.cs">
+      <Link>System\Windows\MessageBox.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\System\Windows\Point.cs">
       <Link>System\Windows\Point.cs</Link>
     </Compile>

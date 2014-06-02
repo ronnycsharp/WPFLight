@@ -519,6 +519,13 @@ namespace System.Windows.Markup {
             if (conv != null)
                 return conv.ConvertFrom(value);
 
+            var underlyingType = Nullable.GetUnderlyingType(propertyType);
+            if (underlyingType != null)
+                propertyType = underlyingType;
+
+            if (propertyType.IsEnum)
+                value = Enum.Parse(propertyType, (string) value, true);
+
             return System.Convert.ChangeType(
                 value, propertyType, System.Globalization.CultureInfo.InvariantCulture);
 #else 

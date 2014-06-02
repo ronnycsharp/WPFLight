@@ -10,9 +10,11 @@ namespace System.Windows.Shapes {
             dicTextures = new Dictionary<Rectangle, Texture2D>();
         }
 
-        public Rectangle () { }
+        public Rectangle () { 
 
-		#region Eigenschaften
+        }
+
+		#region Properties
 
 		public static readonly DependencyProperty RadiusXProperty =
 			DependencyProperty.Register (
@@ -343,8 +345,8 @@ namespace System.Windows.Shapes {
 
 		static readonly RasterizerState SCISSOR_ENABLED = 
 			new RasterizerState { 
-			CullMode = CullMode.None, 
-			ScissorTestEnable = true 
+			    CullMode = CullMode.None, 
+			    ScissorTestEnable = true 
 		};
 
         private static Dictionary<Rectangle, Texture2D> dicTextures;

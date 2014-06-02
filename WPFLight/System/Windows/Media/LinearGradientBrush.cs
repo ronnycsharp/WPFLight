@@ -2,6 +2,8 @@
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using WPFLight.Helpers;
+using WPFLight.Extensions;
 
 namespace System.Windows.Media
 {
@@ -51,24 +53,6 @@ namespace System.Windows.Media
             var height = 100;
 
             var tex = new Texture2D(this.GraphicsDevice, width, height);
-            /*
-            var data = new int[width * height];
-            
-            var deltaX = EndPoint.X - StartPoint.X;
-            var deltaY = EndPoint.Y - StartPoint.Y;
-            var denom = 1.0f / ((deltaX * deltaX) + (deltaY * deltaY));
-
-            for (var y = 0; y < height; ++y)
-            {
-                for (var x = 0; x < width; ++x)
-                {
-                    var t = (deltaX * (x - StartPoint.X) + deltaY * (y - StartPoint.Y)) * denom;
-                    data[y * width + x] =
-                        (int)GetGradientColor(t / 100f).PackedValue;
-                }
-            }
-            tex.SetData(data);
-             * */
             tex.SetData(this.GetTextureData(width, height));
             return tex;
         }
@@ -81,11 +65,53 @@ namespace System.Windows.Media
 			return this.GetGradientColor (t / 100f);
 		}
 
-        internal override int[] GetTextureData (int width, int height) {
+        internal override int[] GetTextureData ( int width, int height ) {
             var pixels = new int[width * height];
-            for ( var y = 0; y < height; y++ ) {
-                for ( var x = 0; x < width; x++) {
-                    pixels[y * width + x] = ( int ) GetPixel(x, y, width, height).PackedValue;
+            var copyHorizontal = false;
+            var copyVertical = false;
+
+            if (this.StartPoint.X == this.EndPoint.X) {
+                // 0° / 180° - copy vertical lines
+                copyVertical = true;
+            }
+
+            if (this.EndPoint.Y == this.StartPoint.Y) {
+                // 90° / 270° - copy horizontal lines
+                copyHorizontal = true;
+            }
+
+            if (copyVertical) {
+                var lastValue = 0;
+                var srcLine = default ( int[] );
+
+                // copy each line
+                for (var y = 0; y < height; y++) {
+                    var value = (int) this.GetPixel(0, y, width, height).PackedValue;
+                    if ( srcLine == null || ( lastValue!= value ) ) {
+                        if ( srcLine == null )
+                            srcLine = new int [ width ];
+
+                        srcLine.Fill<int> ( value );
+                        lastValue = value;
+                    }
+                    Array.Copy (
+                        srcLine, 0, pixels, y * width, width); 
+                }
+            } else if ( copyHorizontal ) {
+                // Array.Copy can't be used for Horizontal-Copy
+                for (var x = 0; x < width; x++) {
+                    var value = (int)this.GetPixel(x, 0, width, height).PackedValue;
+                    for (var y = 0; y < height; y++) {
+                        pixels[y * width + x] = value;
+                    }
+                }
+            } else {
+                // copy each pixel
+                for ( var y = 0; y < height; y++ ) {
+                    for ( var x = 0; x < width; x++) {
+                        pixels[y * width + x] = 
+                            ( int ) this.GetPixel(x, y, width, height).PackedValue;
+                    }
                 }
             }
             return pixels;
