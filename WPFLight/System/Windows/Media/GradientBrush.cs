@@ -126,9 +126,11 @@ namespace System.Windows.Media {
 		}
 
 		protected Color GetGradientColor (float offset) {
-
+            offset = MathHelper.Clamp(offset, 0, 1);
+            /*
 			if (offset > 1)
 				offset = 1;
+             * */
 
 			var prevTimeMillis = GetPrevOffset (offset);
 			var nextTimeMillis = GetNextOffset (offset);

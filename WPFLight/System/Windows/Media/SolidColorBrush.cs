@@ -34,7 +34,7 @@ namespace System.Windows.Media {
 			this.Color = new Color (r, g, b, a);
 		}
 			
-		#region Eigenschaften
+		#region Properties
 
 		public System.Windows.Media.Color Color { get; set; }
 
@@ -55,12 +55,7 @@ namespace System.Windows.Media {
 				null,
 				transform);
 
-			//this.Color = Colors.Red * .1f;
-
 			var color = ColorHelper.ToXnaColor (this.Color);
-
-			//color = new Microsoft.Xna.Framework.Color ( 1f,0,0 ) * .5f;
-
 			batch.Draw (solid, bounds, (color * ((float)color.A / 255f) * alpha));
 			batch.End ();
 		}
