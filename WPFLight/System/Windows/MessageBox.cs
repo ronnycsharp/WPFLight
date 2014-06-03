@@ -7,7 +7,7 @@ namespace System.Windows.Controls {
 			this.Width = 350;
 			this.Height = 200;
 
-			/*
+            /*
 			var background = new LinearGradientBrush ();
 			background.Opacity = .8f;
 			background.StartPoint = new Point (0, 0);
@@ -16,9 +16,9 @@ namespace System.Windows.Controls {
 			background.GradientStops.Add (new GradientStop (.4f, new Color (0.5f, .5f, .5f)));
 			background.GradientStops.Add (new GradientStop (.401f, new Color (0.3f, .3f, .3f)));
 			background.GradientStops.Add (new GradientStop (1, new Color (0.6f, .6f, .6f)));
-			*/
+            */
 
-			this.Background = new SolidColorBrush (System.Windows.Media.Color.FromArgb (230, 180, 180, 180 ));
+            this.Background = new SolidColorBrush (System.Windows.Media.Color.FromArgb (230, 180, 180, 180 ));
 			this.BorderBrush = new SolidColorBrush (new Color(.8f,.8f,.8f )*.4f);
 			this.BorderThickness = new Thickness (2);
 

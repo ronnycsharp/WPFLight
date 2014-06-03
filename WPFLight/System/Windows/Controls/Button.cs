@@ -44,14 +44,6 @@ namespace System.Windows.Controls {
 
 		#endregion
 
-		public void Hide () {
-			this.Visible = false;
-		}
-
-		public void Show () {
-			this.Visible = true;
-		}
-
 		public override void Invalidate () {
 			base.Invalidate ();
 			if (this.IsInitialized) {

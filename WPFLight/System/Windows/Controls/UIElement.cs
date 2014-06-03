@@ -193,6 +193,11 @@ namespace System.Windows.Controls {
 			}
 			set {
                 this.IsVisible = value;
+                if (value)
+                    this.Visibility = Visibility.Visible;
+                else {
+                    this.Visibility = Visibility.Hidden;
+                }
 			}
 		}
 			
