@@ -121,8 +121,6 @@
         		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
                  		<LinearGradientBrush.GradientStops>
 				          <GradientStop Color="#FFDDDDDD" Offset="0.0" />
-				          <GradientStop Color="#FFFFFFFF" Offset="0.42" />
-				          <GradientStop Color="#FFDFDFDF" Offset="0.43" />
 				          <GradientStop Color="#FFCDCDCD" Offset="1.0" />
                  		</LinearGradientBrush.GradientStops>
 				    </LinearGradientBrush>
