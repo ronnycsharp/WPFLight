@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{8FF3D45F-8E62-4080-960D-79EA00BC4FFF}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
@@ -14,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ReleaseVersion>2.1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,12 +40,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\WPFLight\System\Collections\ObjectModel\ObservableCollection.cs">
-      <Link>System\Collections\ObjectModel\ObservableCollection.cs</Link>
-    </Compile>
     <Compile Include="..\WPFLight\System\Collections\Specialized\INotifyCollectionChanged.cs">
       <Link>System\Collections\Specialized\INotifyCollectionChanged.cs</Link>
     </Compile>
@@ -110,9 +107,6 @@
     <Compile Include="..\WPFLight\System\Windows\Size.cs">
       <Link>System\Windows\Size.cs</Link>
     </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Style.cs">
-      <Link>System\Windows\Style.cs</Link>
-    </Compile>
     <Compile Include="..\WPFLight\System\Windows\Thickness.cs">
       <Link>System\Windows\Thickness.cs</Link>
     </Compile>
@@ -125,9 +119,6 @@
     <Compile Include="..\WPFLight\System\Windows\TriggerCollection.cs">
       <Link>System\Windows\TriggerCollection.cs</Link>
     </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Vector2Converter.cs">
-      <Link>System\Windows\Vector2Converter.cs</Link>
-    </Compile>
     <Compile Include="..\WPFLight\System\Windows\Window.cs">
       <Link>System\Windows\Window.cs</Link>
     </Compile>
@@ -136,9 +127,6 @@
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\Canvas.cs">
       <Link>System\Windows\Controls\Canvas.cs</Link>
-    </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Controls\CheckButton.cs">
-      <Link>System\Windows\Controls\CheckButton.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\ColumnDefinition.cs">
       <Link>System\Windows\Controls\ColumnDefinition.cs</Link>
@@ -166,9 +154,6 @@
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\DialogBox.cs">
       <Link>System\Windows\Controls\DialogBox.cs</Link>
-    </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Controls\FocusableControl.cs">
-      <Link>System\Windows\Controls\FocusableControl.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\System\Windows\Controls\GameWindow.cs">
       <Link>System\Windows\Controls\GameWindow.cs</Link>
@@ -266,9 +251,6 @@
     <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\Selector.cs">
       <Link>System\Windows\Controls\Primitives\Selector.cs</Link>
     </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\TabPanel.cs">
-      <Link>System\Windows\Controls\Primitives\TabPanel.cs</Link>
-    </Compile>
     <Compile Include="..\WPFLight\System\Windows\Data\Binding.cs">
       <Link>System\Windows\Data\Binding.cs</Link>
     </Compile>
@@ -335,9 +317,6 @@
     <Compile Include="..\WPFLight\System\Windows\Media\Animation\Clock.cs">
       <Link>System\Windows\Media\Animation\Clock.cs</Link>
     </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Media\Animation\Easing.cs">
-      <Link>System\Windows\Media\Animation\Easing.cs</Link>
-    </Compile>
     <Compile Include="..\WPFLight\System\Windows\Media\Animation\IAnimationBase.cs">
       <Link>System\Windows\Media\Animation\IAnimationBase.cs</Link>
     </Compile>
@@ -359,9 +338,6 @@
     <Compile Include="..\WPFLight\System\Windows\Media\Animation\Timeline.cs">
       <Link>System\Windows\Media\Animation\Timeline.cs</Link>
     </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Shapes\Ellipse.cs">
-      <Link>System\Windows\Shapes\Ellipse.cs</Link>
-    </Compile>
     <Compile Include="..\WPFLight\System\Windows\Shapes\Rectangle.cs">
       <Link>System\Windows\Shapes\Rectangle.cs</Link>
     </Compile>
@@ -373,6 +349,42 @@
     </Compile>
     <Compile Include="..\WPFLight\Resources\Textures.cs">
       <Link>Resources\Textures.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\ToggleButton.cs">
+      <Link>System\Windows\Controls\Primitives\ToggleButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Extensions\ArrayExtensions.cs">
+      <Link>Extensions\ArrayExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Extensions\EnumExtensions.cs">
+      <Link>Extensions\EnumExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Helpers\ArrayHelper.cs">
+      <Link>Helpers\ArrayHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\FrameworkPropertyMetadata.cs">
+      <Link>System\Windows\FrameworkPropertyMetadata.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Initializer.cs">
+      <Link>Initializer.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\VisualTreeHelper.cs">
+      <Link>System\Windows\Media\VisualTreeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\FontContainer.cs">
+      <Link>System\Windows\Media\FontContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Style.cs">
+      <Link>System\Windows\Style.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\MessageBox.cs">
+      <Link>System\Windows\MessageBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Helpers\ResourceHelper.cs">
+      <Link>Helpers\ResourceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Collections\ObjectModel\ObservableCollection.cs">
+      <Link>System\Collections\ObjectModel\ObservableCollection.cs</Link>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
@@ -394,16 +406,23 @@
     <Folder Include="Extensions\" />
     <Folder Include="Helpers\" />
     <Folder Include="Resources\" />
+    <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\WPFLight\System\Windows\.DS_Store">
-      <Link>System\Windows\.DS_Store</Link>
+    <EmbeddedResource Include="..\WPFLight\Themes\Default.xaml">
+      <Link>Themes\Default.xaml</Link>
+      <LogicalName>WPFLight.Themes.Default.xaml</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\WPFLight\System\Windows\Media\Animation\Easing.cs">
+      <Link>System\Windows\Media\Animation\Easing.cs</Link>
     </None>
-    <None Include="..\WPFLight\System\Windows\Controls\.DS_Store">
-      <Link>System\Windows\Controls\.DS_Store</Link>
+    <None Include="..\WPFLight\System\Windows\Shapes\Ellipse.cs">
+      <Link>System\Windows\Shapes\Ellipse.cs</Link>
     </None>
-    <None Include="..\WPFLight\System\Windows\Media\.DS_Store">
-      <Link>System\Windows\Media\.DS_Store</Link>
+    <None Include="..\WPFLight\System\Windows\Controls\FocusableControl.cs">
+      <Link>System\Windows\Controls\FocusableControl.cs</Link>
     </None>
   </ItemGroup>
 </Project>

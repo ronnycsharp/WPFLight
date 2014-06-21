@@ -11,7 +11,7 @@ using Android.App;
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "" )]
 [assembly: AssemblyProduct ( "WPFLight.Android" )]
-[assembly: AssemblyCopyright ( "Copyright ©  2013" )]
+[assembly: AssemblyCopyright ( "Copyright ©  2012-2014" )]
 [assembly: AssemblyTrademark ( "" )]
 [assembly: AssemblyCulture ( "" )]
 [assembly: ComVisible ( false )]
