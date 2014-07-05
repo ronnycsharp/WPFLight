@@ -64,6 +64,7 @@ namespace System.Windows.Controls {
 			window = new Window(this);
 			window.IsToolTip = false;
 			window.FontFamily = this.FontFamily;
+			window.BorderThickness = new Thickness (0);
 			window.Background = new SolidColorBrush(/*new System.Windows.Media.Color ( .8f, .8f, .8f )*/ Colors.CornflowerBlue * .8f);
 			window.Left = (int)this.GetAbsoluteLeft() + this.ActualWidth + 2;
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;

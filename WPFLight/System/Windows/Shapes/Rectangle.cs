@@ -210,17 +210,17 @@ namespace System.Windows.Shapes {
 
 			// Image-Scaling 2x - looks better
 
-			var width = (int)Math.Ceiling (this.ActualWidth*2.0);
-			var height = (int)Math.Ceiling (this.ActualHeight*2.0);
+			var width = (int)Math.Ceiling (this.ActualWidth);
+			var height = (int)Math.Ceiling (this.ActualHeight);
 
 			var rcBorder = new Rect (
 				0, 0, width, height);
 
 			var rcBackground = new Rect (
-				(int)Math.Ceiling (this.StrokeThickness*2.0),
-				(int)Math.Ceiling (this.StrokeThickness*2.0),
-				(int)(Math.Ceiling ((double)width) - this.StrokeThickness * 2.0 - this.StrokeThickness * 2.0),
-				(int)(Math.Ceiling ((double)height) - this.StrokeThickness * 2.0 - this.StrokeThickness * 2.0));
+				(int)Math.Ceiling (this.StrokeThickness),
+				(int)Math.Ceiling (this.StrokeThickness),
+				(int)(Math.Ceiling ((double)width) - this.StrokeThickness  - this.StrokeThickness ),
+				(int)(Math.Ceiling ((double)height) - this.StrokeThickness  - this.StrokeThickness ));
 				
 			var borderRects = GetRects (GetPoints (rcBorder, this.RadiusX, this.RadiusY));
 			var bgRects = GetRects (GetPoints (rcBackground, this.RadiusX, this.RadiusY));

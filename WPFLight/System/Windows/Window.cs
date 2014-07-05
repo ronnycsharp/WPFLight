@@ -19,10 +19,10 @@ namespace System.Windows {
 			this.WindowStartUpLocation = WindowStartUpLocation.CenterScreen;
             
             rcBackground = new System.Windows.Shapes.Rectangle();
-			rcBackground.StrokeThickness = 2;
+			rcBackground.StrokeThickness = 1;
             rcBackground.Parent = this;
-			rcBackground.RadiusX = 10;
-			rcBackground.RadiusY = 10;
+			rcBackground.RadiusX = 0;
+			rcBackground.RadiusY = 0;
 
             rcBackground.SetBinding (
                 System.Windows.Shapes.Rectangle.FillProperty, 

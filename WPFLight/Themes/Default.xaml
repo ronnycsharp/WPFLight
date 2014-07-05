@@ -20,8 +20,6 @@
 	                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
 	                    <LinearGradientBrush.GradientStops>
 	                        <GradientStop Color="#FFD6D6D6" Offset="0.0" />
-	                        <GradientStop Color="#FFB6B6B6" Offset="0.42" />
-	                        <GradientStop Color="#FFA4A4A4" Offset="0.43" />
 	                        <GradientStop Color="#FFCFCFCF" Offset="1.0" />
 	                    </LinearGradientBrush.GradientStops>
 	                </LinearGradientBrush>
@@ -62,8 +60,8 @@
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
-        	<Setter Property="CornerRadiusX" Value="9" />
-        	<Setter Property="CornerRadiusY" Value="9" />
+        	<Setter Property="CornerRadiusX" Value="0" />
+        	<Setter Property="CornerRadiusY" Value="0" />
         </Style.Setters>
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
@@ -131,8 +129,8 @@
       <Setter Property="BorderBrush" Value="Transparent" />
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Margin" Value="2,1,2,0" />
-      <Setter Property="CornerRadiusX" Value="6" />
-      <Setter Property="CornerRadiusY" Value="6" />
+      <Setter Property="CornerRadiusX" Value="0" />
+      <Setter Property="CornerRadiusY" Value="0" />
       <Setter Property="HorizontalContentAlignment"  Value="Left"/>
     </Style.Setters>
     <Style.Triggers>
@@ -182,8 +180,8 @@
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
-        	<Setter Property="CornerRadiusX" Value="9" />
-        	<Setter Property="CornerRadiusY" Value="9" />
+        	<Setter Property="CornerRadiusX" Value="0" />
+        	<Setter Property="CornerRadiusY" Value="0" />
         </Style.Setters>
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
@@ -230,8 +228,8 @@
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
-        	<Setter Property="CornerRadiusX" Value="9" />
-        	<Setter Property="CornerRadiusY" Value="9" />
+        	<Setter Property="CornerRadiusX" Value="0" />
+        	<Setter Property="CornerRadiusY" Value="0" />
         </Style.Setters>
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
@@ -295,8 +293,8 @@
 			<Setter Property="BorderBrush" Value="#88AAAAFF"/>
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
-        	<Setter Property="CornerRadiusX" Value="9" />
-        	<Setter Property="CornerRadiusY" Value="9" />
+        	<Setter Property="CornerRadiusX" Value="0" />
+        	<Setter Property="CornerRadiusY" Value="0" />
         </Style.Setters>
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
@@ -332,8 +330,8 @@
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
-        	<Setter Property="CornerRadiusX" Value="9" />
-        	<Setter Property="CornerRadiusY" Value="9" />
+        	<Setter Property="CornerRadiusX" Value="0" />
+        	<Setter Property="CornerRadiusY" Value="0" />
         </Style.Setters>
         <Style.Triggers>
         	<Trigger Property="IsTouchDown" Value="True">
