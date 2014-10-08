@@ -514,7 +514,6 @@ namespace System.Windows.Markup {
             if (value == null)
                 return null;
 								
-#if ( WINDOWS_PHONE )
             var conv = TypeDescriptor.GetConverter(propertyType);
             if (conv != null)
                 return conv.ConvertFrom(value);
@@ -528,15 +527,6 @@ namespace System.Windows.Markup {
 
             return System.Convert.ChangeType(
                 value, propertyType, System.Globalization.CultureInfo.InvariantCulture);
-#else 
-
-			var underlyingType = Nullable.GetUnderlyingType ( propertyType );
-			if ( underlyingType != null )
-				propertyType = underlyingType;
-
-			var conv = TypeDescriptor.GetConverter(propertyType);
-            return conv.ConvertFrom(value);
-#endif
         }
 
 		object ReadValue (object value, Type targetType) {
