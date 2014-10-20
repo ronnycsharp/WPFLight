@@ -513,14 +513,14 @@ namespace System.Windows.Markup {
 
             if (value == null)
                 return null;
-								
-            var conv = TypeDescriptor.GetConverter(propertyType);
-            if (conv != null)
-                return conv.ConvertFrom(value);
-
+				
             var underlyingType = Nullable.GetUnderlyingType(propertyType);
             if (underlyingType != null)
                 propertyType = underlyingType;
+
+			var conv = TypeDescriptor.GetConverter(propertyType);
+			if (conv != null)
+				return conv.ConvertFrom(value);
 
             if (propertyType.IsEnum)
                 value = Enum.Parse(propertyType, (string) value, true);

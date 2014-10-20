@@ -68,8 +68,8 @@ namespace System.Windows.Controls {
 			rcBackground.Top = (int)((this.ActualHeight / 2f) - (rcBackground.Height / 2f));
 			//rcBackground.BorderColor = new Color (1, 1, 1, .8f);
 			rcBackground.StrokeThickness = 1;
-			rcBackground.RadiusX = 2;
-			rcBackground.RadiusY = 2;
+			rcBackground.RadiusX = 0;
+			rcBackground.RadiusY = 0;
 			this.Children.Add (rcBackground);
 
 			cmdTrack = new Button ( );
@@ -84,8 +84,8 @@ namespace System.Windows.Controls {
 			cmdTrack.Left = 0;
 			cmdTrack.Top = 0;
 			cmdTrack.Margin = new Thickness (0, 2, 0, 0);
-			cmdTrack.CornerRadiusX = 3;
-			cmdTrack.CornerRadiusY = 3;
+			cmdTrack.CornerRadiusX = 0;
+			cmdTrack.CornerRadiusY = 0;
 			this.Children.Add (cmdTrack);
 
 			base.Initialize ();

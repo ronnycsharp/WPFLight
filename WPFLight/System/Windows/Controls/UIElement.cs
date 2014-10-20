@@ -186,7 +186,7 @@ namespace System.Windows.Controls {
 			set { SetValue (OpacityProperty, value); }
 		}
 
-        [Obsolete]
+        //[Obsolete]
 		public bool Visible {
 			get {
                 return this.IsVisible;
@@ -329,7 +329,7 @@ namespace System.Windows.Controls {
 		}
 
         // Nur WorkArround- Bis alle Left/Top auf Margin umgestellt sind.
-		[Obsolete]
+		//[Obsolete]
         public float Left {
             set {
                 this.Margin = new Thickness(value, this.Margin.Top, this.Margin.Right, this.Margin.Bottom);
@@ -338,7 +338,7 @@ namespace System.Windows.Controls {
         }
 
         // Nur WorkArround- Bis alle Left/Top auf Margin umgestellt sind.
-		[Obsolete]
+		//[Obsolete]
         public float Top {
             set {
                 this.Margin = new Thickness(this.Margin.Left, value, this.Margin.Right, this.Margin.Bottom);

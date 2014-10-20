@@ -43,18 +43,7 @@
     <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
     	<Style.Setters>
     		<Setter Property="Opacity" Value="0.9"/>
-        	<Setter Property="Background">
-        		<Setter.Value>
-        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-                 		<LinearGradientBrush.GradientStops>
-				          <GradientStop Color="#FF505050" Offset="0.0" />
-				          <GradientStop Color="#FF707070" Offset="0.42" />
-				          <GradientStop Color="#FF606060" Offset="0.43" />
-				          <GradientStop Color="#FF444444" Offset="1.0" />
-                 		</LinearGradientBrush.GradientStops>
-				    </LinearGradientBrush>
-        		</Setter.Value>
-        	</Setter>
+        	<Setter Property="Background" Value="#66505050" />
         	<Setter Property="Foreground" Value="White" />
         	<Setter Property="FontSize" Value="0.34" />
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
@@ -163,18 +152,7 @@
   <Style x:Key="{x:Type ToggleButton}" TargetType="{x:Type ToggleButton}">
     	<Style.Setters>
     		<Setter Property="Opacity" Value="0.9"/>
-        	<Setter Property="Background">
-        		<Setter.Value>
-        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-                 		<LinearGradientBrush.GradientStops>
-				          <GradientStop Color="#FF505050" Offset="0.0" />
-				          <GradientStop Color="#FF707070" Offset="0.42" />
-				          <GradientStop Color="#FF606060" Offset="0.43" />
-				          <GradientStop Color="#FF444444" Offset="1.0" />
-                 		</LinearGradientBrush.GradientStops>
-				    </LinearGradientBrush>
-        		</Setter.Value>
-        	</Setter>
+        	<Setter Property="Background" Value="#66505050" />
         	<Setter Property="Foreground" Value="White" />
         	<Setter Property="FontSize" Value="0.34" />
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
@@ -191,18 +169,7 @@
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
         		<Trigger.Setters>
-		        	<Setter Property="Background">
-		        		<Setter.Value>
-		        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-		                 		<LinearGradientBrush.GradientStops>
-						          <GradientStop Color="#FF606060" Offset="0.0" />
-						          <GradientStop Color="#FF808080" Offset="0.42" />
-						          <GradientStop Color="#FF707070" Offset="0.43" />
-						          <GradientStop Color="#FF555555" Offset="1.0" />
-		                 		</LinearGradientBrush.GradientStops>
-						    </LinearGradientBrush>
-		        		</Setter.Value>
-		        	</Setter>
+        		    <Setter Property="Background" Value="#CC656565" />
         		</Trigger.Setters>
         	</Trigger>
         </Style.Triggers>
@@ -211,18 +178,7 @@
     <Style x:Key="{x:Type RadioButton}" TargetType="{x:Type RadioButton}">
     	<Style.Setters>
     		<Setter Property="Opacity" Value="0.9"/>
-        	<Setter Property="Background">
-        		<Setter.Value>
-        		   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-                 		<LinearGradientBrush.GradientStops>
-				          <GradientStop Color="#FF505050" Offset="0.0" />
-				          <GradientStop Color="#FF707070" Offset="0.42" />
-				          <GradientStop Color="#FF606060" Offset="0.43" />
-				          <GradientStop Color="#FF444444" Offset="1.0" />
-                 		</LinearGradientBrush.GradientStops>
-				    </LinearGradientBrush>
-        		</Setter.Value>
-        	</Setter>
+        	<Setter Property="Background" Value="#66505050" />
         	<Setter Property="Foreground" Value="White" />
         	<Setter Property="FontSize" Value="0.34" />
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
@@ -239,18 +195,7 @@
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
         		<Trigger.Setters>
- 		        	<Setter Property="Background">
-		        		<Setter.Value>
-			                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-			                    <LinearGradientBrush.GradientStops>
-			                        <GradientStop Color="#FF68CB43" Offset="0.0" />
-			                        <GradientStop Color="#FF339E2E" Offset="0.42" />
-			                        <GradientStop Color="#FF2E8D2E" Offset="0.438" />
-			                        <GradientStop Color="#FF5EE441" Offset="1.0" />
-			                    </LinearGradientBrush.GradientStops>
-			                </LinearGradientBrush>
-		        		</Setter.Value>
-		        	</Setter>
+        		    <Setter Property="Background" Value="#FF68CB43" />
         		</Trigger.Setters>
         	</Trigger>
         	<Trigger Property="IsEnabled" Value="False">
@@ -276,18 +221,7 @@
     <Style x:Key="{x:Type MenuButton}" TargetType="{x:Type MenuButton}">
     	<Style.Setters>
     		<Setter Property="Opacity" Value="0.9"/>
-        	<Setter Property="Background">
-        		<Setter.Value>
-    	    	<LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-             		<LinearGradientBrush.GradientStops>
-			          <GradientStop Color="#FF707070" Offset="0.0" />
-			          <GradientStop Color="#FF909090" Offset="0.42" />
-			          <GradientStop Color="#FF808080" Offset="0.43" />
-			          <GradientStop Color="#FF666666" Offset="1.0" />
-             		</LinearGradientBrush.GradientStops>
-                </LinearGradientBrush>
-        		</Setter.Value>
-        	</Setter>
+        	<Setter Property="Background" Value="#66808080" />
         	<Setter Property="Foreground" Value="White" />
         	<Setter Property="FontSize" Value="0.37" />
 			<Setter Property="BorderBrush" Value="#88AAAAFF"/>
@@ -304,18 +238,7 @@
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
         		<Trigger.Setters>
-		        	<Setter Property="Background">
-		        		<Setter.Value>
-			                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-			             		<LinearGradientBrush.GradientStops>
-						          <GradientStop Color="#FF909090" Offset="0.0" />
-						          <GradientStop Color="#FFAAAAAA" Offset="0.42" />
-						          <GradientStop Color="#FF999999" Offset="0.43" />
-						          <GradientStop Color="#FF888888" Offset="1.0" />
-			             		</LinearGradientBrush.GradientStops>
-			                </LinearGradientBrush>
-		        		</Setter.Value>
-		        	</Setter>
+		        	<Setter Property="Background" Value="#66AAAAAA"/>
         		</Trigger.Setters>
         	</Trigger>
         </Style.Triggers>
