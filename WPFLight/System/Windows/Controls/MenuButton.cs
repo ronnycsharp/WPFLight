@@ -65,7 +65,7 @@ namespace System.Windows.Controls {
 			window.IsToolTip = false;
 			window.FontFamily = this.FontFamily;
 			window.BorderThickness = new Thickness (0);
-			window.Background = new SolidColorBrush(/*new System.Windows.Media.Color ( .8f, .8f, .8f )*/ Colors.CornflowerBlue );
+            window.Background = new SolidColorBrush(new System.Windows.Media.Color ( .2f, .2f, .2f ) * .9f); // new SolidColorBrush(/*new System.Windows.Media.Color ( .8f, .8f, .8f )*/ Colors.CornflowerBlue );
 			window.Left = (int)this.GetAbsoluteLeft() + this.ActualWidth + 2;
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight / 2f - this.ItemsPanel.ActualHeight / 2f;
 			window.Width = this.ItemsPanel.ActualWidth;
@@ -139,7 +139,7 @@ namespace System.Windows.Controls {
 			cmd.Width = 80;
 			cmd.Margin = new Thickness(2);
 			cmd.HorizontalAlignment = HorizontalAlignment.Left;
-			cmd.BorderBrush = new SolidColorBrush ( Colors.Black * .17f );
+            cmd.BorderBrush = new SolidColorBrush(Colors.White * .25f);
 			cmd.BorderThickness = new Thickness (1f);
 
 			if (foreground != null)
@@ -163,6 +163,8 @@ namespace System.Windows.Controls {
 			
         public void AddItem (Button cmd) {
 			cmd.Parent = this.ItemsPanel;
+            cmd.BorderBrush = new SolidColorBrush(System.Windows.Media.Colors.White * .25f);
+            cmd.BorderThickness = new Thickness(1);
 			cmd.Height = 60;
 			cmd.Width = 80;
 			cmd.Margin = new Thickness(2);
@@ -189,6 +191,8 @@ namespace System.Windows.Controls {
 		public void AddItem (Image img, object tag) {
 			var cmd = new Button ();
 			cmd.Content = img;
+            cmd.BorderBrush = new SolidColorBrush(System.Windows.Media.Colors.White * .25f);
+            cmd.BorderThickness = new Thickness(1);
 			cmd.Parent = this.ItemsPanel;
 			cmd.Height = 60;
 			cmd.Width = 80;
@@ -222,6 +226,8 @@ namespace System.Windows.Controls {
 		public void AddItem ( Texture2D image, Thickness margin, object tag ) {
 			var cmd = new Button ();
 			cmd.Content = new Image ( image) { Margin = margin };
+            cmd.BorderBrush = new SolidColorBrush(System.Windows.Media.Colors.White * .25f);
+            cmd.BorderThickness = new Thickness(1);
 			cmd.Parent = this.ItemsPanel;
 			cmd.Height = 60;
 			cmd.Width = 80;

@@ -49,11 +49,13 @@ namespace System.Windows.Controls {
 		public float Value { 
 			get { return myValue; }
 			set {
-				var v = MathHelper.Clamp (value, MinValue, MaxValue);
-				if (v != myValue) {
-					myValue = v;
-					this.RaiseValueChanged ();
-				}
+                if (value != myValue) {
+                    var v = MathHelper.Clamp(value, MinValue, MaxValue);
+                    if (v != myValue) {
+                        myValue = v;
+                        this.RaiseValueChanged();
+                    }
+                }
 			}
 		}
 

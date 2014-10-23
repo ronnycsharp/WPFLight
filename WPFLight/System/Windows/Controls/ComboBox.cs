@@ -155,10 +155,10 @@ namespace System.Windows.Controls {
 			batch.Draw (
 				Textures.ArrowDown, 
 				new Rectangle (
-					(int)Math.Floor (left + this.ActualWidth - 30), 
-					(int)Math.Floor (top + this.ActualHeight / 2f), 24, 24),
+					(int)Math.Floor (left + this.ActualWidth - 20), 
+					(int)Math.Floor (top + this.ActualHeight / 2f), 20, 20),
 				null, 
-				new Microsoft.Xna.Framework.Color ( .4f, .4f, .4f ),
+				new Microsoft.Xna.Framework.Color ( .8f, .8f, .8f ) * .5f,
 				MathHelper.ToRadians (0),
 				new Vector2 (
 					WPFLight.Resources.Textures.ArrowDown.Bounds.Width / 2f,
