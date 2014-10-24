@@ -63,7 +63,7 @@ namespace System.Windows.Controls {
             cmdCancel.IsEnabled = true;
 			cmdCancel.Margin = new Thickness (15, 5, 15, 10);
 			cmdCancel.Width = 120;
-            cmdCancel.Style = ( Style ) this.FindResource("ButtonNumberStyle");
+            //cmdCancel.Style = ( Style ) this.FindResource("ButtonNumberStyle");
             cmdCancel.FontSize = .36f;
             cmdCancel.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
 			//cmdCancel.Foreground = Brushes.White;
@@ -82,7 +82,7 @@ namespace System.Windows.Controls {
 			cmdOkay.Margin = new Thickness (15, 5, 145, 10);
 			cmdOkay.Width = 80;
 			//cmdOkay.Foreground = Brushes.White;
-            cmdOkay.Style = (Style)this.FindResource("ButtonNumberStyle");
+            //cmdOkay.Style = (Style)this.FindResource("ButtonNumberStyle");
             cmdOkay.FontSize = .36f;
             cmdOkay.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
 			cmdOkay.HorizontalAlignment = HorizontalAlignment.Right;
