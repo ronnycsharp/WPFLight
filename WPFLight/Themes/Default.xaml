@@ -34,21 +34,26 @@
     <Style x:Key="{x:Type Button}" TargetType="{x:Type Button}">
     	<Style.Setters>
     		<Setter Property="Opacity" Value="0.9"/>
-        	<Setter Property="Background" Value="#66505050" />
+        	<Setter Property="Background" Value="#77505050" />
         	<Setter Property="Foreground" Value="White" />
         	<Setter Property="FontSize" Value="0.34" />
-        	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
         	<Setter Property="CornerRadiusX" Value="0" />
         	<Setter Property="CornerRadiusY" Value="0" />
         </Style.Setters>
         <Style.Triggers>
-        	<Trigger Property="IsTouchDown" Value="True">
-        		<Trigger.Setters>
-        			<Setter Property="Opacity" Value="1.0"/>
-        		</Trigger.Setters>
-        	</Trigger>
+          <Trigger Property="IsTouchDown" Value="True">
+            <Trigger.Setters>
+              <Setter Property="Opacity" Value="1.0"/>
+            </Trigger.Setters>
+          </Trigger>
+          <Trigger Property="IsEnabled" Value="False">
+            <Trigger.Setters>
+              <Setter Property="Background" Value="#77404040"/>
+              <Setter Property="Foreground" Value="#FF999999"/>
+            </Trigger.Setters>
+          </Trigger>
         </Style.Triggers>
     </Style>
 
@@ -84,7 +89,7 @@
       </Trigger>
       <Trigger Property="IsChecked" Value="True">
         <Trigger.Setters>
-      		<Setter Property="Background" Value="CornflowerBlue" />
+      		<Setter Property="Background" Value="#44FFFFFF" />
         </Trigger.Setters>
       </Trigger>
     </Style.Triggers>
@@ -140,7 +145,7 @@
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
         		<Trigger.Setters>
-        		    <Setter Property="Background" Value="#CC656565" />
+        		    <Setter Property="Background" Value="#CC3C8AFB" />
         		</Trigger.Setters>
         	</Trigger>
         </Style.Triggers>
@@ -152,7 +157,6 @@
         	<Setter Property="Background" Value="#66505050" />
         	<Setter Property="Foreground" Value="White" />
         	<Setter Property="FontSize" Value="0.34" />
-        	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
         	<Setter Property="CornerRadiusX" Value="0" />
@@ -166,24 +170,13 @@
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
         		<Trigger.Setters>
-        		    <Setter Property="Background" Value="#FF68CB43" />
+        		    <Setter Property="Background" Value="#AA00EE00" />
         		</Trigger.Setters>
         	</Trigger>
         	<Trigger Property="IsEnabled" Value="False">
         		<Trigger.Setters>
         			<Setter Property="Foreground" Value="#FFAAAAAA"/>
- 		        	<Setter Property="Background">
-		        		<Setter.Value>
-			                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" Opacity="1">
-			                    <LinearGradientBrush.GradientStops>
-						          <GradientStop Color="#FF505050" Offset="0.0" />
-						          <GradientStop Color="#FF707070" Offset="0.42" />
-						          <GradientStop Color="#FF606060" Offset="0.43" />
-						          <GradientStop Color="#FF444444" Offset="1.0" />
-			                    </LinearGradientBrush.GradientStops>
-			                </LinearGradientBrush>
-		        		</Setter.Value>
-		        	</Setter>
+ 		        	<Setter Property="Background" Value="#66303030" />
         		</Trigger.Setters>
         	</Trigger>
         </Style.Triggers>
@@ -192,7 +185,7 @@
     <Style x:Key="{x:Type MenuButton}" TargetType="{x:Type MenuButton}">
     	<Style.Setters>
     		<Setter Property="Opacity" Value="0.9"/>
-        	<Setter Property="Background" Value="#66808080" />
+        	<Setter Property="Background" Value="#77909090" />
         	<Setter Property="Foreground" Value="White" />
         	<Setter Property="FontSize" Value="0.37" />
 			<Setter Property="BorderBrush" Value="#88AAAAFF"/>
@@ -209,7 +202,7 @@
         	</Trigger>
         	<Trigger Property="IsChecked" Value="True">
         		<Trigger.Setters>
-		        	<Setter Property="Background" Value="#66AAAAAA"/>
+		        	<Setter Property="Background" Value="#77AAAAAA"/>
         		</Trigger.Setters>
         	</Trigger>
         </Style.Triggers>
