@@ -66,7 +66,7 @@ namespace System.Windows.Controls {
 		public override void Initialize () {
 			lblTitle = new Label ();
 			lblTitle.Text = this.Title;
-			lblTitle.FontScale = .33f;
+			lblTitle.FontScale = .17f;
 			lblTitle.Margin = new Thickness (8, 4, 0, 0);
 
 			gridRoot.Children.Add (lblTitle);
@@ -74,7 +74,7 @@ namespace System.Windows.Controls {
 			lblText = new Label ();
 			lblText.Text = this.Text;
 			lblText.Foreground = Brushes.Black;
-			lblText.FontScale = .36f;
+			lblText.FontScale = .18f;
 			lblText.Margin = new Thickness (30, 0, 0, 0);
 			lblText.HorizontalAlignment = HorizontalAlignment.Left;
 			lblText.VerticalAlignment = VerticalAlignment.Top;
@@ -87,7 +87,7 @@ namespace System.Windows.Controls {
 			cmdOkay.Margin = new Thickness (0, 0, 0, 18);
 			cmdOkay.Width = 120;
             cmdOkay.Style = (Style)this.FindResource("ButtonNumberStyle");
-            cmdOkay.FontSize = .36f;
+            cmdOkay.FontSize = .18f;
 			//cmdOkay.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
 			cmdOkay.HorizontalAlignment = HorizontalAlignment.Center;
 			cmdOkay.VerticalAlignment = VerticalAlignment.Stretch;

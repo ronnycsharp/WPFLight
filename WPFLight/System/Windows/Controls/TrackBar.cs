@@ -8,7 +8,7 @@ using System.Windows.Media;
 namespace System.Windows.Controls {
 	public class TrackBar : Panel {
         public TrackBar () {
-            this.Height = 40;
+            this.Height = 60;
             this.MinValue = 0;
             this.MaxValue = 100;
             this.Value = 0;
@@ -63,12 +63,11 @@ namespace System.Windows.Controls {
 
 		public override void Initialize () {
 			rcBackground = new System.Windows.Shapes.Rectangle ();
-			rcBackground.Fill = new SolidColorBrush (this.GraphicsDevice, new System.Windows.Media.Color (.8f, .8f, .8f, .5f));
+			rcBackground.Fill = Brushes.Gray;
 			rcBackground.HorizontalAlignment = HorizontalAlignment.Stretch;
-			rcBackground.Height = 4;
-			rcBackground.Margin = new Thickness (2);
+			rcBackground.Height = 10;
+			rcBackground.Margin = new Thickness (17,2,17,2);
 			rcBackground.Top = (int)((this.ActualHeight / 2f) - (rcBackground.Height / 2f));
-			//rcBackground.BorderColor = new Color (1, 1, 1, .8f);
 			rcBackground.StrokeThickness = 1;
 			rcBackground.RadiusX = 0;
 			rcBackground.RadiusY = 0;
@@ -76,18 +75,24 @@ namespace System.Windows.Controls {
 
 			cmdTrack = new Button ( );
             cmdTrack.FontFamily = this.FontFamily;
-			cmdTrack.Background = new SolidColorBrush (this.GraphicsDevice, System.Windows.Media.Colors.White);
-			//cmdTrack.BorderColor = new Color (1, 1, 1, .1f);
+			cmdTrack.Content = 
+				new System.Windows.Shapes.Rectangle { 
+					Fill = Brushes.White, 
+					Width = 30, 
+					Height = 30,
+			};
+
+			cmdTrack.Background = Brushes.Transparent;
 			cmdTrack.BorderThickness = new Thickness (0);
-			cmdTrack.Width = 33;
-			cmdTrack.Height = 33;
-			cmdTrack.Opacity = .9f;
+			cmdTrack.Width = 60;
+			cmdTrack.Height = 60;
 			cmdTrack.VerticalAlignment = VerticalAlignment.Center;
+
 			cmdTrack.Left = 0;
-			cmdTrack.Top = 0;
-			cmdTrack.Margin = new Thickness (0, 2, 0, 0);
+			cmdTrack.Margin = new Thickness (0, 0, 0, 1);
 			cmdTrack.CornerRadiusX = 0;
 			cmdTrack.CornerRadiusY = 0;
+
 			this.Children.Add (cmdTrack);
 
 			base.Initialize ();

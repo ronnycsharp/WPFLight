@@ -31,7 +31,7 @@ namespace System.Windows.Controls {
                         if (e.NewValue is UIElement)
                             ((UIElement)e.NewValue).Parent = (UIElement)s;
 
-					    var ctrl = e.NewValue as Control;
+						var ctrl = e.NewValue as FrameworkElement;
 					    if ( ctrl != null ) {
 						    ((ContentControl)s).contentControl = ctrl;
 					    } else
@@ -89,8 +89,6 @@ namespace System.Windows.Controls {
 
             if (this.Content is UIElement)
                 ((UIElement)this.Content).Invalidate();
-
-
 		}
 
 		public override void Initialize () {
@@ -241,7 +239,7 @@ namespace System.Windows.Controls {
 			CullMode = CullMode.None, 
 			ScissorTestEnable = true };
 
-		private Vector2? textSize;
-		private Control  contentControl;
+		private Vector2? 			textSize;
+		private FrameworkElement  	contentControl;
 	}
 }

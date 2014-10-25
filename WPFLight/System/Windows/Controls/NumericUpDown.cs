@@ -105,7 +105,7 @@ namespace System.Windows.Controls {
 
 			lblValue = new Label();
 			lblValue.VerticalAlignment = VerticalAlignment.Center;
-			lblValue.FontScale = .46f;
+			lblValue.FontScale = .23f;
 			lblValue.Margin = new Thickness (15,3,3,3);
 
 			gridRoot.Children.Add (lblValue);

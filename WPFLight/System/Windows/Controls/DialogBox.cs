@@ -6,7 +6,7 @@ namespace System.Windows.Controls {
 		public DialogBox ( ) {
 			this.Width = 200;
 			this.Height = 200;
-			this.Background = new SolidColorBrush (System.Windows.Media.Color.FromArgb (230, 100, 100, 100 ));
+			this.Background = new SolidColorBrush (System.Windows.Media.Colors.CornflowerBlue * .8f);
 			this.BorderBrush = new SolidColorBrush (new Color(.9f,.9f,.9f )*.4f);
 			this.BorderThickness = new Thickness (2);
 
@@ -53,7 +53,7 @@ namespace System.Windows.Controls {
 		public override void Initialize () {
 			lblTitle = new Label ();
 			lblTitle.Text = this.Title;
-			lblTitle.FontScale = .38f;
+			lblTitle.FontScale = .2f;
 			lblTitle.Margin = new Thickness (12, 4, 0, 0);
 
 			gridRoot.Children.Add (lblTitle);
@@ -63,10 +63,9 @@ namespace System.Windows.Controls {
             cmdCancel.IsEnabled = true;
 			cmdCancel.Margin = new Thickness (15, 5, 15, 10);
 			cmdCancel.Width = 120;
-            //cmdCancel.Style = ( Style ) this.FindResource("ButtonNumberStyle");
-            cmdCancel.FontSize = .36f;
+            cmdCancel.FontSize = .18f;
             cmdCancel.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
-			//cmdCancel.Foreground = Brushes.White;
+			cmdCancel.Foreground = Brushes.White;
 			cmdCancel.HorizontalAlignment = HorizontalAlignment.Right;
 			cmdCancel.Click += delegate {
 				this.DialogResult = false;
@@ -81,10 +80,8 @@ namespace System.Windows.Controls {
             cmdOkay.IsEnabled = true;
 			cmdOkay.Margin = new Thickness (15, 5, 145, 10);
 			cmdOkay.Width = 80;
-			//cmdOkay.Foreground = Brushes.White;
-            //cmdOkay.Style = (Style)this.FindResource("ButtonNumberStyle");
-            cmdOkay.FontSize = .36f;
-            cmdOkay.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
+			cmdOkay.Foreground = Brushes.White;
+            cmdOkay.FontSize = .18f;
 			cmdOkay.HorizontalAlignment = HorizontalAlignment.Right;
 			cmdOkay.Click += delegate {
 				this.DialogResult = true;

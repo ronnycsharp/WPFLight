@@ -87,7 +87,7 @@ namespace System.Windows.Controls {
 			cmdItem.Style = ( Style ) this.FindResource ("ButtonNumberStyle");
 			cmdItem.BorderBrush = Brushes.Transparent;
 			cmdItem.BorderThickness = new Thickness ();
-			cmdItem.FontSize = .32f;
+			cmdItem.FontSize = .2f;
 			cmdItem.Content = this.SelectedItem;
 			cmdItem.Initialize ();
 
@@ -96,8 +96,8 @@ namespace System.Windows.Controls {
 			window.Left = (int)this.GetAbsoluteLeft();
 			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
 			window.Width = this.ActualWidth;
-			window.Height = 225;	// TODO ComputeItemsHeight()
-			window.Background = new SolidColorBrush (Colors.White * .7f);
+			window.Height = 247;	// TODO ComputeItemsHeight()
+			window.Background = new SolidColorBrush (Colors.Black * .9f);
 			window.BorderBrush = Brushes.Transparent; //new SolidColorBrush (Colors.CornflowerBlue * .4f);
 			window.BorderThickness = new Thickness(1);
             window.LostFocus += delegate {

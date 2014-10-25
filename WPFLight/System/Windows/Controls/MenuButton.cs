@@ -77,7 +77,7 @@ namespace System.Windows.Controls {
 
             this.ItemsPanel.BorderBrush = null;
             this.ItemsPanel.BorderThickness = new Thickness();
-            this.ItemsPanel.Background = new SolidColorBrush(new System.Windows.Media.Color ( .3f, .3f, .3f ) * .95f );
+            this.ItemsPanel.Background = new SolidColorBrush(new System.Windows.Media.Color ( .5f, .5f, .5f ) * .95f );
 
 			this.ItemsPanel.Parent = window;
             window.Content = this.ItemsPanel;

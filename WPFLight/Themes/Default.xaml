@@ -17,7 +17,7 @@
     		<Setter Property="Opacity" Value="0.9"/>
             <Setter Property="Background" Value="#AAD6D6D6" />
         	<Setter Property="Foreground" Value="Black" />
-        	<Setter Property="FontSize" Value="0.31" />
+        	<Setter Property="FontSize" Value="0.16" />
         	<Setter Property="BorderBrush" Value="{x:Null}" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
@@ -36,7 +36,7 @@
     		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background" Value="#77505050" />
         	<Setter Property="Foreground" Value="White" />
-        	<Setter Property="FontSize" Value="0.34" />
+        	<Setter Property="FontSize" Value="0.18" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
         	<Setter Property="CornerRadiusX" Value="0" />
@@ -61,7 +61,7 @@
     <Style.Setters>
       <Setter Property="Opacity" Value="1.0"/>
       <Setter Property="Background" Value="#05FFFFFF" />
-      <Setter Property="FontSize" Value="0.39" />
+      <Setter Property="FontSize" Value="0.20" />
       <Setter Property="BorderBrush" Value="#55FFFFFF" />
       <Setter Property="BorderThickness" Value="1"/>
     </Style.Setters>
@@ -70,10 +70,10 @@
   <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
     <Style.Setters>
       <Setter Property="Opacity" Value="0.9"/>
-      <Setter Property="Height" Value="60"/>
+      <Setter Property="Height" Value="62"/>
       <Setter Property="Background" Value="#17FFFFFF" />
       <Setter Property="Foreground" Value="White" />
-      <Setter Property="FontSize" Value="0.39" />
+      <Setter Property="FontSize" Value="0.21" />
       <Setter Property="BorderBrush" Value="#88AAAAAA" />
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Margin" Value="3,3,3,0" />
@@ -98,10 +98,10 @@
   <Style x:Key="ComboBoxItemStyle" TargetType="{x:Type ListBoxItem}">
     <Style.Setters>
       <Setter Property="Opacity" Value="0.9"/>
-      <Setter Property="Height" Value="54"/>
-      <Setter Property="Background" Value="#CCDDDDDD" />
-      <Setter Property="Foreground" Value="#FF444444" />
-      <Setter Property="FontSize" Value="0.3" />
+      <Setter Property="Height" Value="59"/>
+      <Setter Property="Background" Value="#22FFFFFF" />
+      <Setter Property="Foreground" Value="#DDFFFFFF" />
+      <Setter Property="FontSize" Value="0.2" />
       <Setter Property="BorderBrush" Value="Transparent" />
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Margin" Value="2,1,2,0" />
@@ -130,7 +130,7 @@
     		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background" Value="#66505050" />
         	<Setter Property="Foreground" Value="White" />
-        	<Setter Property="FontSize" Value="0.34" />
+        	<Setter Property="FontSize" Value="0.18" />
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
@@ -156,7 +156,7 @@
     		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background" Value="#66505050" />
         	<Setter Property="Foreground" Value="White" />
-        	<Setter Property="FontSize" Value="0.34" />
+        	<Setter Property="FontSize" Value="0.18" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
         	<Setter Property="CornerRadiusX" Value="0" />
@@ -187,7 +187,7 @@
     		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background" Value="#77909090" />
         	<Setter Property="Foreground" Value="White" />
-        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="FontSize" Value="0.20" />
 			<Setter Property="BorderBrush" Value="#88AAAAFF"/>
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
@@ -213,7 +213,7 @@
     		<Setter Property="Opacity" Value="0.9"/>
         	<Setter Property="Background" Value="#FF555555" />
         	<Setter Property="Foreground" Value="White" />
-        	<Setter Property="FontSize" Value="0.37" />
+        	<Setter Property="FontSize" Value="0.18" />
         	<Setter Property="BorderBrush" Value="#88AAAAAA" />
         	<Setter Property="BorderThickness" Value="0"/>
         	<Setter Property="Margin" Value="3" />
