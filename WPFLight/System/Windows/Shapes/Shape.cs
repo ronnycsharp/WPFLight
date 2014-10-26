@@ -127,7 +127,7 @@ namespace System.Windows.Shapes {
 				batch.Begin (
 					SpriteSortMode.Deferred,
 					BlendState.AlphaBlend,
-					null,
+					SamplerState.LinearClamp,
 					DepthStencilState.None,
 					SCISSOR_ENABLED,
 					null,
