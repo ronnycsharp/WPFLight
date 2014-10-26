@@ -12,7 +12,7 @@ namespace System.Windows.Controls {
         public Label ( ) {
 			this.TextAlignment = TextAlignment.Left;
 			this.Foreground = Brushes.White;
-			this.FontScale = .35f;
+			this.FontScale = .18f;
         }
 
         #region Eigenschaften

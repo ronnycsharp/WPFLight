@@ -18,14 +18,14 @@ namespace System.Windows.Controls {
 			background.GradientStops.Add (new GradientStop (1, new Color (0.6f, .6f, .6f)));
             */
 
-            this.Background = new SolidColorBrush (System.Windows.Media.Color.FromArgb (230, 180, 180, 180 ));
+            this.Background = new SolidColorBrush (System.Windows.Media.Color.FromArgb (230, 150, 150, 150 ));
 			this.BorderBrush = new SolidColorBrush (new Color(.8f,.8f,.8f )*.4f);
 			this.BorderThickness = new Thickness (2);
 
 			gridRoot = new Grid ();
 			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (45, GridUnitType.Pixel)));
 			gridRoot.RowDefinitions.Add (RowDefinition.Star);
-			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (65, GridUnitType.Pixel)));
+			gridRoot.RowDefinitions.Add (new RowDefinition (new GridLength (75, GridUnitType.Pixel)));
             gridRoot.Parent = this;
 
 			base.Content = gridRoot;
@@ -73,8 +73,8 @@ namespace System.Windows.Controls {
 
 			lblText = new Label ();
 			lblText.Text = this.Text;
-			lblText.Foreground = Brushes.Black;
-			lblText.FontScale = .18f;
+			lblText.Foreground = new SolidColorBrush (.2f, .2f, .2f);
+			lblText.FontScale = .20f;
 			lblText.Margin = new Thickness (30, 0, 0, 0);
 			lblText.HorizontalAlignment = HorizontalAlignment.Left;
 			lblText.VerticalAlignment = VerticalAlignment.Top;
@@ -85,7 +85,7 @@ namespace System.Windows.Controls {
 			cmdOkay.Content = "OK";
             cmdOkay.IsEnabled = true;
 			cmdOkay.Margin = new Thickness (0, 0, 0, 18);
-			cmdOkay.Width = 120;
+			cmdOkay.Width = 140;
             cmdOkay.Style = (Style)this.FindResource("ButtonNumberStyle");
             cmdOkay.FontSize = .18f;
 			//cmdOkay.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
