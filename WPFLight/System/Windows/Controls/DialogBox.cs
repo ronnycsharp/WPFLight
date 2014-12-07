@@ -64,7 +64,6 @@ namespace System.Windows.Controls {
 			cmdCancel.Margin = new Thickness (15, 5, 15, 10);
 			cmdCancel.Width = 120;
             cmdCancel.FontSize = .18f;
-            cmdCancel.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
 			cmdCancel.Foreground = Brushes.White;
 			cmdCancel.HorizontalAlignment = HorizontalAlignment.Right;
 			cmdCancel.Click += delegate {

@@ -94,11 +94,11 @@ namespace System.Windows.Controls {
             window.FontFamily = this.FontFamily;
 			window.IsToolTip = false;
 			window.Left = (int)this.GetAbsoluteLeft();
-			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight;
+			window.Top = (int)this.GetAbsoluteTop() + this.ActualHeight + 4;
 			window.Width = this.ActualWidth;
 			window.Height = 247;	// TODO ComputeItemsHeight()
 			window.Background = new SolidColorBrush (Colors.Black * .9f);
-			window.BorderBrush = Brushes.Transparent; //new SolidColorBrush (Colors.CornflowerBlue * .4f);
+			window.BorderBrush = new SolidColorBrush (Colors.White * .3f);
 			window.BorderThickness = new Thickness(1);
             window.LostFocus += delegate {
 				if ( !ignoreLostFocus )

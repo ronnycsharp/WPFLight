@@ -7,17 +7,6 @@ namespace System.Windows.Controls {
 			this.Width = 350;
 			this.Height = 200;
 
-            /*
-			var background = new LinearGradientBrush ();
-			background.Opacity = .8f;
-			background.StartPoint = new Point (0, 0);
-			background.EndPoint = new Point (0, 1);
-			background.GradientStops.Add (new GradientStop (0, new Color (0.4f, .4f, .4f)));
-			background.GradientStops.Add (new GradientStop (.4f, new Color (0.5f, .5f, .5f)));
-			background.GradientStops.Add (new GradientStop (.401f, new Color (0.3f, .3f, .3f)));
-			background.GradientStops.Add (new GradientStop (1, new Color (0.6f, .6f, .6f)));
-            */
-
             this.Background = new SolidColorBrush (System.Windows.Media.Color.FromArgb (230, 150, 150, 150 ));
 			this.BorderBrush = new SolidColorBrush (new Color(.8f,.8f,.8f )*.4f);
 			this.BorderThickness = new Thickness (2);
@@ -73,7 +62,7 @@ namespace System.Windows.Controls {
 
 			lblText = new Label ();
 			lblText.Text = this.Text;
-			lblText.Foreground = new SolidColorBrush (.2f, .2f, .2f);
+			lblText.Foreground = Brushes.White;
 			lblText.FontScale = .20f;
 			lblText.Margin = new Thickness (30, 0, 0, 0);
 			lblText.HorizontalAlignment = HorizontalAlignment.Left;
@@ -86,9 +75,8 @@ namespace System.Windows.Controls {
             cmdOkay.IsEnabled = true;
 			cmdOkay.Margin = new Thickness (0, 0, 0, 18);
 			cmdOkay.Width = 140;
-            cmdOkay.Style = (Style)this.FindResource("ButtonNumberStyle");
             cmdOkay.FontSize = .18f;
-			//cmdOkay.Foreground = new SolidColorBrush(new Color(.2f, .2f, .2f));
+			cmdOkay.Foreground = Brushes.White;
 			cmdOkay.HorizontalAlignment = HorizontalAlignment.Center;
 			cmdOkay.VerticalAlignment = VerticalAlignment.Stretch;
 			cmdOkay.Click += delegate {

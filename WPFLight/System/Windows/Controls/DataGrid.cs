@@ -44,7 +44,7 @@ namespace System.Windows.Controls {
 			gridHeader.Height = 50;
 			gridHeader.Opacity = 1;
 			gridHeader.Background = new SolidColorBrush (
-				this.GraphicsDevice, new System.Windows.Media.Color (1, 1, 1f) * .19f);
+				this.GraphicsDevice, new System.Windows.Media.Color (1, 1, 1f) * .1f);
 
 			foreach (var c in this.Columns)
 				gridHeader.ColumnDefinitions.Add (c);
