@@ -70,12 +70,12 @@
   <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
     <Style.Setters>
       <Setter Property="Opacity" Value="0.9"/>
-      <Setter Property="Height" Value="62"/>
-      <Setter Property="Background" Value="#17FFFFFF" />
+      <Setter Property="Height" Value="65"/>
+      <Setter Property="Background" Value="#77888888" />
       <Setter Property="Foreground" Value="White" />
       <Setter Property="FontSize" Value="0.21" />
-      <Setter Property="BorderBrush" Value="#88AAAAAA" />
-      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="BorderBrush" Value="#CC888888" />
+      <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Margin" Value="3,3,3,0" />
       <Setter Property="CornerRadiusX" Value="0" />
       <Setter Property="CornerRadiusY" Value="0" />
@@ -89,7 +89,7 @@
       </Trigger>
       <Trigger Property="IsChecked" Value="True">
         <Trigger.Setters>
-      		<Setter Property="Background" Value="#44FFFFFF" />
+                    <Setter Property="Background" Value="#CC3C8AFC" />
         </Trigger.Setters>
       </Trigger>
     </Style.Triggers>
