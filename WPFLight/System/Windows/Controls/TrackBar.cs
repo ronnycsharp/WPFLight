@@ -65,7 +65,7 @@ namespace System.Windows.Controls {
 			rcBackground = new System.Windows.Shapes.Rectangle ();
 			rcBackground.Fill = Brushes.Gray;
 			rcBackground.HorizontalAlignment = HorizontalAlignment.Stretch;
-			rcBackground.Height = 10;
+			rcBackground.Height = 5;
 			rcBackground.Margin = new Thickness (17,2,17,2);
 			rcBackground.Top = (int)((this.ActualHeight / 2f) - (rcBackground.Height / 2f));
 			rcBackground.StrokeThickness = 1;

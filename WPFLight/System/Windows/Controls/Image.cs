@@ -12,11 +12,13 @@ namespace System.Windows.Controls {
 
             texImage = texture;
 			this.BorderThickness = new Thickness ();
+			this.Color = System.Windows.Media.Colors.White;
         }
 
 		#region Eigenschaften
 
-		public float Rotation { get; set; }
+		public float 						Rotation 	{ get; set; }
+		public System.Windows.Media.Color 	Color 		{ get; set; }
 
 		#endregion
 
@@ -42,7 +44,7 @@ namespace System.Windows.Controls {
 					(int)this.ActualWidth, 
 					(int)this.ActualHeight ),
 				(Rectangle?)null,
-				Color.White * alpha * this.Opacity,
+				System.Windows.Media.ColorHelper.ToXnaColor ( this.Color ) * alpha * this.Opacity,
 				this.Rotation,
 				Vector2.Zero,
 				SpriteEffects.None, 
