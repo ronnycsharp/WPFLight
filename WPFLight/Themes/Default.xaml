@@ -70,7 +70,7 @@
   <Style x:Key="{x:Type ListBoxItem}" TargetType="{x:Type ListBoxItem}">
     <Style.Setters>
       <Setter Property="Opacity" Value="0.9"/>
-      <Setter Property="Height" Value="65"/>
+      <Setter Property="Height" Value="63"/>
       <Setter Property="Background" Value="#77888888" />
       <Setter Property="Foreground" Value="White" />
       <Setter Property="FontSize" Value="0.21" />

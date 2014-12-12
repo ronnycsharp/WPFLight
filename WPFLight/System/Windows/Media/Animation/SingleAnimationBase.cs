@@ -119,7 +119,7 @@ namespace System.Windows.Media.Animation {
             }
             if ( lastTime != CurrentTime ) {
                 lastTime = CurrentTime;
-                System.Diagnostics.Debug.WriteLine ( this.GetCurrentValue ( ) );
+                //System.Diagnostics.Debug.WriteLine ( this.GetCurrentValue ( ) );
                 this.UpdateTargetProperty ( );
             }
 			//base.Update ( gameTime );

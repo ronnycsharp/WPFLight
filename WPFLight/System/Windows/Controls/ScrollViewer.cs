@@ -245,10 +245,11 @@ namespace System.Windows.Controls {
 
 					var element = this.Content as FrameworkElement;
 
+					/*
 					var absLeft = GetAbsoluteLeft ();
 					var absTop = GetAbsoluteTop ();
-
 					var height = this.ActualHeight - 6;
+					*/
 
                     element.Measure(new Size(this.ActualWidth, this.ActualHeight));
                     measure = element.DesiredSize;
@@ -261,8 +262,16 @@ namespace System.Windows.Controls {
 						batch,
 						alpha,
 						transform * Matrix.CreateTranslation (
-							HorizontalOffset, 
-							VerticalOffset, 
+
+							// Scale the Scroll-Offset
+
+							HorizontalOffset
+								* ( ( float ) WPFLight.Helpers.ScreenHelper.SCREEN_WIDTH 
+									/ ( float ) WPFLight.Helpers.ScreenHelper.ORIGINAL_WIDTH ), 
+								
+							VerticalOffset 
+								* ( ( float ) WPFLight.Helpers.ScreenHelper.SCREEN_HEIGHT 
+									/ ( float ) WPFLight.Helpers.ScreenHelper.ORIGINAL_HEIGHT ), 
 							0));
 				}
 			}
