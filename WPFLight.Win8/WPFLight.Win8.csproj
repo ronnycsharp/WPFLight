@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,6 +14,9 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <TargetFrameworkVersion />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,133 +103,396 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Folder Include="Resources\" />
+    <Content Include="..\WPFLight\Content\ArrowDown.png">
+      <Link>Content\ArrowDown.png</Link>
+    </Content>
+    <Content Include="..\WPFLight\Content\ArrowLeft.png">
+      <Link>Content\ArrowLeft.png</Link>
+    </Content>
+    <Content Include="..\WPFLight\Content\ArrowRight.png">
+      <Link>Content\ArrowRight.png</Link>
+    </Content>
+    <Content Include="..\WPFLight\Content\ArrowUp.png">
+      <Link>Content\ArrowUp.png</Link>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\XAMLLight.iOS\Animations\Easing.cs">
-      <Link>Animations\Easing.cs</Link>
+    <Compile Include="..\WPFLight\Extensions\ArrayExtensions.cs">
+      <Link>Extensions\ArrayExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\XAMLLight.iOS\Animations\FloatAnimation.cs">
-      <Link>Animations\FloatAnimation.cs</Link>
+    <Compile Include="..\WPFLight\Extensions\EnumExtensions.cs">
+      <Link>Extensions\EnumExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\XAMLLight.iOS\Animations\FloatAnimationBase.cs">
-      <Link>Animations\FloatAnimationBase.cs</Link>
+    <Compile Include="..\WPFLight\Helpers\ArrayHelper.cs">
+      <Link>Helpers\ArrayHelper.cs</Link>
     </Compile>
-    <Compile Include="..\XAMLLight.iOS\Animations\FloatKeyFrame.cs">
-      <Link>Animations\FloatKeyFrame.cs</Link>
+    <Compile Include="..\WPFLight\Helpers\ResourceHelper.cs">
+      <Link>Helpers\ResourceHelper.cs</Link>
     </Compile>
-    <Compile Include="..\XAMLLight.iOS\Animations\FloatKeyFrameAnimation.cs">
-      <Link>Animations\FloatKeyFrameAnimation.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Button.cs">
-      <Link>Components\Button.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\CheckButton.cs">
-      <Link>Components\CheckButton.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\ColumnDefinition.cs">
-      <Link>Components\ColumnDefinition.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\ColumnHeader.cs">
-      <Link>Components\ColumnHeader.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Component.cs">
-      <Link>Components\Component.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Control.cs">
-      <Link>Components\Control.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\DataGrid.cs">
-      <Link>Components\DataGrid.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\DataGridItem.cs">
-      <Link>Components\DataGridItem.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\DataGridItemColleciton.cs">
-      <Link>Components\DataGridItemColleciton.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\FocusableControl.cs">
-      <Link>Components\FocusableControl.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Grid.cs">
-      <Link>Components\Grid.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\GridLength.cs">
-      <Link>Components\GridLength.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\IDrawable.cs">
-      <Link>Components\IDrawable.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\IDrawable2D.cs">
-      <Link>Components\IDrawable2D.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\IDrawable3D.cs">
-      <Link>Components\IDrawable3D.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\IFocusable.cs">
-      <Link>Components\IFocusable.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Image.cs">
-      <Link>Components\Image.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Label.cs">
-      <Link>Components\Label.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\ListBox.cs">
-      <Link>Components\ListBox.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\ListBoxCollection.cs">
-      <Link>Components\ListBoxCollection.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\ListBoxItem.cs">
-      <Link>Components\ListBoxItem.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Plane.cs">
-      <Link>Components\Plane.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\PropertyChangedEventArgs.cs">
-      <Link>Components\PropertyChangedEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\RadioButton.cs">
-      <Link>Components\RadioButton.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Rectangle.cs">
-      <Link>Components\Rectangle.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\RowDefinition.cs">
-      <Link>Components\RowDefinition.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\ScreenBase.cs">
-      <Link>Components\ScreenBase.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\StackPanel.cs">
-      <Link>Components\StackPanel.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\TextBox.cs">
-      <Link>Components\TextBox.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\Thickness.cs">
-      <Link>Components\Thickness.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Components\TrackBar.cs">
-      <Link>Components\TrackBar.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Content\Textures.cs">
-      <Link>Content\Textures.cs</Link>
-    </Compile>
-    <Compile Include="..\XAMLLight.iOS\Helpers\ScreenHelper.cs">
+    <Compile Include="..\WPFLight\Helpers\ScreenHelper.cs">
       <Link>Helpers\ScreenHelper.cs</Link>
     </Compile>
-    <Compile Include="Class1.cs" />
+    <Compile Include="..\WPFLight\Initializer.cs">
+      <Link>Initializer.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\Resources\Textures.cs">
+      <Link>Resources\Textures.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Collections\ObjectModel\ObservableCollection.cs">
+      <Link>Systems\Collections\ObjectModel\ObservableCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Collections\Specialized\INotifyCollectionChanged.cs">
+      <Link>Systems\Collections\Specialized\INotifyCollectionChanged.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Collections\Specialized\NotifyCollectionChangedEventArgs.cs">
+      <Link>Systems\Collections\Specialized\NotifyCollectionChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Collections\Specialized\NotifyCollectionChangedEventHandler.cs">
+      <Link>Systems\Collections\Specialized\NotifyCollectionChangedEventHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\ComponentModel\PropertyChangedEventArgs.cs">
+      <Link>Systems\ComponentModel\PropertyChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\ComponentModel\TypeDescriptor.cs">
+      <Link>Systems\ComponentModel\TypeDescriptor.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Button.cs">
+      <Link>Systems\Windows\Controls\Button.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Canvas.cs">
+      <Link>Systems\Windows\Controls\Canvas.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ColumnDefinition.cs">
+      <Link>Systems\Windows\Controls\ColumnDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ColumnHeader.cs">
+      <Link>Systems\Windows\Controls\ColumnHeader.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ComboBox.cs">
+      <Link>Systems\Windows\Controls\ComboBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ContentControl.cs">
+      <Link>Systems\Windows\Controls\ContentControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Control.cs">
+      <Link>Systems\Windows\Controls\Control.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\DataGrid.cs">
+      <Link>Systems\Windows\Controls\DataGrid.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\DataGridItem.cs">
+      <Link>Systems\Windows\Controls\DataGridItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\DataGridItemColleciton.cs">
+      <Link>Systems\Windows\Controls\DataGridItemColleciton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\DialogBox.cs">
+      <Link>Systems\Windows\Controls\DialogBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\FocusableControl.cs">
+      <Link>Systems\Windows\Controls\FocusableControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\GameWindow.cs">
+      <Link>Systems\Windows\Controls\GameWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Grid.cs">
+      <Link>Systems\Windows\Controls\Grid.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\HeaderedContentControl.cs">
+      <Link>Systems\Windows\Controls\HeaderedContentControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\IDrawable.cs">
+      <Link>Systems\Windows\Controls\IDrawable.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\IDrawable2D.cs">
+      <Link>Systems\Windows\Controls\IDrawable2D.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\IDrawable3D.cs">
+      <Link>Systems\Windows\Controls\IDrawable3D.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\IFocusable.cs">
+      <Link>Systems\Windows\Controls\IFocusable.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Image.cs">
+      <Link>Systems\Windows\Controls\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ItemCollection.cs">
+      <Link>Systems\Windows\Controls\ItemCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ItemsControl.cs">
+      <Link>Systems\Windows\Controls\ItemsControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Label.cs">
+      <Link>Systems\Windows\Controls\Label.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ListBox.cs">
+      <Link>Systems\Windows\Controls\ListBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ListBoxCollection.cs">
+      <Link>Systems\Windows\Controls\ListBoxCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ListBoxItem.cs">
+      <Link>Systems\Windows\Controls\ListBoxItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\MenuButton.cs">
+      <Link>Systems\Windows\Controls\MenuButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\NumericUpDown.cs">
+      <Link>Systems\Windows\Controls\NumericUpDown.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Panel.cs">
+      <Link>Systems\Windows\Controls\Panel.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Plane.cs">
+      <Link>Systems\Windows\Controls\Plane.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\Selector.cs">
+      <Link>Systems\Windows\Controls\Primitives\Selector.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\Primitives\ToggleButton.cs">
+      <Link>Systems\Windows\Controls\Primitives\ToggleButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\RadioButton.cs">
+      <Link>Systems\Windows\Controls\RadioButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\RepeatButton.cs">
+      <Link>Systems\Windows\Controls\RepeatButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\RowDefinition.cs">
+      <Link>Systems\Windows\Controls\RowDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ScreenBase.cs">
+      <Link>Systems\Windows\Controls\ScreenBase.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\ScrollViewer.cs">
+      <Link>Systems\Windows\Controls\ScrollViewer.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\StackPanel.cs">
+      <Link>Systems\Windows\Controls\StackPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\TabControl.cs">
+      <Link>Systems\Windows\Controls\TabControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\TabItem.cs">
+      <Link>Systems\Windows\Controls\TabItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\TextBox.cs">
+      <Link>Systems\Windows\Controls\TextBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\TrackBar.cs">
+      <Link>Systems\Windows\Controls\TrackBar.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\UIElement.cs">
+      <Link>Systems\Windows\Controls\UIElement.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\UIElementCollection.cs">
+      <Link>Systems\Windows\Controls\UIElementCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\UserControl.cs">
+      <Link>Systems\Windows\Controls\UserControl.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Controls\WrapPanel.cs">
+      <Link>Systems\Windows\Controls\WrapPanel.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Data\Binding.cs">
+      <Link>Systems\Windows\Data\Binding.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Data\BindingOperations.cs">
+      <Link>Systems\Windows\Data\BindingOperations.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\DependencyObject.cs">
+      <Link>Systems\Windows\DependencyObject.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\DependencyProperty.cs">
+      <Link>Systems\Windows\DependencyProperty.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\DependencyPropertyChangedEventArgs.cs">
+      <Link>Systems\Windows\DependencyPropertyChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\FrameworkElement.cs">
+      <Link>Systems\Windows\FrameworkElement.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\FrameworkPropertyMetadata.cs">
+      <Link>Systems\Windows\FrameworkPropertyMetadata.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\GameWindow.cs">
+      <Link>Systems\Windows\GameWindow.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\GridLength.cs">
+      <Link>Systems\Windows\GridLength.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Markup\ContentPropertyAttribute.cs">
+      <Link>Systems\Windows\Markup\ContentPropertyAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Markup\XamlReader.cs">
+      <Link>Systems\Windows\Markup\XamlReader.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\Clock.cs">
+      <Link>Systems\Windows\Media\Animation\Clock.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\Easing.cs">
+      <Link>Systems\Windows\Media\Animation\Easing.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\IAnimationBase.cs">
+      <Link>Systems\Windows\Media\Animation\IAnimationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\SingleAnimation.cs">
+      <Link>Systems\Windows\Media\Animation\SingleAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\SingleAnimationBase.cs">
+      <Link>Systems\Windows\Media\Animation\SingleAnimationBase.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\SingleKeyFrame.cs">
+      <Link>Systems\Windows\Media\Animation\SingleKeyFrame.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\SingleKeyFrameAnimation.cs">
+      <Link>Systems\Windows\Media\Animation\SingleKeyFrameAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\Storyboard.cs">
+      <Link>Systems\Windows\Media\Animation\Storyboard.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Animation\Timeline.cs">
+      <Link>Systems\Windows\Media\Animation\Timeline.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Brush.cs">
+      <Link>Systems\Windows\Media\Brush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\BrushConverter.cs">
+      <Link>Systems\Windows\Media\BrushConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Brushes.cs">
+      <Link>Systems\Windows\Media\Brushes.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Color.cs">
+      <Link>Systems\Windows\Media\Color.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\ColorConverter.cs">
+      <Link>Systems\Windows\Media\ColorConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\ColorHelper.cs">
+      <Link>Systems\Windows\Media\ColorHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\Colors.cs">
+      <Link>Systems\Windows\Media\Colors.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\DrawingContext.cs">
+      <Link>Systems\Windows\Media\DrawingContext.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\FontContainer.cs">
+      <Link>Systems\Windows\Media\FontContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\FontFamily.cs">
+      <Link>Systems\Windows\Media\FontFamily.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\FontFamilyConverter.cs">
+      <Link>Systems\Windows\Media\FontFamilyConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\GradientBrush.cs">
+      <Link>Systems\Windows\Media\GradientBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\GradientStop.cs">
+      <Link>Systems\Windows\Media\GradientStop.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\GradientStopCollection.cs">
+      <Link>Systems\Windows\Media\GradientStopCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\ImageBrush.cs">
+      <Link>Systems\Windows\Media\ImageBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\LinearGradientBrush.cs">
+      <Link>Systems\Windows\Media\LinearGradientBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\RadialGradientBrush.cs">
+      <Link>Systems\Windows\Media\RadialGradientBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\SolidColorBrush.cs">
+      <Link>Systems\Windows\Media\SolidColorBrush.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Media\VisualTreeHelper.cs">
+      <Link>Systems\Windows\Media\VisualTreeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\MessageBox.cs">
+      <Link>Systems\Windows\MessageBox.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Point.cs">
+      <Link>Systems\Windows\Point.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\PointConverter.cs">
+      <Link>Systems\Windows\PointConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\PropertyChangedCallback.cs">
+      <Link>Systems\Windows\PropertyChangedCallback.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\PropertyMetadata.cs">
+      <Link>Systems\Windows\PropertyMetadata.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\PropertyPath.cs">
+      <Link>Systems\Windows\PropertyPath.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Rect.cs">
+      <Link>Systems\Windows\Rect.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\ResourceDictionary.cs">
+      <Link>Systems\Windows\ResourceDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Setter.cs">
+      <Link>Systems\Windows\Setter.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\SetterCollection.cs">
+      <Link>Systems\Windows\SetterCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Shapes\Ellipse.cs">
+      <Link>Systems\Windows\Shapes\Ellipse.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Shapes\Rectangle.cs">
+      <Link>Systems\Windows\Shapes\Rectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Shapes\Shape.cs">
+      <Link>Systems\Windows\Shapes\Shape.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Size.cs">
+      <Link>Systems\Windows\Size.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\SizeChangedEventArgs.cs">
+      <Link>Systems\Windows\SizeChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Style.cs">
+      <Link>Systems\Windows\Style.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Thickness.cs">
+      <Link>Systems\Windows\Thickness.cs</Link>
+    </Compile>
+    <None Include="..\WPFLight\System\Windows\ThicknessConverter.cs">
+      <Link>Systems\Windows\ThicknessConverter.cs</Link>
+    </None>
+    <Compile Include="..\WPFLight\System\Windows\Trigger.cs">
+      <Link>Systems\Windows\Trigger.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\TriggerCollection.cs">
+      <Link>Systems\Windows\TriggerCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Vector2Converter.cs">
+      <Link>Systems\Windows\Vector2Converter.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\Windows\Window.cs">
+      <Link>Systems\Windows\Window.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll</HintPath>
-    </Reference>
+    <EmbeddedResource Include="..\WPFLight\Themes\Default.xaml">
+      <Link>Themes\Default.xaml</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
-    <VisualStudioVersion>11.0</VisualStudioVersion>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.Windows8.csproj">
+      <Project>{0518563c-acca-4a14-8c5d-ddbe93e2605f}</Project>
+      <Name>MonoGame.Framework.Windows8</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
