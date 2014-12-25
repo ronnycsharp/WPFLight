@@ -7,6 +7,10 @@ using System.Text;
 namespace System.Windows {
 	public class ThicknessConverter : TypeConverter {
 		public override bool CanConvertFrom (ITypeDescriptorContext typeDescriptorContext, Type sourceType) {
+#if WIN8
+            return sourceType == typeof ( UInt64 )
+                        ;
+#else
 			// We can only handle strings, integral and floating types
 			TypeCode tc = Type.GetTypeCode (sourceType);
 			switch (tc) {
@@ -25,6 +29,7 @@ namespace System.Windows {
 				default:
 					return false;
 			}
+#endif
 		}
 
 		public override bool CanConvertTo (ITypeDescriptorContext typeDescriptorContext, Type destinationType) {

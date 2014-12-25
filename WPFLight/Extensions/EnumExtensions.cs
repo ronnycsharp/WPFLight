@@ -5,9 +5,14 @@ using System.Reflection;
 namespace WPFLight.Extensions {
     public static class EnumHelpers {
         private static void CheckIsEnum<T> (bool withFlags) {
-            if (!typeof(T).IsEnum)
+#if WIN8
+            var t = typeof ( T ).GetTypeInfo ( );
+#else
+            var t = typeof ( T );
+#endif
+            if (!t.IsEnum)
                 throw new ArgumentException(string.Format("Type '{0}' is not an enum", typeof(T).FullName));
-            if (withFlags && !Attribute.IsDefined(typeof(T), typeof(FlagsAttribute)))
+            if (withFlags && !t.IsDefined(typeof(FlagsAttribute)))
                 throw new ArgumentException(string.Format("Type '{0}' doesn't have the 'Flags' attribute", typeof(T).FullName));
         }
 

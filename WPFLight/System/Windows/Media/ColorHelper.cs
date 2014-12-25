@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System.ComponentModel;
-
+using WPFLight.Extensions;
 namespace System.Windows.Media {
 	internal static class ColorHelper {
 		static ColorHelper () {

@@ -22,7 +22,13 @@ namespace WPFLight {
 		/// load resource-dictionary and set default styles
 		/// </summary>
 		public static void Load () {
-			using (Stream stream = Assembly.GetExecutingAssembly ().GetManifestResourceStream ("WPFLight.Themes.Default.xaml")){
+            #if WIN8
+                        var asm = typeof ( Initializer ).GetTypeInfo ( ).Assembly;
+            #else
+                        var asm = Assembly.GetCallingAssembly ( );
+            #endif
+
+			using (Stream stream = asm.GetManifestResourceStream ("WPFLight.Themes.Default.xaml")){
 				XamlReader.Load (stream);
 			}
 		}
@@ -35,7 +41,13 @@ namespace WPFLight {
 			if (String.IsNullOrEmpty (resourceId))
 				throw new ArgumentException ();
 
-			using (Stream stream = Assembly.GetCallingAssembly ().GetManifestResourceStream (resourceId)){
+#if WIN8
+            var asm = resourceId.GetType ( ).GetTypeInfo ( ).Assembly;
+#else
+            var asm = Assembly.GetCallingAssembly ( );
+#endif
+
+			using (Stream stream = asm.GetManifestResourceStream (resourceId)){
 				return ( ResourceDictionary ) XamlReader.Load (stream);
 			}
 		}

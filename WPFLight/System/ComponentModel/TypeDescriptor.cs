@@ -2,6 +2,8 @@ using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using WPFLight.Extensions;
+using System.Linq;
 
 namespace System.ComponentModel {
     public sealed class TypeDescriptor {
@@ -12,10 +14,10 @@ namespace System.ComponentModel {
             var attributes = type.GetCustomAttributes(
                 typeof(TypeConverterAttribute), true);
 
-            if (attributes.Length > 0) {
-                return ( TypeConverter ) Activator.CreateInstance ( 
+            if (attributes.Count ( ) > 0) {
+                return ( TypeConverter ) Activator.CreateInstance (
                         Type.GetType (
-                        ((TypeConverterAttribute)attributes[0]).ConverterTypeName, true)
+                        ( ( TypeConverterAttribute ) attributes.First ( ) ).ConverterTypeName, true )
                     );
             }
 

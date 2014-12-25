@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Data;
 using WPFLight.Helpers;
+using WPFLight.Extensions;
+using System.Reflection;
 
 namespace System.Windows {
 	public class FrameworkElement : UIElement, IDrawable2D {
@@ -351,13 +353,17 @@ namespace System.Windows {
 		}
 
 		static object ConvertValue (object value, Type targetType) {
-			// check whether the target is nullable
-			if (targetType.IsGenericType
-			    && targetType.GetGenericTypeDefinition () == typeof(Nullable<>)) {
+            var genericType = false;
+            #if WIN8 
+                genericType = targetType.GetTypeInfo ( ).IsGenericType;
+            #else
+                genericType = targetType.IsGenericType;
+            #endif
 
+			// check whether the target is nullable
+			if (genericType && targetType.GetGenericTypeDefinition () == typeof(Nullable<>)) {
 				var underlyingType = Nullable.GetUnderlyingType (targetType);
 				var convertedValue = Convert.ChangeType (value, underlyingType, null);
-
 				return convertedValue;
 			}
 			return value;

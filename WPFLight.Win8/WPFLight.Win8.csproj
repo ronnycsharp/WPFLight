@@ -23,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WIN8</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -123,6 +123,9 @@
     <Compile Include="..\WPFLight\Extensions\EnumExtensions.cs">
       <Link>Extensions\EnumExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\Extensions\TypeExtensions.cs">
+      <Link>Extensions\TypeExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\Helpers\ArrayHelper.cs">
       <Link>Helpers\ArrayHelper.cs</Link>
     </Compile>
@@ -150,8 +153,17 @@
     <Compile Include="..\WPFLight\System\Collections\Specialized\NotifyCollectionChangedEventHandler.cs">
       <Link>Systems\Collections\Specialized\NotifyCollectionChangedEventHandler.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\System\ComponentModel\ITypeDescriptorContext.cs">
+      <Link>Systems\ComponentModel\ITypeDescriptorContext.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\System\ComponentModel\PropertyChangedEventArgs.cs">
       <Link>Systems\ComponentModel\PropertyChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\ComponentModel\TypeConverter.cs">
+      <Link>Systems\ComponentModel\TypeConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WPFLight\System\ComponentModel\TypeConverterAttribute.cs">
+      <Link>Systems\ComponentModel\TypeConverterAttribute.cs</Link>
     </Compile>
     <Compile Include="..\WPFLight\System\ComponentModel\TypeDescriptor.cs">
       <Link>Systems\ComponentModel\TypeDescriptor.cs</Link>
@@ -189,9 +201,9 @@
     <Compile Include="..\WPFLight\System\Windows\Controls\DialogBox.cs">
       <Link>Systems\Windows\Controls\DialogBox.cs</Link>
     </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Controls\FocusableControl.cs">
+    <None Include="..\WPFLight\System\Windows\Controls\FocusableControl.cs">
       <Link>Systems\Windows\Controls\FocusableControl.cs</Link>
-    </Compile>
+    </None>
     <Compile Include="..\WPFLight\System\Windows\Controls\GameWindow.cs">
       <Link>Systems\Windows\Controls\GameWindow.cs</Link>
     </Compile>
@@ -330,9 +342,9 @@
     <Compile Include="..\WPFLight\System\Windows\Media\Animation\Clock.cs">
       <Link>Systems\Windows\Media\Animation\Clock.cs</Link>
     </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Media\Animation\Easing.cs">
+    <None Include="..\WPFLight\System\Windows\Media\Animation\Easing.cs">
       <Link>Systems\Windows\Media\Animation\Easing.cs</Link>
-    </Compile>
+    </None>
     <Compile Include="..\WPFLight\System\Windows\Media\Animation\IAnimationBase.cs">
       <Link>Systems\Windows\Media\Animation\IAnimationBase.cs</Link>
     </Compile>
@@ -441,9 +453,9 @@
     <Compile Include="..\WPFLight\System\Windows\SetterCollection.cs">
       <Link>Systems\Windows\SetterCollection.cs</Link>
     </Compile>
-    <Compile Include="..\WPFLight\System\Windows\Shapes\Ellipse.cs">
+    <None Include="..\WPFLight\System\Windows\Shapes\Ellipse.cs">
       <Link>Systems\Windows\Shapes\Ellipse.cs</Link>
-    </Compile>
+    </None>
     <Compile Include="..\WPFLight\System\Windows\Shapes\Rectangle.cs">
       <Link>Systems\Windows\Shapes\Rectangle.cs</Link>
     </Compile>

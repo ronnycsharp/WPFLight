@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using System.Linq;
 using WPFLight.Helpers;
+using WPFLight.Extensions;
 using System.Windows.Controls;
 
 namespace System.Windows.Markup {
@@ -84,7 +85,13 @@ namespace System.Windows.Markup {
 			} else {
 				// xmlns - Microsoft Xaml-Presentation Schema
 				if (this.HasDefaultNamespace ()) {
-					foreach (var type in Assembly.GetCallingAssembly ( ).GetTypes ( )) {
+
+#if WIN8
+                    var types = typeof ( Assembly ).Assembly ( ).DefinedTypes;
+#else
+                    var types = Assembly.GetCallingAssembly.GetTypes ( );
+#endif
+					foreach (var type in types ) {
 						if (type.Name == value) {
 							value = type.FullName;
 							break;
@@ -146,8 +153,12 @@ namespace System.Windows.Markup {
                 type = Assembly.GetExecutingAssembly ()
                     .GetType(classAttr.Value, true);
 #else
+#if WIN8
+                type = typeof ( Assembly ).Assembly ( ).GetType ( classAttr.Value );
+#else
                 type = Assembly.GetEntryAssembly()
                     .GetType(classAttr.Value, true);
+#endif
 #endif
             }
 
@@ -234,10 +245,16 @@ namespace System.Windows.Markup {
                 // check target-item for ContentProperty-Attrbitue,
                 // which describes the property which is set by default
                 // like <Style><Setter ... /></Style> -- Parent of Setter is the Style.Setters-Property
-                var contentPropertyAttribute = ( ContentPropertyAttribute ) 
-                    Attribute.GetCustomAttribute(  
-                        itemType, 
+                var contentPropertyAttribute = ( ContentPropertyAttribute )
+                #if WIN8
+                 itemType.GetTypeInfo ( )
+                    .GetCustomAttribute ( 
                         typeof ( ContentPropertyAttribute ) );
+                #else
+                 Attribute.GetCustomAttribute(  
+                                        itemType, 
+                                        typeof ( ContentPropertyAttribute ) );
+                #endif
 
                 if ( contentPropertyAttribute != null
                         && !String.IsNullOrEmpty ( contentPropertyAttribute.Name ) ) {
@@ -316,10 +333,14 @@ namespace System.Windows.Markup {
 													| BindingFlags.Instance);
 
 										if (method != null) {
+#if WIN8
+                                            var del = method.CreateDelegate (
+                                                eventInfo.EventHandlerType, codeBehind );
+#else
 											// create delegate
 											var del = Delegate.CreateDelegate (
 												eventInfo.EventHandlerType, codeBehind, attribute.Value, false, true );
-
+#endif
 											// add eventhandler-delegate
 											eventInfo.AddEventHandler (item, del);
 										} else {
@@ -410,7 +431,7 @@ namespace System.Windows.Markup {
                                         }
                                     } else {
                                         // Maybe, something is wrong
-                                        Console.WriteLine("");
+                                        //Console.WriteLine("");
                                     }
                                 }
                             } else {
@@ -522,8 +543,13 @@ namespace System.Windows.Markup {
 			if (conv != null)
 				return conv.ConvertFrom(value);
 
-            if (propertyType.IsEnum)
+#if WIN8
+            if ( propertyType.GetTypeInfo ( ).IsEnum ) {
+#else
+            if (propertyType.IsEnum) {
+#endif
                 value = Enum.Parse(propertyType, (string) value, true);
+            }
 
             return System.Convert.ChangeType(
                 value, propertyType, System.Globalization.CultureInfo.InvariantCulture);

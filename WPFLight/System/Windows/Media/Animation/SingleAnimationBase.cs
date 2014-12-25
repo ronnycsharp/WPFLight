@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Reflection;
 using Microsoft.Xna.Framework;
+using WPFLight.Extensions;
 
 namespace System.Windows.Media.Animation {
     public class ValueChangedEventArgs : EventArgs {

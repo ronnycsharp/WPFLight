@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Controls;
-using System.ComponentModel;
-
+using WPFLight.Extensions;
 namespace System.Windows {
 	public abstract class DependencyObject {
 
@@ -61,7 +61,13 @@ namespace System.Windows {
 		*/
 			
 		static object GetDefaultValueOfType(Type type) {
-			return type.IsValueType 
+            var valueType = false;
+#if WIN8
+            valueType = type.GetTypeInfo ( ).IsValueType;
+#else
+            valueType = type.IsValueType;
+#endif
+			return valueType 
 				? Activator.CreateInstance(type) 
 				: null;
 		}
