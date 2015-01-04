@@ -125,8 +125,12 @@ namespace System.Windows.Controls {
 					new PropertyChangedCallback ( 
 						( s, e ) => {
 							var solid = e.NewValue as SolidColorBrush;
-							if ( solid == null )
-								throw new NotSupportedException ( "Foreground can only be assigned with a SolidColorBrush" );
+                            if ( e.NewValue == null ) {
+                                solid = Brushes.Transparent;
+                            } else {
+                                if ( solid == null )
+                                    throw new NotSupportedException ( "Foreground can only be assigned with a SolidColorBrush" );
+                            }
 
 							((Control)s).Forecolor = new Microsoft.Xna.Framework.Color ( 
 								solid.Color.R, solid.Color.G, solid.Color.B,  solid.Color.A );

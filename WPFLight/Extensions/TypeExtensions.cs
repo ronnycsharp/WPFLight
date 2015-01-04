@@ -203,8 +203,14 @@ namespace WPFLight.Extensions {
         /// <param name="propertyName"></param>
         /// <returns></returns>
         public static System.Reflection.PropertyInfo GetProperty ( this Type t, string propertyName ) {
-            var ti = t.GetTypeInfo ( );
-            return ti.DeclaredProperties.Where ( r => r.Name == propertyName ).FirstOrDefault ( );
+            var currentType = t;
+            var result = ( PropertyInfo ) null;
+            while ( result == null && currentType != null ) {
+                var typeInfo = currentType.GetTypeInfo ( );
+                result = typeInfo.GetDeclaredProperty ( propertyName );
+                currentType = typeInfo.BaseType;
+            }
+            return result;
         }
 
         /// <summary>
