@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using WPFLight.Extensions;
 using System.Linq;
+using WPFLight.Helpers;
 
 namespace System.ComponentModel {
     public sealed class TypeDescriptor {
@@ -15,10 +16,9 @@ namespace System.ComponentModel {
                 typeof(TypeConverterAttribute), true);
 
             if (attributes.Count ( ) > 0) {
-                return ( TypeConverter ) Activator.CreateInstance (
-                        Type.GetType (
-                        ( ( TypeConverterAttribute ) attributes.First ( ) ).ConverterTypeName, true )
-                    );
+                var converterTypeName = ( ( TypeConverterAttribute ) attributes.First ( ) ).ConverterTypeName;
+                var converterType = TypeHelper.GetType ( converterTypeName, true );
+                return ( TypeConverter ) Activator.CreateInstance ( converterType );
             }
 
             if (DefaultConverters.ContainsKey(type)) {

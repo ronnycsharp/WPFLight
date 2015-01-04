@@ -52,7 +52,7 @@ namespace System.Windows.Markup {
 				throw new ArgumentNullException ();
 				
 			return Activator.CreateInstance ( 
-				Type.GetType (this.GetTypeName (element), true));
+				TypeHelper.GetType (this.GetTypeName (element), true));
 		}
 
 		/// <summary>
@@ -85,7 +85,6 @@ namespace System.Windows.Markup {
 			} else {
 				// xmlns - Microsoft Xaml-Presentation Schema
 				if (this.HasDefaultNamespace ()) {
-
 #if WIN8
                     var types = typeof ( Assembly ).Assembly ( ).DefinedTypes;
 #else
@@ -98,6 +97,10 @@ namespace System.Windows.Markup {
 						}
 					}
 				}
+                
+                //if ( value == "ResourceDictionary" || value == "Style" )
+                //value = "System.Windows." + value;
+
 				return value;
 			}
 		}
@@ -118,9 +121,9 @@ namespace System.Windows.Markup {
 				// like "static readonly DependencyProperty BackgroundProperty"
 				var field = targetType.GetField (
 					propertyName + "Property", 
-					BindingFlags.FlattenHierarchy
-						| BindingFlags.Public
-						| BindingFlags.Static);
+					    BindingFlags.FlattenHierarchy
+						    | BindingFlags.Public
+						    | BindingFlags.Static);
 
 				value = ( DependencyProperty ) field.GetValue (null);
 			}
@@ -133,7 +136,7 @@ namespace System.Windows.Markup {
 
             if (parent == null || parent is ICollection || parent.GetType() == typeof(Object) ) {
                 return Activator.CreateInstance(
-                    Type.GetType(this.GetTypeName(element), true));
+                    TypeHelper.GetType(this.GetTypeName(element), true));
             }else {
                 var type = parent.GetType();
                 var propInfo = type.GetProperty(element.Name.LocalName);
@@ -570,7 +573,7 @@ namespace System.Windows.Markup {
 					    .Replace ("}", String.Empty);
 
                     // create type by its name
-				    return Type.GetType (
+				    return TypeHelper.GetType (
 					    this.GetTypeName (typeName), 
                         true );
 			    }

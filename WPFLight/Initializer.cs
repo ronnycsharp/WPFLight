@@ -22,13 +22,17 @@ namespace WPFLight {
 		/// load resource-dictionary and set default styles
 		/// </summary>
 		public static void Load () {
+            var fileName = "WPFLight.Themes.Default.xaml";
+
             #if WIN8
                         var asm = typeof ( Initializer ).GetTypeInfo ( ).Assembly;
+                        fileName = "WPFLight.Win8.Themes.Default.xaml";
             #else
                         var asm = Assembly.GetCallingAssembly ( );
             #endif
 
-			using (Stream stream = asm.GetManifestResourceStream ("WPFLight.Themes.Default.xaml")){
+
+			using (Stream stream = asm.GetManifestResourceStream (fileName)){
 				XamlReader.Load (stream);
 			}
 		}
@@ -37,20 +41,31 @@ namespace WPFLight {
 			return ( ResourceDictionary ) XamlReader.Load (stream);
 		}
 
-		public static ResourceDictionary LoadResourceDictionary ( string resourceId ) {
-			if (String.IsNullOrEmpty (resourceId))
+		public static ResourceDictionary LoadResourceDictionary ( string resourceName ) {
+			if (String.IsNullOrEmpty (resourceName) )
 				throw new ArgumentException ();
 
 #if WIN8
-            var asm = resourceId.GetType ( ).GetTypeInfo ( ).Assembly;
+            var asm = typeof ( Initializer ).GetTypeInfo ( ).Assembly;
 #else
             var asm = Assembly.GetCallingAssembly ( );
 #endif
-
-			using (Stream stream = asm.GetManifestResourceStream (resourceId)){
+			using (Stream stream = asm.GetManifestResourceStream (resourceName)){
 				return ( ResourceDictionary ) XamlReader.Load (stream);
 			}
 		}
+
+        public static ResourceDictionary LoadResourceDictionary ( Assembly assembly, string resourceName ) {
+            if ( String.IsNullOrEmpty ( resourceName ) )
+                throw new ArgumentException ( "resourceName" );
+
+            if ( assembly == null )
+                throw new ArgumentNullException ( "assembly" );
+
+            using ( Stream stream = assembly.GetManifestResourceStream ( resourceName ) ) {
+                return ( ResourceDictionary ) XamlReader.Load ( stream );
+            }   
+        }
 	}
 }
 

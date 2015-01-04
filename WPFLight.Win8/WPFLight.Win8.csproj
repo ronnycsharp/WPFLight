@@ -135,6 +135,9 @@
     <Compile Include="..\WPFLight\Helpers\ScreenHelper.cs">
       <Link>Helpers\ScreenHelper.cs</Link>
     </Compile>
+    <Compile Include="..\WPFLight\Helpers\TypeHelper.cs">
+      <Link>Helpers\TypeHelper.cs</Link>
+    </Compile>
     <Compile Include="..\WPFLight\Initializer.cs">
       <Link>Initializer.cs</Link>
     </Compile>

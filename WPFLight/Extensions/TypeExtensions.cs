@@ -108,8 +108,28 @@ namespace WPFLight.Extensions {
         /// <param name="fieldName"></param>
         /// <param name="flags"></param>
         /// <returns></returns>
-        public static System.Reflection.FieldInfo GetField ( this Type t, string fieldName, BindingFlags flags ) {
+        public static System.Reflection.FieldInfo GetField ( this Type t, string fieldName ) {
             return t.GetTypeInfo ( ).GetDeclaredField ( fieldName );
+        }
+
+        /// <summary>
+        /// Gets the field info from the specified name
+        /// </summary>
+        /// <param name="type">The source type</param>
+        /// <param name="fieldName">The name of the field</param>
+        /// <returns>The field info if found, null otherwise</returns>
+        public static System.Reflection.FieldInfo GetField ( this Type t, string fieldName, BindingFlags flags ) {
+            var currentType = t;
+            var result = ( FieldInfo ) null;
+            while ( result == null && currentType != null ) {
+                var typeInfo = currentType.GetTypeInfo ( );
+                result = typeInfo.GetDeclaredField ( fieldName );
+                currentType = typeInfo.BaseType;
+                if ( result == null && !flags.HasFlag ( BindingFlags.FlattenHierarchy ) ) {
+                    break;
+                }
+            }
+            return result;
         }
 
         /// <summary>
