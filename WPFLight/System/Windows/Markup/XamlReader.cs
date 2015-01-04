@@ -8,6 +8,7 @@ using System.Linq;
 using WPFLight.Helpers;
 using WPFLight.Extensions;
 using System.Windows.Controls;
+using System.Globalization;
 
 namespace System.Windows.Markup {
 	public sealed class XamlReader {
@@ -97,10 +98,6 @@ namespace System.Windows.Markup {
 						}
 					}
 				}
-                
-                //if ( value == "ResourceDictionary" || value == "Style" )
-                //value = "System.Windows." + value;
-
 				return value;
 			}
 		}
@@ -522,6 +519,27 @@ namespace System.Windows.Markup {
 			}
 		}
 
+        // TODO Add to Helper-Class
+
+#if WIN8
+        static internal Thickness FromString ( string s, CultureInfo cultureInfo ) {
+            if ( String.IsNullOrEmpty ( s ) )
+                throw new ArgumentException ( );
+
+            if ( s.Contains ( "," ) ) {
+                var values = s.Split ( ',' );
+                return new Thickness (
+                    float.Parse ( values[ 0 ] ),
+                    float.Parse ( values[ 1 ] ),
+                    float.Parse ( values[ 2 ] ),
+                    float.Parse ( values[ 3 ] ) );
+            } else {
+                return new Thickness (
+                    float.Parse ( s ) );
+            }
+        }
+#endif
+
         /// <summary>
         /// Converts a value to a specific type and uses its default converter
         /// or its attributed custom TypeConverter like [TypeConverter(typeof(BrushConverter))]...
@@ -542,9 +560,16 @@ namespace System.Windows.Markup {
             if (underlyingType != null)
                 propertyType = underlyingType;
 
-			var conv = TypeDescriptor.GetConverter(propertyType);
-			if (conv != null)
-				return conv.ConvertFrom(value);
+#if WIN8 
+            if ( propertyType == typeof ( Thickness ) ) {
+                return FromString ( 
+                    ( string ) value, CultureInfo.InvariantCulture );
+            }
+#endif
+
+            var conv = TypeDescriptor.GetConverter ( propertyType );
+            if ( conv != null )
+                return conv.ConvertFrom ( value );
 
 #if WIN8
             if ( propertyType.GetTypeInfo ( ).IsEnum ) {

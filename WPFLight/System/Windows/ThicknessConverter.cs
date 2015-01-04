@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel;
-//using System.ComponentModel.Design.Serialization;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
 
 namespace System.Windows {
-	public class ThicknessConverter : TypeConverter {
+	public class ThicknessConverter : System.ComponentModel.TypeConverter {
 		public override bool CanConvertFrom (ITypeDescriptorContext typeDescriptorContext, Type sourceType) {
 			// We can only handle strings, integral and floating types
 			TypeCode tc = Type.GetTypeCode (sourceType);
@@ -44,6 +43,19 @@ namespace System.Windows {
 			}
 			throw new Exception ("Cannot convert type");
 		}
+
+        public override object ConvertFrom ( object value ) {
+            if ( source != null ) {
+                if ( source is string ) {
+                    return FromString ( ( string ) source, cultureInfo );
+                } else if ( source is float ) {
+                    return new Thickness ( ( float ) source );
+                } else {
+                    return new Thickness ( Convert.ToSingle ( source, cultureInfo ) );
+                }
+            }
+            throw new Exception ( "Cannot convert type" );
+        }
 
 		public override object ConvertTo (ITypeDescriptorContext typeDescriptorContext, CultureInfo cultureInfo, object value, Type destinationType) {
 			if (null == value) {

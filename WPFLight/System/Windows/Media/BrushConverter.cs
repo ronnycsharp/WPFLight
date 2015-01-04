@@ -21,6 +21,14 @@ namespace System.Windows.Media {
 			return base.ConvertFrom (context, culture, value);
 		}
 
+        public override object ConvertFrom ( object value ) {
+            String source = value as string;
+            if ( source != null )
+                return Brush.Parse ( source, null );
+
+            return base.ConvertFrom ( value );           
+        }
+
 		public override object ConvertTo (ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType) {
 			return base.ConvertTo (context, culture, value, destinationType);
 		}

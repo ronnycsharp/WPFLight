@@ -1,6 +1,6 @@
 using System.Globalization;
 namespace System.ComponentModel {
-    public class TypeConverter {
+    public abstract class TypeConverter {
         public virtual bool CanConvertFrom ( ITypeDescriptorContext context, Type sourceType ) {
             return false;
         }
