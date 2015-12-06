@@ -1,4 +1,4 @@
-﻿namespace System.Windows.Controls.Primitives {
+namespace System.Windows.Controls.Primitives {
 	public class ToggleButton : Button {
 		public ToggleButton ()  { }
 

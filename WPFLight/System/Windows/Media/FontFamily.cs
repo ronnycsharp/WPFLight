@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 namespace System.Windows.Media {
 	[TypeConverter (typeof(FontFamilyConverter))]
 	public class FontFamily {

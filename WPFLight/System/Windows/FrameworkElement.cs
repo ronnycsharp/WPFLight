@@ -233,10 +233,10 @@ namespace System.Windows {
 
 			// Setter des Triggers durchlaufen
 			foreach (var setter in trigger.Setters) {
-				// Gibt den aktuellen Wert zurück
+				// Gibt den aktuellen Wert zurï¿½ck
 				var oldValue = this.GetValue (setter.Property);
 
-				// Prüfen ob der Wert übernommen wurde 
+				// Prï¿½fen ob der Wert ï¿½bernommen wurde 
 				// - Vorherige Zuweisungen ignorieren, da Trigger (letzter Parameter, true)
 				if (this.ApplyValue (setter.Property, setter.Value, true)) {
 					updated = true;
@@ -289,7 +289,7 @@ namespace System.Windows {
 		}
 
 		/// <summary>
-		/// L?scht die gespeicherten Eigenschaftswerte f¨¹r den angegebenen Trigger
+		/// L?scht die gespeicherten Eigenschaftswerte fï¿½ï¿½r den angegebenen Trigger
 		/// </summary>
 		/// <param name="trigger">Trigger.</param>
 		void ResetStoredValues (Trigger trigger) {
@@ -323,7 +323,7 @@ namespace System.Windows {
 		}
 
 		/// <summary>
-		/// Gibt den Zieltyp einer Property zur¨¹ck, egal ob DependencyProperty oder Klassenproperty
+		/// Gibt den Zieltyp einer Property zurï¿½ï¿½ck, egal ob DependencyProperty oder Klassenproperty
 		/// </summary>
 		/// <returns>The property type.</returns>
 		/// <param name="propertyName">Property name.</param>
@@ -336,11 +336,11 @@ namespace System.Windows {
 		/// </summary>
 		/// <param name="propertyName">Eigenschaftsname</param>
 		/// <param name="value">Neuer Wert</param>
-		/// <param name="ignoreAssignment">Wenn true, dann wird ein bereits zugewiesene Eigenschaft ¨¹berschrieben</param>
+		/// <param name="ignoreAssignment">Wenn true, dann wird ein bereits zugewiesene Eigenschaft ï¿½ï¿½berschrieben</param>
 		bool ApplyValue (DependencyProperty dp, object value, bool ignoreAssignment) {
 			var result = false;
 
-			// Pr¨¹fem ob die DependencyProperty noch nicht zugewiesen wurde oder 
+			// Prï¿½ï¿½fem ob die DependencyProperty noch nicht zugewiesen wurde oder 
 			// ob die Zuweisung ignoriert werden soll (zb. durch trigger-Ausl?sung)
 			if (ignoreAssignment || !this.IsAssignedProperty (dp)) {
 				this.SetValue (dp, ConvertValue (value, dp.PropertyType), false);

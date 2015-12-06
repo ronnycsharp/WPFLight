@@ -172,8 +172,8 @@ namespace System.Windows {
 		}
 
 		/// <summary>
-		/// Gibt das Window-Objekt an der Postion zurück,
-		/// - Priorität haben Modal-Windows
+		/// Gibt das Window-Objekt an der Postion zurï¿½ck,
+		/// - Prioritï¿½t haben Modal-Windows
 		/// </summary>
 		/// <param name="v"></param>
 		/// <returns></returns>
@@ -182,7 +182,7 @@ namespace System.Windows {
 			if (modalWindow != null)
 				return modalWindow;
 			else {
-				// Neue aktive Fenster werden bevorzugt, da sie später gezeichnet wurden
+				// Neue aktive Fenster werden bevorzugt, da sie spï¿½ter gezeichnet wurden
 				// und somit im Fordergrund sind
 				for (var n = ActiveWindows.Count - 1; n >= 0; n--) {
 					var window = ActiveWindows [n];
